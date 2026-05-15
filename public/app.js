@@ -139,7 +139,9 @@ function renderGroup(groupName, channels, search) {
     }
 
     const toggleBtn = header.querySelector('.group-toggle');
-    let collapsed = false;
+    let collapsed = true;
+    list.style.display = 'none';
+    toggleBtn.textContent = '▶';
     toggleBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         collapsed = !collapsed;
