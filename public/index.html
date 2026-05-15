@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IPTV Manager</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div id="app">
+        <!-- Sidebar -->
+        <aside id="sidebar">
+            <div class="logo">📺 IPTV Manager</div>
+
+            <section class="sidebar-section">
+                <h3>Playlist URL</h3>
+                <div id="playlist-url-box">
+                    <span id="playlist-url-text">Loading...</span>
+                    <button id="copy-url-btn" title="Copy URL">⎘</button>
+                </div>
+                <small>Use this URL in your IPTV player</small>
+            </section>
+
+            <section class="sidebar-section">
+                <h3>Source M3U</h3>
+                <input type="text" id="source-url-input" placeholder="http://... or paste M3U below" />
+                <button id="fetch-source-btn" class="btn-primary">Fetch & Set Source</button>
+                <div class="divider">or paste M3U text</div>
+                <textarea id="m3u-paste-area"
+                    placeholder="#EXTM3U&#10;#EXTINF:-1 group-title=&quot;News&quot;,CNN&#10;http://..."></textarea>
+                <button id="import-paste-btn" class="btn-secondary">Import Pasted M3U</button>
+            </section>
+
+            <section class="sidebar-section">
+                <h3>Sync</h3>
+                <div id="last-sync-info">Last sync: —</div>
+                <button id="sync-now-btn" class="btn-secondary">Sync Now</button>
+                <small>Auto-syncs daily at 04:00</small>
+            </section>
+        </aside>
+
+        <!-- Main content -->
+        <main id="main">
+            <div id="toolbar">
+                <input type="text" id="search-input" placeholder="Search channels..." />
+                <span id="channel-count"></span>
+                <button id="save-btn" class="btn-primary" disabled>Save Order</button>
+            </div>
+
+            <div id="content-area">
+                <div id="empty-state">
+                    <div class="empty-icon">📋</div>
+                    <p>No channels yet. Fetch a source URL or paste an M3U list.</p>
+                </div>
+                <div id="groups-container"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast"></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

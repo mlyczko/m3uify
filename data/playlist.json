@@ -1,0 +1,4916 @@
+{
+  "channels": [
+    {
+      "id": "64fff73b-34dd-4f68-b85a-c31c4ba41edb",
+      "name": "13 Ulica HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/13+Ulica.png",
+      "tvgId": "13 Ulica",
+      "tvgName": "13 Ulica",
+      "url": "http://cdnx1.plusx.tv:4000/325/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 0
+    },
+    {
+      "id": "b259b442-b111-4c1a-8ad6-80d2c0750c55",
+      "name": "Euronews Polska",
+      "group": "Informacje",
+      "logo": "https://logo.itvn.io/Euronews+Polska.png",
+      "tvgId": "Euronews Polska",
+      "tvgName": "Euronews Polska",
+      "url": "http://cdnx1.plusx.tv:4000/6016/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 1
+    },
+    {
+      "id": "020ab369-b0f8-4b4e-a05d-fe959ba3187b",
+      "name": "4FUN DANCE",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/4+Fun+Dance.png",
+      "tvgId": "4FUN DANCE",
+      "tvgName": "4FUN DANCE",
+      "url": "http://cdnx1.plusx.tv:4000/324/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 2
+    },
+    {
+      "id": "81979125-1e20-4be9-90c7-46298de94634",
+      "name": "4FUN KIDS",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/4FUN+KIDS.png",
+      "tvgId": "4FUN KIDS",
+      "tvgName": "4FUN KIDS",
+      "url": "http://cdnx1.plusx.tv:4000/323/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 3
+    },
+    {
+      "id": "3563a21f-2545-44fa-96d8-85e4c0efd25f",
+      "name": "2x2 HD",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/2x2.png",
+      "tvgId": "2x2",
+      "tvgName": "2x2",
+      "url": "http://cdnx1.plusx.tv:4000/2x2/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 4
+    },
+    {
+      "id": "223b1038-2951-4564-9584-50857a75807b",
+      "name": "4FUN TV",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/4FUN.TV.png",
+      "tvgId": "4FUN TV",
+      "tvgName": "4FUN TV",
+      "url": "http://cdnx1.plusx.tv:4000/322/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 5
+    },
+    {
+      "id": "ca3eadb5-32c9-4945-a516-29a105032254",
+      "name": "Antena",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Antena.png",
+      "tvgId": "Antena",
+      "tvgName": "Antena",
+      "url": "http://cdnx1.plusx.tv:4000/1316/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 6
+    },
+    {
+      "id": "feebd8fe-0a18-4ae8-a021-472d0a2d3cfe",
+      "name": "AMC HD",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/AMC.png",
+      "tvgId": "AMC",
+      "tvgName": "AMC HD",
+      "url": "http://cdnx1.plusx.tv:4000/318/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 7
+    },
+    {
+      "id": "4bdfdc59-c492-49f8-8194-b5667c8d835c",
+      "name": "AXN Black",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/AXN+Black.png",
+      "tvgId": "AXN Black",
+      "tvgName": "AXN Black",
+      "url": "http://cdnx1.plusx.tv:4000/314/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 8
+    },
+    {
+      "id": "4fdf9f34-43e0-4e2a-bcd1-5ba72ed3d386",
+      "name": "AXN HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/AXN.png",
+      "tvgId": "AXN",
+      "tvgName": "AXN",
+      "url": "http://cdnx1.plusx.tv:4000/313/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 9
+    },
+    {
+      "id": "2b6093e1-4e05-4832-8af8-187c5d2cced6",
+      "name": "AXN Spin HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/AXN+Spin.png",
+      "tvgId": "AXN Spin",
+      "tvgName": "AXNSpinHD",
+      "url": "http://cdnx1.plusx.tv:4000/312/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 10
+    },
+    {
+      "id": "8ef6d354-b9f9-4160-9a3c-757388cde844",
+      "name": "AXN White",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/AXN+White.png",
+      "tvgId": "AXN White",
+      "tvgName": "AXN White",
+      "url": "http://cdnx1.plusx.tv:4000/311/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 11
+    },
+    {
+      "id": "54083dcd-d0f1-4a9a-8bd3-f74345b1114e",
+      "name": "Adventure HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Adventure.png",
+      "tvgId": "Adventure",
+      "tvgName": "Adventure",
+      "url": "http://cdnx1.plusx.tv:4000/320/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 12
+    },
+    {
+      "id": "602d8f0e-efe6-45a7-86da-1e20973dc52e",
+      "name": "Active Family",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Active+Family.png",
+      "tvgId": "ActiveFamily.pl",
+      "tvgName": "ActiveFamily.pl",
+      "url": "http://cdnx1.plusx.tv:4000/321/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 13
+    },
+    {
+      "id": "c6d7f4e9-da8b-455a-a794-47675d0c9b09",
+      "name": "Ale Kino+ HD",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Ale+Kino+.png",
+      "tvgId": "Ale Kino+",
+      "tvgName": "Ale Kino!",
+      "url": "http://cdnx1.plusx.tv:4000/319/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 14
+    },
+    {
+      "id": "16603ebf-82ce-4c53-a6cb-68294b37a12b",
+      "name": "Animal Planet HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/Animal+Planet.png",
+      "tvgId": "Animal Planet",
+      "tvgName": "Animal Planet HD",
+      "url": "http://cdnx1.plusx.tv:4000/317/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 15
+    },
+    {
+      "id": "81f32fa4-f630-43ae-81bd-f9e31d79109f",
+      "name": "Home TV",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Home+TV.png",
+      "tvgId": "HOME TV",
+      "tvgName": "HOME TV",
+      "url": "http://cdnx1.plusx.tv:4000/8080/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 16
+    },
+    {
+      "id": "b8f4322f-c8ca-426f-ad90-9eaa9194ef6b",
+      "name": "BBC Brit HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/BBC+Brit.png",
+      "tvgId": "BBC Brit",
+      "tvgName": "BBC-Brit",
+      "url": "http://cdnx1.plusx.tv:4000/309/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 17
+    },
+    {
+      "id": "44b7b117-2ec1-4c37-a3ab-fdbddd6cc838",
+      "name": "BBC Earth HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/BBC+Earth.png",
+      "tvgId": "BBC Earth",
+      "tvgName": "BBC Earth",
+      "url": "http://cdnx1.plusx.tv:4000/307/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 18
+    },
+    {
+      "id": "cc76f2f9-be1d-4ac4-b755-958df9afb659",
+      "name": "BBC First HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/BBC+First.png",
+      "tvgId": "BBC First",
+      "tvgName": "BBC Fisrt",
+      "url": "http://cdnx1.plusx.tv:4000/306/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 19
+    },
+    {
+      "id": "74064a17-b213-4055-9576-287902302a7c",
+      "name": "BBC Lifestyle HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/BBC+Lifestyle.png",
+      "tvgId": "BBC Lifestyle",
+      "tvgName": "BBC Lifestyle",
+      "url": "http://cdnx1.plusx.tv:4000/305/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 20
+    },
+    {
+      "id": "bc983c92-99d6-494c-b0bc-06f117a25a66",
+      "name": "BBC CBeebies",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/BBC+CBeebies.png",
+      "tvgId": "BBC CBeebies",
+      "tvgName": "BBC CBeebies",
+      "url": "http://cdnx1.plusx.tv:4000/308/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 21
+    },
+    {
+      "id": "e140e419-84bb-4476-9501-ab7e8f7ab5ce",
+      "name": "Baby TV",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/Baby+TV.png",
+      "tvgId": "Baby TV",
+      "tvgName": "BabyTV",
+      "url": "http://cdnx1.plusx.tv:4000/310/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 22
+    },
+    {
+      "id": "6c173639-b1d3-4886-85c9-608047defd78",
+      "name": "Cartoonito HD",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/CARTOONITO.png",
+      "tvgId": "CARTOONITO",
+      "tvgName": "CARTOONITO",
+      "url": "http://cdnx1.plusx.tv:4000/303/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 23
+    },
+    {
+      "id": "be22c043-93b1-416d-b35b-0d7a4572e8fa",
+      "name": "Biznes 24 HD",
+      "group": "Informacje",
+      "logo": "https://logo.itvn.io/Biznes+24.png",
+      "tvgId": "Biznes 24",
+      "tvgName": "Biznes 24",
+      "url": "http://cdnx1.plusx.tv:4000/2020/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 24
+    },
+    {
+      "id": "47778a84-4d03-4c35-850e-f1f165f26ab6",
+      "name": "Canal+ Dokument HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/Canal++Dokument.png",
+      "tvgId": "Canal+ Dokument",
+      "tvgName": "Canal+ Dokument",
+      "url": "http://cdnx1.plusx.tv:4000/301/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 25
+    },
+    {
+      "id": "a6c87b91-d148-4ab3-9689-ff870be10512",
+      "name": "Canal+ Film HD",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Canal++Film.png",
+      "tvgId": "Canal+ Film",
+      "tvgName": "CANAL+ Film",
+      "url": "http://cdnx1.plusx.tv:4000/296/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 26
+    },
+    {
+      "id": "4facb9d8-83d7-448d-930c-75e68d69aacc",
+      "name": "CANAL+ Premium HD",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Canal++Premium.png",
+      "tvgId": "Canal+ Premium",
+      "tvgName": "Canal+ Premium",
+      "url": "http://cdnx1.plusx.tv:4000/295/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 27
+    },
+    {
+      "id": "7a45eee1-deb2-4746-bbdf-8f5f3c52fc54",
+      "name": "Canal+ Now HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Canal++Now.png",
+      "tvgId": "Canal+ Now",
+      "tvgName": "Canal+ Now",
+      "url": "http://cdnx1.plusx.tv:4000/299/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 28
+    },
+    {
+      "id": "c3245f11-9d1d-4d0c-b2d9-dd5ff6bd4f91",
+      "name": "Canal+ Seriale HD",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Canal++Seriale.png",
+      "tvgId": "Canal+ Seriale",
+      "tvgName": "Canal+ Seriale",
+      "url": "http://cdnx1.plusx.tv:4000/294/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 29
+    },
+    {
+      "id": "d2b845d9-90c7-414a-a1fd-c0da7cae8f62",
+      "name": "Canal+ Sport HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Canal++Sport.png",
+      "tvgId": "Canal+ Sport",
+      "tvgName": "Canalplus Sport",
+      "url": "http://cdnx1.plusx.tv:4000/297/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 30
+    },
+    {
+      "id": "06c24734-f08f-4316-a22f-67d5448033d7",
+      "name": "Canal+ Sport 2 HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Canal++Sport+2.png",
+      "tvgId": "Canal+ Sport 2",
+      "tvgName": "Canal+ Sport 2 HD",
+      "url": "http://cdnx1.plusx.tv:4000/298/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 31
+    },
+    {
+      "id": "53172c51-045d-4e86-915e-f3f83cd854ae",
+      "name": "Canal+ Sport 3 HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Canal++Sport+3+HD.png",
+      "tvgId": "Canal+ Sport 3",
+      "tvgName": "Canal+ Sport 3",
+      "url": "http://cdnx1.plusx.tv:4000/340/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 32
+    },
+    {
+      "id": "857d112f-5d3f-49a5-a6bd-28b45efc3a1f",
+      "name": "Canal+ Sport 4 HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Canal++Sport+4.png",
+      "tvgId": "Canal+ Sport 4",
+      "tvgName": "Canal+ Sport 4",
+      "url": "http://cdnx1.plusx.tv:4000/341/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 33
+    },
+    {
+      "id": "956f8233-5c30-4351-bd8c-d1901148a284",
+      "name": "Canal+ Sport 5 HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/nsport+.png",
+      "tvgId": "Canal+ Sport 5",
+      "tvgName": "Canal+ Sport 5",
+      "url": "http://cdnx1.plusx.tv:4000/215/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 34
+    },
+    {
+      "id": "ec1d0456-fa49-41f6-ae15-7a40a9ebb4b8",
+      "name": "Canal+ 1 HD",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Canal+1.png",
+      "tvgId": "Canal+ 1",
+      "tvgName": "CANAL+ 1",
+      "url": "http://cdnx1.plusx.tv:4000/302/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 35
+    },
+    {
+      "id": "051e3587-8873-45fe-9d71-c2909618560f",
+      "name": "Comedy Central Extra HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Polsat+Comedy+Central+Extra.png",
+      "tvgId": "Polsat Comedy Central Extra",
+      "tvgName": "Polsat Comedy Central Extra",
+      "url": "http://cdnx1.plusx.tv:4000/290/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 36
+    },
+    {
+      "id": "4cf5d451-d97c-4730-af29-d9c3b54d5047",
+      "name": "Cartoon Network HD",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/Cartoon+Network.png",
+      "tvgId": "Cartoon Network",
+      "tvgName": "Cartoon-Network",
+      "url": "http://cdnx1.plusx.tv:4000/293/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 37
+    },
+    {
+      "id": "79da6f30-b8d2-437b-888d-ebb59db452af",
+      "name": "Bollywood HD",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Bollywood+HD.png",
+      "tvgId": "Bollywood HD",
+      "tvgName": "Bollywood HD",
+      "url": "http://cdnx1.plusx.tv:4000/Bollywood/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 38
+    },
+    {
+      "id": "1a67095e-05d9-44f2-8c81-93beff903e6d",
+      "name": "FilMax HD",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/FILMAX.png",
+      "tvgId": "FILMAX",
+      "tvgName": "FILMAX",
+      "url": "http://cdnx1.plusx.tv:4000/filmaxhd/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 39
+    },
+    {
+      "id": "48d2631f-ee23-47a1-8af8-4a70a7375c3c",
+      "name": "ViDoc TV",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/ViDoc+TV.png",
+      "tvgId": "ViDoc TV",
+      "tvgName": "ViDoc TV",
+      "url": "http://cdnx1.plusx.tv:4000/redtop/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 40
+    },
+    {
+      "id": "2b480215-c528-43a4-b7b7-a78f5b3edc39",
+      "name": "Cinemax HD",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Cinemax.png",
+      "tvgId": "Cinemax",
+      "tvgName": "Cinemax",
+      "url": "http://cdnx1.plusx.tv:4000/287/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 41
+    },
+    {
+      "id": "1db15273-7e8e-4e6d-9200-f03301f1b0fe",
+      "name": "Cinemax 2 HD",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Cinemax+2.png",
+      "tvgId": "Cinemax 2",
+      "tvgName": "Cinemax 2",
+      "url": "http://cdnx1.plusx.tv:4000/288/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 42
+    },
+    {
+      "id": "b0f40ea6-16d1-46f5-acb3-b5fb3398aea8",
+      "name": "Comedy Central HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Comedy+Central.png",
+      "tvgId": "Comedy Central",
+      "tvgName": "Comedy Central Polska",
+      "url": "http://cdnx1.plusx.tv:4000/286/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 43
+    },
+    {
+      "id": "9b56966d-7338-4a22-be46-6e8a99d1658e",
+      "name": "CI Polsat HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/CI+Polsat.png",
+      "tvgId": "CI Polsat HD",
+      "tvgName": "CI Polsat HD",
+      "url": "http://cdnx1.plusx.tv:4000/285/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 44
+    },
+    {
+      "id": "854f16b9-7c2b-41d5-84bc-7ae8c78945e1",
+      "name": "DTX HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/DTX.png",
+      "tvgId": "DTX",
+      "tvgName": "Discovery Turbo Xtra",
+      "url": "http://cdnx1.plusx.tv:4000/274/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 45
+    },
+    {
+      "id": "e120f673-37af-487a-979b-49259aeb4223",
+      "name": "DocuBox HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/DOCUBOX.png",
+      "tvgId": "DOCUBOX",
+      "tvgName": "DOCUBOX",
+      "url": "http://cdnx1.plusx.tv:4000/DocuBox.pl/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 46
+    },
+    {
+      "id": "b4b956a2-cee0-4ff3-a685-df8bc7fb86b0",
+      "name": "Da Vinci",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/Da+Vinci+Learning.png",
+      "tvgId": "Da Vinci Learning",
+      "tvgName": "Da Vinci Learning",
+      "url": "http://cdnx1.plusx.tv:4000/284/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 47
+    },
+    {
+      "id": "fd7b7e4a-c3be-4b7e-ab79-ae2f774414f4",
+      "name": "Disco Polo Music",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/Disco+Polo+Music.png",
+      "tvgId": "Disco Polo Music",
+      "tvgName": "disco-polo-music",
+      "url": "http://cdnx1.plusx.tv:4000/283/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 48
+    },
+    {
+      "id": "74a71000-ffa7-46b4-8b1d-589251a07a02",
+      "name": "Discovery Channel HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/Discovery+Channel.png",
+      "tvgId": "Discovery Channel",
+      "tvgName": "Discovery",
+      "url": "http://cdnx1.plusx.tv:4000/282/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 49
+    },
+    {
+      "id": "226b2ffb-334a-4d21-aa22-1b2e469d9bcc",
+      "name": "Discovery Historia",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/Discovery+Historia.png",
+      "tvgId": "Discovery Historia",
+      "tvgName": "Discovery Historia",
+      "url": "http://cdnx1.plusx.tv:4000/281/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 50
+    },
+    {
+      "id": "30286b6c-abc7-473d-8f59-1b658c352292",
+      "name": "Discovery Life HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/Discovery+Life.png",
+      "tvgId": "Discovery Life",
+      "tvgName": "Discovery Life",
+      "url": "http://cdnx1.plusx.tv:4000/280/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 51
+    },
+    {
+      "id": "8c9490bc-0bc9-4370-a1a3-ab6489a4b76a",
+      "name": "Discovery Science HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/Discovery+Science.png",
+      "tvgId": "Discovery Science",
+      "tvgName": "Discovery Science",
+      "url": "http://cdnx1.plusx.tv:4000/279/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 52
+    },
+    {
+      "id": "090561e5-ce92-4a89-a262-d53d37955934",
+      "name": "Disney Channel HD",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/Disney+Channel.png",
+      "tvgId": "Disney Channel",
+      "tvgName": "Disney Channel",
+      "url": "http://cdnx1.plusx.tv:4000/278/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 53
+    },
+    {
+      "id": "e8ff8b4c-17c2-46e8-944d-0aa3a9ba5dd6",
+      "name": "Disney Junior",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/Disney+Junior.png",
+      "tvgId": "Disney Junior",
+      "tvgName": "Disney Jr",
+      "url": "http://cdnx1.plusx.tv:4000/277/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 54
+    },
+    {
+      "id": "b2e5ab46-c321-4c74-8faf-7c1d5563eb48",
+      "name": "Disney XD",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/Disney+XD.png",
+      "tvgId": "Disney XD",
+      "tvgName": "Disney XD",
+      "url": "http://cdnx1.plusx.tv:4000/276/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 55
+    },
+    {
+      "id": "0d3e21c2-1d6e-4e80-8438-762abde7dca9",
+      "name": "Duck TV",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/Duck+TV.png",
+      "tvgId": "Duck TV",
+      "tvgName": "Duck TV",
+      "url": "http://cdnx1.plusx.tv:4000/duck/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 56
+    },
+    {
+      "id": "f6c90ed9-a60d-49d3-baa3-6306013d47d7",
+      "name": "DuckTV Plus HD",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/DuckTV+Plus.png",
+      "tvgId": "DuckTV Plus",
+      "tvgName": "DuckTV Plus",
+      "url": "http://cdnx1.plusx.tv:4000/ducktv-plus/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 57
+    },
+    {
+      "id": "1357d73d-0b9f-44ab-9bd4-7ea52155d6ec",
+      "name": "TeenNick",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/TeenNick.png",
+      "tvgId": "TeenNick",
+      "tvgName": "TeenNick",
+      "url": "http://cdnx1.plusx.tv:4000/325jun/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 58
+    },
+    {
+      "id": "e4721776-8cdc-444c-9a6d-0fd78ded4e52",
+      "name": "Canal+ Domo HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Canal++Domo.png",
+      "tvgId": "CANAL+ DOMO HD",
+      "tvgName": "CANAL+ DOMO HD",
+      "url": "http://cdnx1.plusx.tv:4000/275/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 59
+    },
+    {
+      "id": "06761c3c-8eed-44ca-82cf-25b9d91207bf",
+      "name": "Dla Ciebie TV",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Dla+Ciebie+TV.png",
+      "tvgId": "Dla Ciebie TV",
+      "tvgName": "Dla Ciebie TV",
+      "url": "http://cdnx1.plusx.tv:4000/liga51/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 60
+    },
+    {
+      "id": "0ae9fdd3-ad45-4fc4-b215-879bc6158117",
+      "name": "E! Entertainment HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/E!+Entertainment.png",
+      "tvgId": "E! Entertainment",
+      "tvgName": "E! Entertainment",
+      "url": "http://cdnx1.plusx.tv:4000/273/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 61
+    },
+    {
+      "id": "dc99974e-016c-42a8-8b1b-a4073eefa1bf",
+      "name": "Eleven Sports 1 4K",
+      "group": "4k",
+      "logo": "https://logo.itvn.io/Eleven+Sports+4K.png",
+      "tvgId": "Eleven Sports 1",
+      "tvgName": "Eleven Sports 1 HD",
+      "url": "http://cdnx1.plusx.tv:4000/325es4k/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 62
+    },
+    {
+      "id": "a546ffe2-1e66-434d-858d-371957da42ad",
+      "name": "Eleven Sports 1 HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Eleven+Sports+1.png",
+      "tvgId": "Eleven Sports 1",
+      "tvgName": "Eleven Sports 1 HD",
+      "url": "http://cdnx1.plusx.tv:4000/271/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 63
+    },
+    {
+      "id": "7126ff76-99b4-4ffe-afec-2fb6013d0ade",
+      "name": "Eleven Sports 2 HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Eleven+Sports+2.png",
+      "tvgId": "Eleven Sports 2",
+      "tvgName": "Eleven Sports 2 HD",
+      "url": "http://cdnx1.plusx.tv:4000/270/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 64
+    },
+    {
+      "id": "fd8c6462-9000-449b-b64f-ad8750c0ad77",
+      "name": "Eleven Sports 3 HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Eleven+Sports+3.png",
+      "tvgId": "Eleven Sports 3",
+      "tvgName": "Eleven Sports 3 HD",
+      "url": "http://cdnx1.plusx.tv:4000/269/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 65
+    },
+    {
+      "id": "b2f255a3-dd34-490a-9285-76861b068b3f",
+      "name": "Eleven Sports 4 HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Eleven+Sports+4.png",
+      "tvgId": "Eleven Sports 4",
+      "tvgName": "Eleven Sports 4 HD",
+      "url": "http://cdnx1.plusx.tv:4000/272/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 66
+    },
+    {
+      "id": "37608b3f-b954-4c57-a454-a30911e45aca",
+      "name": "Pogoda24 TV",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Pogoda24+TV.png",
+      "tvgId": "Pogoda24 TV",
+      "tvgName": "Pogoda24 TV",
+      "url": "http://cdnx1.plusx.tv:4000/xtreamtv/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 67
+    },
+    {
+      "id": "5135c4b9-0fd9-4ff9-8a99-d3cad85a4ec6",
+      "name": "Epic Drama HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Epic+Drama.png",
+      "tvgId": "Epic Drama",
+      "tvgName": "Be1 Alt",
+      "url": "http://cdnx1.plusx.tv:4000/268/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 68
+    },
+    {
+      "id": "3103cb12-94bd-4d8c-ac8e-4e21490ed22c",
+      "name": "Eska TV",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/Eska+TV.png",
+      "tvgId": "Eska TV",
+      "tvgName": "EPIC Drama HD",
+      "url": "http://cdnx1.plusx.tv:4000/267/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 69
+    },
+    {
+      "id": "9932e372-e4ad-4f2f-9831-dc3abf70bf3e",
+      "name": "Eska TV Extra",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/Eska+TV+Extra.png",
+      "tvgId": "Eska TV Extra",
+      "tvgName": "Eska TV Extra",
+      "url": "http://cdnx1.plusx.tv:4000/265/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 70
+    },
+    {
+      "id": "96167b9f-ff84-4e01-a278-4b16d89ff3b2",
+      "name": "Eska Rock TV",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/Eska+Rock+TV.png",
+      "tvgId": "Eska Rock TV",
+      "tvgName": "EskaROCK TV",
+      "url": "http://cdnx1.plusx.tv:4000/266/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 71
+    },
+    {
+      "id": "c776ca4e-8a1e-4c0e-b0b3-3915a1ffe887",
+      "name": "Eurosport 1 HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Eurosport.png",
+      "tvgId": "Eurosport",
+      "tvgName": "Eurosport",
+      "url": "http://cdnx1.plusx.tv:4000/264/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 72
+    },
+    {
+      "id": "eb14607b-77d0-411a-bd86-90b380c94c38",
+      "name": "Eurosport 2 HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Eurosport+2.png",
+      "tvgId": "Eurosport 2",
+      "tvgName": "Eurosport 2",
+      "url": "http://cdnx1.plusx.tv:4000/263/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 73
+    },
+    {
+      "id": "c4eecf4b-732f-4002-831c-adba3a6d0935",
+      "name": "Eurosport 3 HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Eurosport+3.png",
+      "tvgId": "Eurosport 3",
+      "tvgName": "Eurosport 3",
+      "url": "http://live67.itvn.io:4000/6020/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 74
+    },
+    {
+      "id": "7f1ed303-ed7d-4d70-9d5b-49ef8d640026",
+      "name": "Eurosport 4 HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Eurosport+4.png",
+      "tvgId": "Eurosport 4",
+      "tvgName": "Eurosport 4",
+      "url": "http://cdnx1.plusx.tv:4000/291/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 75
+    },
+    {
+      "id": "87c0822e-1db6-4df4-a0d7-46f6590312bd",
+      "name": "Extreme Sports HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Extreme+Sports+Channel.png",
+      "tvgId": "Extreme Sports Channel",
+      "tvgName": "Extreme Sports",
+      "url": "http://cdnx1.plusx.tv:4000/262/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 76
+    },
+    {
+      "id": "c1891704-743c-4a17-9a95-0d4ae713ff6b",
+      "name": "SportKlub HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Sportklub.png",
+      "tvgId": "Sportklub",
+      "tvgName": "Sport Klub",
+      "url": "http://cdnx1.plusx.tv:4000/175/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 77
+    },
+    {
+      "id": "7020252b-76c3-4c74-b419-4d775f6279f3",
+      "name": "FightKlub HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/FIGHTKLUB.png",
+      "tvgId": "FIGHTKLUB",
+      "tvgName": "FightKlub",
+      "url": "http://cdnx1.plusx.tv:4000/260/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 78
+    },
+    {
+      "id": "2ab8be17-ee41-4a17-a178-eb9446e575fb",
+      "name": "FightBox HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/FightBox.png",
+      "tvgId": "FightBox",
+      "tvgName": "FightBox",
+      "url": "http://cdnx1.plusx.tv:4000/261/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 79
+    },
+    {
+      "id": "fd153186-1cf7-4f4c-a296-7c0437c45a63",
+      "name": "Novelas+1",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Novelas+1.png",
+      "tvgId": "Novelas+1",
+      "tvgName": "Novelas+1",
+      "url": "http://cdnx1.plusx.tv:4000/Dizi/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 80
+    },
+    {
+      "id": "ce147ea3-f657-4eb8-bee1-a9e5fd44ad5d",
+      "name": "Filmbox Family",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Filmbox+Family.png",
+      "tvgId": "Filmbox Family",
+      "tvgName": "FilmBox Family",
+      "url": "http://cdnx1.plusx.tv:4000/256/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 81
+    },
+    {
+      "id": "ff54a4c7-4155-4258-8490-518eadc8c794",
+      "name": "Filmbox Action",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/FilmBox+Action.png",
+      "tvgId": "FilmBox Action",
+      "tvgName": "FilmBox Action",
+      "url": "http://cdnx1.plusx.tv:4000/259/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 82
+    },
+    {
+      "id": "c917a89f-5cfb-47dc-8ce9-6a6be74e108d",
+      "name": "Filmbox Arthouse",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Filmbox+Arthouse.png",
+      "tvgId": "Filmbox Arthouse",
+      "tvgName": "Filmbox Arthouse",
+      "url": "http://cdnx1.plusx.tv:4000/258/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 83
+    },
+    {
+      "id": "fff6d387-0e23-40be-904c-5132d7213e74",
+      "name": "Filmbox Extra",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Filmbox+Extra+HD.png",
+      "tvgId": "Filmbox Extra HD",
+      "tvgName": "FilmBox Extra",
+      "url": "http://cdnx1.plusx.tv:4000/257/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 84
+    },
+    {
+      "id": "56d2d524-09fd-43a8-b1b2-183e1cb4bbc3",
+      "name": "Filmbox Premium HD",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Filmbox+Premium+HD.png",
+      "tvgId": "Filmbox Premium HD",
+      "tvgName": "FilmBox Premium",
+      "url": "http://cdnx1.plusx.tv:4000/255/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 85
+    },
+    {
+      "id": "a0374e13-fb81-4684-85b8-1e58d3ff2b57",
+      "name": "Fokus TV",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/Fokus+TV.png",
+      "tvgId": "Fokus TV",
+      "tvgName": "Fokus TV",
+      "url": "http://cdnx1.plusx.tv:4000/254/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 86
+    },
+    {
+      "id": "a76fea81-5759-4e36-bf27-72b54ee54133",
+      "name": "Food Network HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Food+Network.png",
+      "tvgId": "Food Network",
+      "tvgName": "Food Network",
+      "url": "http://cdnx1.plusx.tv:4000/253/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 87
+    },
+    {
+      "id": "ca5b72f3-418c-44d0-b02d-6066bd8de4f8",
+      "name": "FX Comedy HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/FOX+Comedy.png",
+      "tvgId": "FOX Comedy",
+      "tvgName": "Fox Comedy",
+      "url": "http://cdnx1.plusx.tv:4000/250/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 88
+    },
+    {
+      "id": "045f604b-be58-4bf9-bf2d-fb53bd80c25d",
+      "name": "FX HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/FOX+HD.png",
+      "tvgId": "FOX",
+      "tvgName": "FOX (HD)",
+      "url": "http://cdnx1.plusx.tv:4000/249/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 89
+    },
+    {
+      "id": "1e6467e4-ad13-4608-8e1b-3c73aa4e63bc",
+      "name": "Golf Channel HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Golf+Channel.png",
+      "tvgId": "Golf Channel",
+      "tvgName": "Golf Channel",
+      "url": "http://cdnx1.plusx.tv:4000/248/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 90
+    },
+    {
+      "id": "0b7a1433-f780-4a5f-9427-30576385e036",
+      "name": "H2 HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/H2.png",
+      "tvgId": "History 2",
+      "tvgName": "H2",
+      "url": "http://cdnx1.plusx.tv:4000/247/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 91
+    },
+    {
+      "id": "14070269-704e-4d26-9836-c6eb297325d5",
+      "name": "HBO HD",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/HBO.png",
+      "tvgId": "HBO",
+      "tvgName": "HBO",
+      "url": "http://cdnx1.plusx.tv:4000/243/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 92
+    },
+    {
+      "id": "60f8e6e5-6139-4189-ad87-2fc9e8e4cd33",
+      "name": "HBO 2 HD",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/HBO+2.png",
+      "tvgId": "HBO 2",
+      "tvgName": "HBO 2",
+      "url": "http://cdnx1.plusx.tv:4000/246/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 93
+    },
+    {
+      "id": "4017efec-a03c-41aa-a858-61d8cfa2767a",
+      "name": "HBO 3 HD",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/HBO+3.png",
+      "tvgId": "HBO 3",
+      "tvgName": "HBO 3",
+      "url": "http://cdnx1.plusx.tv:4000/245/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 94
+    },
+    {
+      "id": "b68f09c4-8c51-4980-a80d-b26eb7b94d01",
+      "name": "HBO 3 europa",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/HBO+3+CZ.png",
+      "tvgId": "HBO 3 europa",
+      "tvgName": "HBO 3 europa",
+      "url": "http://cdnx1.plusx.tv:4000/liga50/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 95
+    },
+    {
+      "id": "0d3642ba-334a-468c-994e-a2d864371c6f",
+      "name": "HGTV HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/HGTV.png",
+      "tvgId": "HGTV",
+      "tvgName": "HGTV",
+      "url": "http://cdnx1.plusx.tv:4000/241/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 96
+    },
+    {
+      "id": "909c5358-bafe-4944-84ca-224d7d4f2ebf",
+      "name": "History HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/History.png",
+      "tvgId": "HISTORY",
+      "tvgName": "HISTORY",
+      "url": "http://cdnx1.plusx.tv:4000/240/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 97
+    },
+    {
+      "id": "93b0f441-d37d-4355-8cf1-b93f965b5a50",
+      "name": "ID HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/ID.png",
+      "tvgId": "ID",
+      "tvgName": "Investigation Discovery",
+      "url": "http://cdnx1.plusx.tv:4000/239/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 98
+    },
+    {
+      "id": "f3a1ee31-6ea6-4bf4-b548-2e3721c6822c",
+      "name": "EU Music HD",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/EU+Music+HD.png",
+      "tvgId": "EU Music HD",
+      "tvgName": "EU Music HD",
+      "url": "http://cdnx1.plusx.tv:4000/mc10/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 99
+    },
+    {
+      "id": "cbd8fa33-0f1c-4f66-ba9a-c842626b9c29",
+      "name": "Music Box Classic",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/antiktvpy-musicboxclassic.png",
+      "tvgId": "Music Box Classic",
+      "tvgName": "Music Box Classic",
+      "url": "http://cdnx1.plusx.tv:4000/MusicBoxClassic/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 100
+    },
+    {
+      "id": "d47a7954-a2ca-42a8-ae42-bde467dd0052",
+      "name": "Music Box Dance",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/antiktvpy-musicboxdance.png",
+      "tvgId": "Music Box Dance",
+      "tvgName": "Music Box Dance",
+      "url": "http://cdnx1.plusx.tv:4000/Music-Box-Dance/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 101
+    },
+    {
+      "id": "50ff2512-5dbb-4b98-b8a3-be067b54f775",
+      "name": "Music Box Hits",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/antiktvpy-musicboxhits.png",
+      "tvgId": "Music Box Hits",
+      "tvgName": "Music Box Hits",
+      "url": "http://cdnx1.plusx.tv:4000/Music-Box-Hits/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 102
+    },
+    {
+      "id": "717d931d-32b3-4b00-9f07-47905ef15b1d",
+      "name": "Music Box Sexy",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/antiktvpy-musicboxsexy.png",
+      "tvgId": "Music Box Sexy",
+      "tvgName": "Music Box Sexy",
+      "url": "http://cdnx1.plusx.tv:4000/UFC-Fight-Pass/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 103
+    },
+    {
+      "id": "bb994e77-8b64-48f6-ae53-b220fa4376f4",
+      "name": "Music Box 00s",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/Music+Box+00s.png",
+      "tvgId": "Music Box 00s",
+      "tvgName": "Music Box 00s",
+      "url": "http://cdnx1.plusx.tv:4000/mtvhits/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 104
+    },
+    {
+      "id": "7bebc73c-94ce-4ef7-b635-e852af9d3178",
+      "name": "Music Box 90s",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/Music+Box+90s.png",
+      "tvgId": "Music Box 90s",
+      "tvgName": "Music Box 90s",
+      "url": "http://cdnx1.plusx.tv:4000/MTVcub/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 105
+    },
+    {
+      "id": "286c1b17-1a79-4944-aa43-3ab00e3e2cab",
+      "name": "Music Box 80s",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/Music+Box+80s.png",
+      "tvgId": "Music Box 80s",
+      "tvgName": "Music Box 80s",
+      "url": "http://cdnx1.plusx.tv:4000/229/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 106
+    },
+    {
+      "id": "95d425d8-ce8c-4529-9583-565d3afb4eaa",
+      "name": "Music Box Polska",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/MUSIC+BOX.png",
+      "tvgId": "MUSIC BOX",
+      "tvgName": "MUSIC BOX",
+      "url": "http://cdnx1.plusx.tv:4000/165/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 107
+    },
+    {
+      "id": "0dcfcfdd-ac0a-48b4-b3b7-b6fd0bab1f2b",
+      "name": "Kino Polska Muzyka",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/Kino+Polska+Muzyka.png",
+      "tvgId": "Kino Polska Muzyka",
+      "tvgName": "Kino Polska Muzyka",
+      "url": "http://cdnx1.plusx.tv:4000/237/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 108
+    },
+    {
+      "id": "21fd6d09-29f2-40a7-bac9-44ed87ea769a",
+      "name": "Kino Polska HD",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Kino+Polska.png",
+      "tvgId": "Kino Polska",
+      "tvgName": "Kino Polska",
+      "url": "http://cdnx1.plusx.tv:4000/238/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 109
+    },
+    {
+      "id": "6a4c4bb7-b235-42d8-81f2-46a50c13b793",
+      "name": "Kino TV",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Kino+TV.png",
+      "tvgId": "Kino TV",
+      "tvgName": "Kino TV",
+      "url": "http://cdnx1.plusx.tv:4000/236/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 110
+    },
+    {
+      "id": "f65453f5-474c-4e99-8a3c-0d4146d6be66",
+      "name": "Canal+ Kuchnia HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Canal++Kuchnia.png",
+      "tvgId": "Canal+ Kuchnia",
+      "tvgName": "Canal+ Kuchnia",
+      "url": "http://cdnx1.plusx.tv:4000/235/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 111
+    },
+    {
+      "id": "93086908-5776-4214-b6b6-e458e1138b00",
+      "name": "Sportowa.TV",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Sportowa.TV.png",
+      "tvgId": "Sportowa.TV",
+      "tvgName": "Sportowa.TV",
+      "url": "http://cdnx1.plusx.tv:4000/Sportowa.TV/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 112
+    },
+    {
+      "id": "e5db8394-f4dc-4174-bf54-975c637a4193",
+      "name": "Motowizja HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Motowizja.png",
+      "tvgId": "Motowizja",
+      "tvgName": "Motowizja TV",
+      "url": "http://cdnx1.plusx.tv:4000/230/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 113
+    },
+    {
+      "id": "524c2efb-2e73-4ee8-9144-75af4bbdab98",
+      "name": "MixTape HD",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/MixTape+HD.png",
+      "tvgId": "MixTape HD",
+      "tvgName": "MixTape HD",
+      "url": "http://cdnx1.plusx.tv:4000/MixTapeHD/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 114
+    },
+    {
+      "id": "b9f39b77-8c6f-48e0-8e8e-20c4e78a3833",
+      "name": "Deluxe Music HD",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/Deluxe+Music+HD.png",
+      "tvgId": "Deluxe Music",
+      "tvgName": "Deluxe Music",
+      "url": "http://cdnx1.plusx.tv:4000/170/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 115
+    },
+    {
+      "id": "de38aacd-ac10-4a7a-aef4-62516745f8aa",
+      "name": "DeeJay HD",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/DeeJay+HD.png",
+      "tvgId": "deejay",
+      "tvgName": "deejay",
+      "url": "http://cdnx1.plusx.tv:4000/325jun1/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 116
+    },
+    {
+      "id": "428057f6-9e19-4221-a574-0749d5e5bc9a",
+      "name": "V90 HD",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/toyatv-v90hd.png",
+      "tvgId": "V90 HD",
+      "tvgName": "V90 HD",
+      "url": "http://cdnx1.plusx.tv:4000/228/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 117
+    },
+    {
+      "id": "4997e3b0-384d-4f16-85ce-5061a143cb77",
+      "name": "Now 90s00s",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/now-90s00s.png",
+      "tvgId": "Now 90s00s",
+      "tvgName": "Now 90s00s",
+      "url": "http://cdnx1.plusx.tv:4000/325mtv/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 118
+    },
+    {
+      "id": "69f62c60-4157-40b7-aab2-dfaadf34b2e4",
+      "name": "Now 80s",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/now-80s.png",
+      "tvgId": "Now 80s",
+      "tvgName": "Now 80s",
+      "url": "http://cdnx1.plusx.tv:4000/123/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 119
+    },
+    {
+      "id": "f372cbd9-88a1-41b8-a154-01a95c5d956c",
+      "name": "360 TUNEBOX HD",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/360+TUNEBOX.png",
+      "tvgId": "360 TUNEBOX",
+      "tvgName": "360 TUNEBOX",
+      "url": "http://cdnx1.plusx.tv:4000/MTVEurope/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 120
+    },
+    {
+      "id": "90876c97-6f52-4331-a8dc-0673fd699de1",
+      "name": "MTV Polska HD",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/MTV+Polska.png",
+      "tvgId": "MTV Polska",
+      "tvgName": "MTV",
+      "url": "http://cdnx1.plusx.tv:4000/227/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 121
+    },
+    {
+      "id": "1e705729-553c-4e4e-ad76-ec82182f5a3f",
+      "name": "Fast&Fun Box HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/fast-n-funbox-hd.png",
+      "tvgId": "fast-n-funbox-hd",
+      "tvgName": "fast-n-funbox-hd",
+      "url": "http://cdnx1.plusx.tv:4000/funbox4k/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 122
+    },
+    {
+      "id": "551c62b1-d669-4fc8-bc1d-ae42c18552a9",
+      "name": "VOX Music TV",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/Vox+Music+TV.png",
+      "tvgId": "Vox Music TV",
+      "tvgName": "vox-music-tv",
+      "url": "http://cdnx1.plusx.tv:4000/123v/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 123
+    },
+    {
+      "id": "d2bb9e03-7036-4384-87f3-4d1e25c94f08",
+      "name": "Jazz HD",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/Jazz+HD.png",
+      "tvgId": "Jazz HD",
+      "tvgName": "Jazz HD",
+      "url": "http://cdnx1.plusx.tv:4000/jazz7/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 124
+    },
+    {
+      "id": "fb56ab7d-9aad-4028-af50-a8c8a65fd158",
+      "name": "Metro",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/METRO.png",
+      "tvgId": "METRO",
+      "tvgName": "Metro",
+      "url": "http://cdnx1.plusx.tv:4000/232/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 125
+    },
+    {
+      "id": "a3ceb2bf-67d9-490a-8d51-0c155412478c",
+      "name": "MiniMini+ HD",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/Minimini+.png",
+      "tvgId": "Minimini+",
+      "tvgName": "Mini Mini",
+      "url": "http://cdnx1.plusx.tv:4000/231/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 126
+    },
+    {
+      "id": "b3d280ad-2cd6-4cb3-9cd3-a86c728541a3",
+      "name": "TVC",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/TVC.png",
+      "tvgId": "TVC",
+      "tvgName": "TVC",
+      "url": "http://cdnx1.plusx.tv:4000/214/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 127
+    },
+    {
+      "id": "1c376434-cd6e-4edd-b723-b956bec802dc",
+      "name": "Nat Geo People HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/Nat+Geo+People.png",
+      "tvgId": "Nat Geo People",
+      "tvgName": "Nat Geo People",
+      "url": "http://cdnx1.plusx.tv:4000/225/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 128
+    },
+    {
+      "id": "4174000d-a2b2-43bb-93dc-e0e97c9999fe",
+      "name": "Nat Geo Wild HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/Nat+Geo+Wild+HD.png",
+      "tvgId": "National Geographic Wild",
+      "tvgName": "Nat Geo Wild HD",
+      "url": "http://cdnx1.plusx.tv:4000/223/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 129
+    },
+    {
+      "id": "bdb478e2-dfaa-4adb-9219-e98660e4c3d3",
+      "name": "National Geographic HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/National+Geographic+Channel.png",
+      "tvgId": "National Geographic Channel",
+      "tvgName": "National Geographic",
+      "url": "http://cdnx1.plusx.tv:4000/221/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 130
+    },
+    {
+      "id": "075cc066-1821-4e43-a2c6-d5865ed20365",
+      "name": "Junior Music HD",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/TOP+KIDS+JR.png",
+      "tvgId": "TOP KIDS JR",
+      "tvgName": "TOP KIDS JR",
+      "url": "http://cdnx1.plusx.tv:4000/juniormusic/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 131
+    },
+    {
+      "id": "ea441d27-254c-4a93-a159-939d98f2c9e2",
+      "name": "Junior Channel",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/Junior+Channel.png",
+      "tvgId": "Junior Channel",
+      "tvgName": "Junior Channel",
+      "url": "http://cdnx1.plusx.tv:4000/juniorch1/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 132
+    },
+    {
+      "id": "897967cb-3c98-4d81-bea8-fd7aa927ee36",
+      "name": "Nick Jr",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/Nick+Jr.png",
+      "tvgId": "Nick Jr.",
+      "tvgName": "Nick Jr",
+      "url": "http://cdnx1.plusx.tv:4000/220/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 133
+    },
+    {
+      "id": "9e6b643d-bbff-483e-b05e-60b6015160a2",
+      "name": "Nicktoons HD",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/Nicktoons.png",
+      "tvgId": "Nicktoons",
+      "tvgName": "Nicktoons",
+      "url": "http://cdnx1.plusx.tv:4000/218/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 134
+    },
+    {
+      "id": "d98da431-f67d-4f97-8990-86bc9d426987",
+      "name": "Nickelodeon",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/Nickelodeon.png",
+      "tvgId": "Nickelodeon",
+      "tvgName": "Nickelodeon Polska",
+      "url": "http://cdnx1.plusx.tv:4000/219/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 135
+    },
+    {
+      "id": "f4fa0692-e7a4-4272-9c86-072c11f0cddd",
+      "name": "Nuta TV",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/Nuta+TV.png",
+      "tvgId": "Nuta TV",
+      "tvgName": "Nuta TV",
+      "url": "http://cdnx1.plusx.tv:4000/213/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 136
+    },
+    {
+      "id": "95f20b9e-5f7c-4a25-b478-7efa7886cca3",
+      "name": "Nuta Gold HD",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/Nuta+Gold.png",
+      "tvgId": "Nuta Gold",
+      "tvgName": "Nuta Gold",
+      "url": "http://cdnx1.plusx.tv:4000/nutagoldhd/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 137
+    },
+    {
+      "id": "6da06815-b295-4a7b-884c-9a76bb656aec",
+      "name": "Nowa TV",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/NOWA+TV.png",
+      "tvgId": "NOWA TV",
+      "tvgName": "Nowa TV",
+      "url": "http://cdnx1.plusx.tv:4000/216/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 138
+    },
+    {
+      "id": "a390c036-7938-4ef0-a57d-20b2c4af60f4",
+      "name": "Novelas+",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/Novelas+.png",
+      "tvgId": "Novelas+",
+      "tvgName": "Novelas TV",
+      "url": "http://cdnx1.plusx.tv:4000/2022/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 139
+    },
+    {
+      "id": "ce49c66c-eb8e-42b2-8ead-6c11ba6b8c0d",
+      "name": "Paramount Channel HD",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Paramount+Channel.png",
+      "tvgId": "Paramount Channel",
+      "tvgName": "Paramount Channel HD",
+      "url": "http://cdnx1.plusx.tv:4000/212/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 140
+    },
+    {
+      "id": "dbe94917-a2fa-498c-a0a0-39b10542b114",
+      "name": "Novela TV",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/NOVELA+TV.png",
+      "tvgId": "NOVELA TV",
+      "tvgName": "Novela TV",
+      "url": "http://cdnx1.plusx.tv:4000/217/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 141
+    },
+    {
+      "id": "c654c71e-b5f0-42fc-a7f7-bcec772fc09c",
+      "name": "Planete+ HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/Planete+.png",
+      "tvgId": "Planete+",
+      "tvgName": "Planete",
+      "url": "http://cdnx1.plusx.tv:4000/211/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 142
+    },
+    {
+      "id": "9844b859-3dc7-445d-9052-8de85b6691eb",
+      "name": "Polo TV",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/Polo+TV.png",
+      "tvgId": "Polo TV",
+      "tvgName": "PoloTV",
+      "url": "http://cdnx1.plusx.tv:4000/210/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 143
+    },
+    {
+      "id": "124e2acc-241b-4af2-9773-bd7386636370",
+      "name": "Polsat Rodzina HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Polsat+Rodzina.png",
+      "tvgId": "Polsat Rodzina",
+      "tvgName": "Polsat Rodzina",
+      "url": "http://cdnx1.plusx.tv:4000/197/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 144
+    },
+    {
+      "id": "57ca484f-5c91-4a63-8e54-e9ac00a035fb",
+      "name": "Polsat Games HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Polsat+Games.png",
+      "tvgId": "Polsat Games",
+      "tvgName": "Polsat Games",
+      "url": "http://cdnx1.plusx.tv:4000/204/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 145
+    },
+    {
+      "id": "ba2fc1a5-daea-4b55-a725-09223476a4d3",
+      "name": "Gametoon HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Gametoon.png",
+      "tvgId": "Gametoon",
+      "tvgName": "Gametoon",
+      "url": "http://cdnx1.plusx.tv:4000/gametoon/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 146
+    },
+    {
+      "id": "a8ef35a6-354e-4797-9471-50e8e879c0d8",
+      "name": "Ginx Esports TV HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/GINX+TV.png",
+      "tvgId": "Ginx TV",
+      "tvgName": "Ginx TV",
+      "url": "http://cdnx1.plusx.tv:4000/esport1/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 147
+    },
+    {
+      "id": "7ffedc9b-c241-45c4-806a-823cd81f5d67",
+      "name": "Polsat 1",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/Polsat+1.png",
+      "tvgId": "Polsat 1",
+      "tvgName": "Polsat 1",
+      "url": "http://cdnx1.plusx.tv:4000/13tv1/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 148
+    },
+    {
+      "id": "86d16abc-bf03-495d-b051-02a960bf05dc",
+      "name": "Polsat 2 HD",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/Polsat+2.png",
+      "tvgId": "Polsat 2",
+      "tvgName": "Polsat 2",
+      "url": "http://cdnx1.plusx.tv:4000/208/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 149
+    },
+    {
+      "id": "5f071e5e-cbaa-4603-93c9-ca4241a98b91",
+      "name": "Polsat Cafe HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Polsat+Café.png",
+      "tvgId": "Polsat Café",
+      "tvgName": "Polsat Cafe",
+      "url": "http://cdnx1.plusx.tv:4000/207/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 150
+    },
+    {
+      "id": "aa802ca9-0a64-4a04-8c52-5779a9b049e3",
+      "name": "Polsat Doku HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/Polsat+Doku.png",
+      "tvgId": "Polsat Doku",
+      "tvgName": "Polsat Doku",
+      "url": "http://cdnx1.plusx.tv:4000/206/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 151
+    },
+    {
+      "id": "5d3be945-ef84-41fa-b11b-903fbf5061f1",
+      "name": "Polsat Film HD",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Polsat+Film.png",
+      "tvgId": "Polsat Film",
+      "tvgName": "Polsat Film",
+      "url": "http://cdnx1.plusx.tv:4000/205/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 152
+    },
+    {
+      "id": "4a22b63a-a1b6-4036-b16f-cc06bf57ad08",
+      "name": "Polsat Film 2 HD",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Polsat+Film+2.png",
+      "tvgId": "Polsat Film 2",
+      "tvgName": "Polsat Film 2",
+      "url": "http://cdnx1.plusx.tv:4000/euro5/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 153
+    },
+    {
+      "id": "0776b98d-3b67-40c1-8d5e-f2dc7d5b8874",
+      "name": "Polsat X HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Polsat+X.png",
+      "tvgId": "Polsat X",
+      "tvgName": "Polsat X",
+      "url": "http://cdnx1.plusx.tv:4000/euro6/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 154
+    },
+    {
+      "id": "f1df1fb1-a83c-4c45-9e01-24615381d67a",
+      "name": "Polsat Reality HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Polsat+Reality.png",
+      "tvgId": "Polsat Reality",
+      "tvgName": "Polsat Reality",
+      "url": "http://cdnx1.plusx.tv:4000/euro7/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 155
+    },
+    {
+      "id": "1efaa960-c317-4e1c-98e3-f7745ded23be",
+      "name": "Polsat HD",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/Polsat.png",
+      "tvgId": "Polsat",
+      "tvgName": "Polsat",
+      "url": "http://cdnx1.plusx.tv:4000/203/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 156
+    },
+    {
+      "id": "5f0d96a6-73c6-4107-9a88-37b98232b131",
+      "name": "JimJam Polsat",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/Polsat+JimJam.png",
+      "tvgId": "Polsat JimJam",
+      "tvgName": "Polsat JimJam",
+      "url": "http://cdnx1.plusx.tv:4000/202/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 157
+    },
+    {
+      "id": "03f89bfc-1a92-4e87-9046-0a16eb706494",
+      "name": "Polsat Music HD",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/Polsat+Music.png",
+      "tvgId": "Polsat Music",
+      "tvgName": "Polsat Music",
+      "url": "http://cdnx1.plusx.tv:4000/201/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 158
+    },
+    {
+      "id": "4c632102-7ac9-460e-8642-2c8ccebdad45",
+      "name": "News24 HD",
+      "group": "Informacje",
+      "logo": "https://logo.itvn.io/News24.png",
+      "tvgId": "News24",
+      "tvgName": "News24",
+      "url": "http://cdnx1.plusx.tv:4000/news24hd/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 159
+    },
+    {
+      "id": "d5546637-abe5-4afc-915f-fcfaa302c0e8",
+      "name": "Echo24 HD",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/TV+echo+24.png",
+      "tvgId": "TV echo 24",
+      "tvgName": "TV echo 24",
+      "url": "http://cdnx1.plusx.tv:4000/etho24/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 160
+    },
+    {
+      "id": "c690d67c-02c4-4f0a-b607-2f076929c3fb",
+      "name": "Polsat News 2",
+      "group": "Informacje",
+      "logo": "https://logo.itvn.io/Polsat+News+2.png",
+      "tvgId": "POLSAT NEWS 2",
+      "tvgName": "Polsat News 2",
+      "url": "http://cdnx1.plusx.tv:4000/200/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 161
+    },
+    {
+      "id": "a9f207b0-e7f6-46d4-be2d-882d4223f0e0",
+      "name": "Polsat News HD",
+      "group": "Informacje",
+      "logo": "https://logo.itvn.io/Polsat+News.png",
+      "tvgId": "Polsat News",
+      "tvgName": "Polsat News",
+      "url": "http://cdnx1.plusx.tv:4000/199/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 162
+    },
+    {
+      "id": "0f8ab294-37aa-4e80-b2eb-f522671e7859",
+      "name": "Polsat Play HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Polsat+Play.png",
+      "tvgId": "Polsat Play",
+      "tvgName": "Polsat Play",
+      "url": "http://cdnx1.plusx.tv:4000/198/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 163
+    },
+    {
+      "id": "82e5d233-eebb-4d8a-b1b6-271130d845be",
+      "name": "Polsat Seriale HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/POLSAT+ROMANS.png",
+      "tvgId": "POLSAT ROMANS",
+      "tvgName": "Polsat Romans",
+      "url": "http://cdnx1.plusx.tv:4000/196/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 164
+    },
+    {
+      "id": "7dbb17ca-1e07-4905-99c0-f8a3bea23630",
+      "name": "Polsat Sport Fight HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Polsat+Sport+Fight.png",
+      "tvgId": "Polsat Sport Fight",
+      "tvgName": "Polsat Sport Fight",
+      "url": "http://cdnx1.plusx.tv:4000/194/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 165
+    },
+    {
+      "id": "2c4a2aeb-3607-4064-981f-e6140348ed3f",
+      "name": "Polsat Sport 1 HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Polsat+Sport+1.png",
+      "tvgId": "Polsat Sport 1",
+      "tvgName": "Polsat Sport 1",
+      "url": "http://cdnx1.plusx.tv:4000/193/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 166
+    },
+    {
+      "id": "9a5b4efb-ad6b-4791-bdce-af47c76ada1d",
+      "name": "Polsat Sport 2 HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Polsat+Sport+2.png",
+      "tvgId": "Polsat Sport 2",
+      "tvgName": "Polsat Sport 2",
+      "url": "http://cdnx1.plusx.tv:4000/195/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 167
+    },
+    {
+      "id": "16628595-cd54-435a-851d-c8a16fcb4810",
+      "name": "Polsat Sport 3 HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Polsat+Sport+3.png",
+      "tvgId": "Polsat Sport 3",
+      "tvgName": "Polsat Sport 3",
+      "url": "http://cdnx1.plusx.tv:4000/192/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 168
+    },
+    {
+      "id": "c8178d4b-09e1-44bd-a4e4-859717d03076",
+      "name": "Polsat Sport Premium 1 HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Polsat+Sport+Premium+1.png",
+      "tvgId": "Polsat Sport Premium 1",
+      "tvgName": "Polsat Sport Premium 1",
+      "url": "http://cdnx1.plusx.tv:4000/191/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 169
+    },
+    {
+      "id": "46c21b45-810b-467b-a2bd-ba96e577f198",
+      "name": "Polsat Sport Premium 2 HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Polsat+Sport+Premium+2.png",
+      "tvgId": "Polsat Sport Premium 2",
+      "tvgName": "Polsat Sport Premium 2",
+      "url": "http://cdnx1.plusx.tv:4000/190/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 170
+    },
+    {
+      "id": "e1504863-9030-4490-a075-a7c41d37039e",
+      "name": "Polsat Sport Extra 1 HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Polsat+Sport+Extra+1.png",
+      "tvgId": "Polsat Sport Extra 1",
+      "tvgName": "Polsat Sport Extra 1",
+      "url": "http://cdnx1.plusx.tv:4000/189/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 171
+    },
+    {
+      "id": "639dfbec-eee2-4a73-a78f-579c03e223c2",
+      "name": "Polsat Sport Extra 2 HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Polsat+Sport+Extra+2.png",
+      "tvgId": "Polsat Sport Extra 2",
+      "tvgName": "Polsat Sport Extra 2",
+      "url": "http://cdnx1.plusx.tv:4000/188/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 172
+    },
+    {
+      "id": "480319d3-e5de-452e-b447-0d6882330b6b",
+      "name": "Polsat Sport Extra 3 HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Polsat+Sport+Extra+3.png",
+      "tvgId": "Polsat Sport Extra 3",
+      "tvgName": "Polsat Sport Extra 3",
+      "url": "http://cdnx1.plusx.tv:4000/187/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 173
+    },
+    {
+      "id": "59ec0f60-ea24-48ad-9b26-30537ff07a32",
+      "name": "Polsat Sport Extra 4 HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Polsat+Sport+Extra+4.png",
+      "tvgId": "Polsat Sport Extra 4",
+      "tvgName": "Polsat Sport Extra 4",
+      "url": "http://cdnx1.plusx.tv:4000/186/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 174
+    },
+    {
+      "id": "8ce3c3ae-c2f9-402a-8e81-320aea48cefe",
+      "name": "Polsat Viasat History HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/Polsat+Viasat+History.png",
+      "tvgId": "Polsat Viasat History",
+      "tvgName": "Viasat History",
+      "url": "http://cdnx1.plusx.tv:4000/184/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 175
+    },
+    {
+      "id": "a7e2a68c-2b6c-44f5-b15d-5b82fc047380",
+      "name": "Polsat Viasat Explore HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/POLSAT+Viasat+Explore.png",
+      "tvgId": "POLSAT Viasat Explore",
+      "tvgName": "Viasat Explorer",
+      "url": "http://cdnx1.plusx.tv:4000/185/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 176
+    },
+    {
+      "id": "615526c6-d947-4373-8a7c-e7d51897e2cf",
+      "name": "Polsat Viasat Nature HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/Polsat+Viasat+Nature.png",
+      "tvgId": "Polsat Viasat Nature",
+      "tvgName": "Viasat Nature",
+      "url": "http://cdnx1.plusx.tv:4000/183/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 177
+    },
+    {
+      "id": "7ad497e7-4da1-4343-af80-f8c0db37007f",
+      "name": "Viasat Explore Classic HD",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/Viasat+Explore+Classic.png",
+      "tvgId": "Viasat Explore Classic",
+      "tvgName": "Viasat Explore Classic",
+      "url": "http://cdnx1.plusx.tv:4000/viasatclas/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 178
+    },
+    {
+      "id": "bf528db1-d894-463d-aa09-881bc78a88ab",
+      "name": "Power TV",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/POWER+TV.png",
+      "tvgId": "POWER TV",
+      "tvgName": "Power TV",
+      "url": "http://cdnx1.plusx.tv:4000/182/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 179
+    },
+    {
+      "id": "5810b033-98e4-4444-ac74-c40e4e2c68b0",
+      "name": "Polonia 1",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/Polonia+1.png",
+      "tvgId": "Polonia 1",
+      "tvgName": "Polonia 1",
+      "url": "http://cdnx1.plusx.tv:4000/209/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 180
+    },
+    {
+      "id": "ddb36ec9-e2aa-4f33-bba7-a8ce1935057c",
+      "name": "Puls 2",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/Puls+2.png",
+      "tvgId": "Puls 2",
+      "tvgName": "TV Puls 2",
+      "url": "http://cdnx1.plusx.tv:4000/180/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 181
+    },
+    {
+      "id": "50e6a4cf-4a94-4f63-a8e0-c5c31f19f714",
+      "name": "Show TV",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Show+TV.png",
+      "tvgId": "Show TV",
+      "tvgName": "Show TV",
+      "url": "http://cdnx1.plusx.tv:4000/179/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 182
+    },
+    {
+      "id": "0b5673a5-eb5b-4594-9869-5e6f59b57ea9",
+      "name": "Red Carpet int",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Red+Carpet+TV.png",
+      "tvgId": "Red Carpet",
+      "tvgName": "Red Carpet",
+      "url": "http://cdnx1.plusx.tv:4000/euro8/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 183
+    },
+    {
+      "id": "c0bdf7ee-d0ab-4179-8e3d-087c45bf6036",
+      "name": "Romance TV HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/ROMANCE+TV.png",
+      "tvgId": "ROMANCE TV",
+      "tvgName": "Romance TV",
+      "url": "http://cdnx1.plusx.tv:4000/178/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 184
+    },
+    {
+      "id": "650d00ec-4e6e-4d50-bf0f-a2ee6a469b3c",
+      "name": "SciFi HD",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/SCI+FI.png",
+      "tvgId": "SCI FI",
+      "tvgName": "SciFi",
+      "url": "http://cdnx1.plusx.tv:4000/177/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 185
+    },
+    {
+      "id": "8a8046a4-9103-413a-a0b2-375a03022230",
+      "name": "Stars TV",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/Stars+TV.png",
+      "tvgId": "Stars TV",
+      "tvgName": "Stars TV",
+      "url": "http://cdnx1.plusx.tv:4000/174/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 186
+    },
+    {
+      "id": "e69fe79e-b7a2-461a-aff8-97609427337a",
+      "name": "Stopklatka TV",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Stopklatka+TV.png",
+      "tvgId": "Stopklatka TV",
+      "tvgName": "Stopklatka TV",
+      "url": "http://cdnx1.plusx.tv:4000/173/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 187
+    },
+    {
+      "id": "21c473ca-d161-4439-b7fa-181d129ccf9d",
+      "name": "SkyShowtime 1",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Skyshowtime+1.png",
+      "tvgId": "SkyShowtime 1",
+      "tvgName": "SkyShowtime 1",
+      "url": "http://cdnx1.plusx.tv:4000/show1/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 188
+    },
+    {
+      "id": "e5c17d9c-877d-4af5-81c7-f03881825f15",
+      "name": "SkyShowtime 2",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Skyshowtime+2.png",
+      "tvgId": "SkyShowtime 2",
+      "tvgName": "SkyShowtime 2",
+      "url": "http://cdnx1.plusx.tv:4000/show2/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 189
+    },
+    {
+      "id": "5adf747d-18e2-42d5-b3c2-c08e17357880",
+      "name": "Sundance TV HD",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Sundance+TV.png",
+      "tvgId": "Sundance TV",
+      "tvgName": "Sundance Channel HD",
+      "url": "http://cdnx1.plusx.tv:4000/172/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 190
+    },
+    {
+      "id": "6d9b71c5-0f8d-4ab0-83fa-cae928caa437",
+      "name": "Super Polsat HD",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/Super+Polsat.png",
+      "tvgId": "Super Polsat",
+      "tvgName": "Super Polsat",
+      "url": "http://cdnx1.plusx.tv:4000/171/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 191
+    },
+    {
+      "id": "9dbfdb41-abd5-4ce2-8b70-4bbe8409f1e8",
+      "name": "StudioMed TV",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/StudioMed+TV.png",
+      "tvgId": "StudioMed TV",
+      "tvgName": "StudioMed TV",
+      "url": "http://cdnx1.plusx.tv:4000/342/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 192
+    },
+    {
+      "id": "611b2cf8-e5fe-40d8-a2a4-3d5e5bc678a9",
+      "name": "Teletoon+ HD",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/Teletoon.png",
+      "tvgId": "Teletoon",
+      "tvgName": "Teletoon+",
+      "url": "http://cdnx1.plusx.tv:4000/168/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 193
+    },
+    {
+      "id": "27dfa190-5e81-4f93-817d-7a7ccc163be5",
+      "name": "TLC HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/TLC.png",
+      "tvgId": "TLC",
+      "tvgName": "TLC",
+      "url": "http://cdnx1.plusx.tv:4000/167/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 194
+    },
+    {
+      "id": "8ff983c9-72b8-4ed3-b622-362a523bc20d",
+      "name": "Tele 5",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/Tele+5.png",
+      "tvgId": "Tele 5",
+      "tvgName": "Tele 5",
+      "url": "http://cdnx1.plusx.tv:4000/169/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 195
+    },
+    {
+      "id": "c2891447-f3fe-4a79-89b5-a9ce00876feb",
+      "name": "WB HD",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Warner+TV.png",
+      "tvgId": "Warner TV",
+      "tvgName": "Warner TV",
+      "url": "http://cdnx1.plusx.tv:4000/166/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 196
+    },
+    {
+      "id": "cc5fc6f8-523d-4ebb-8649-7f14616986b4",
+      "name": "TVN Fabula HD",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/TVN+Fabuła.png",
+      "tvgId": "TVN Fabuła",
+      "tvgName": "TVN Fabuła",
+      "url": "http://cdnx1.plusx.tv:4000/150/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 197
+    },
+    {
+      "id": "a57b543c-2353-41d5-9565-32a4a8edc29f",
+      "name": "FighTime.pl",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/FighTime.png",
+      "tvgId": "FighTime",
+      "tvgName": "FighTime",
+      "url": "http://cdnx1.plusx.tv:4000/TRTInternational/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 198
+    },
+    {
+      "id": "50c24300-494f-46a9-8e20-0e31b0877bff",
+      "name": "Stingray iConcerts",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/Stingray+iConcerts.png",
+      "tvgId": "Stingray iConcerts",
+      "tvgName": "Stingray iConcerts",
+      "url": "http://cdnx1.plusx.tv:4000/127/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 199
+    },
+    {
+      "id": "9a52f437-7875-457c-98e1-4aee63955e99",
+      "name": "4ever music",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/4ever+music+HD.png",
+      "tvgId": "4ever music HD",
+      "tvgName": "4ever music HD",
+      "url": "http://cdnx1.plusx.tv:4000/126/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 200
+    },
+    {
+      "id": "8df70ae4-746b-435b-94ef-eb7de6280136",
+      "name": "M6 Music",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/M6_Music_color.png",
+      "tvgId": "M6 Music",
+      "tvgName": "M6 Music",
+      "url": "http://cdnx1.plusx.tv:4000/Vevo-80s/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 201
+    },
+    {
+      "id": "e11ff23f-70d9-457a-bd60-777f305797be",
+      "name": "NRJ Hits",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/NRJ_Hits_color.png",
+      "tvgId": "NRJ Hits",
+      "tvgName": "NRJ Hits",
+      "url": "http://cdnx1.plusx.tv:4000/Vevo-90s/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 202
+    },
+    {
+      "id": "c4f8110f-9063-4f15-930d-a09dbaf5f962",
+      "name": "Rebel",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/webtvcz-rebel.png",
+      "tvgId": "Rebel",
+      "tvgName": "Rebel",
+      "url": "http://cdnx1.plusx.tv:4000/Vevo-Country/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 203
+    },
+    {
+      "id": "ed825cc0-ec25-45cb-a378-7c682461a663",
+      "name": "Proart HD",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/logo/Proart.png",
+      "tvgId": "Proart",
+      "tvgName": "Proart",
+      "url": "http://cdnx1.plusx.tv:4000/Vevo-Features/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 204
+    },
+    {
+      "id": "6d179fcf-74da-491e-89fc-1912983906f6",
+      "name": "RakutenTV",
+      "group": "Film",
+      "logo": "https://logo.itvn.io/Rakuten+TV.png",
+      "tvgId": "RakutenTV",
+      "tvgName": "RakutenTV",
+      "url": "http://cdnx1.plusx.tv:4000/Vevo-Hip-Hop/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 205
+    },
+    {
+      "id": "c725117d-1061-419b-94c9-d6e2c9a87a61",
+      "name": "Mezzo",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/logo/Mezzo.png",
+      "tvgId": "Mezzo",
+      "tvgName": "Mezzo",
+      "url": "http://cdnx1.plusx.tv:4000/Vevo-Pop/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 206
+    },
+    {
+      "id": "f4eace46-051e-456a-985d-b2f733e2ea10",
+      "name": "Trace Urban",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/Trace+Urban.png",
+      "tvgId": "Trace Urban",
+      "tvgName": "Trace Urban",
+      "url": "http://cdnx1.plusx.tv:4000/tra10/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 207
+    },
+    {
+      "id": "2e3db5d2-639f-4d0b-b303-5ab8b9cda8a2",
+      "name": "Clubbing TV",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/Clubbing+TV+1.png",
+      "tvgId": "Clubbing TV 1",
+      "tvgName": "Clubbing TV 1",
+      "url": "http://cdnx1.plusx.tv:4000/301fps/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 208
+    },
+    {
+      "id": "59ed22c7-e0d1-4f7b-846d-a3567ead624b",
+      "name": "TTV HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/TTV.png",
+      "tvgId": "TTV",
+      "tvgName": "TTV",
+      "url": "http://cdnx1.plusx.tv:4000/162/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 209
+    },
+    {
+      "id": "40e57647-77b3-4c19-86ab-30e235617a43",
+      "name": "Outdoor TV",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Outdoor+TV.png",
+      "tvgId": "Outdoor TV",
+      "tvgName": "Outdoor TV",
+      "url": "http://cdnx1.plusx.tv:4000/159/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 210
+    },
+    {
+      "id": "cc40c379-4535-4087-abf2-e15cb5affb87",
+      "name": "TV Puls HD",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/TV+Puls.png",
+      "tvgId": "TV Puls",
+      "tvgName": "TV Puls",
+      "url": "http://cdnx1.plusx.tv:4000/158/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 211
+    },
+    {
+      "id": "75bf6721-eb96-4f63-b2c9-add798c5637a",
+      "name": "TV Republika",
+      "group": "Informacje",
+      "logo": "https://logo.itvn.io/Republika.png",
+      "tvgId": "TV Republika",
+      "tvgName": "TV Republika",
+      "url": "http://cdnx1.plusx.tv:4000/157/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 212
+    },
+    {
+      "id": "2322f78d-fe8d-461c-9d1a-a1c937866ebb",
+      "name": "Polsat News Polityka",
+      "group": "Informacje",
+      "logo": "https://logo.itvn.io/Polsat+News+Polityka.png",
+      "tvgId": "Polsat News Polityka",
+      "tvgName": "Polsat News Polityka",
+      "url": "http://cdnx1.plusx.tv:4000/tvpworldhd/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 213
+    },
+    {
+      "id": "3023fbc9-194e-4e4b-8f4a-fc389dae61d1",
+      "name": "TV 4 HD",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/TV+4.png",
+      "tvgId": "TV 4",
+      "tvgName": "TV4",
+      "url": "http://cdnx1.plusx.tv:4000/161/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 214
+    },
+    {
+      "id": "621aa46d-51e3-4f84-b567-c2054e693aab",
+      "name": "TV 6 HD",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/TV+6.png",
+      "tvgId": "TV 6",
+      "tvgName": "TV 6",
+      "url": "http://cdnx1.plusx.tv:4000/160/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 215
+    },
+    {
+      "id": "b3ddb4f1-ae2d-42fd-8c64-442c1d87eaf2",
+      "name": "TVN 24 HD",
+      "group": "Informacje",
+      "logo": "https://logo.itvn.io/TVN+24.png",
+      "tvgId": "TVN 24",
+      "tvgName": "TVN 24",
+      "url": "http://cdnx1.plusx.tv:4000/153/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 216
+    },
+    {
+      "id": "29e74f6f-e19d-4e74-9f9f-6d9401387ea5",
+      "name": "TVN 24 BiS HD",
+      "group": "Informacje",
+      "logo": "https://logo.itvn.io/TVN+24+BiS.png",
+      "tvgId": "TVN 24 BiS",
+      "tvgName": "TVN CNBC Biznes",
+      "url": "http://cdnx1.plusx.tv:4000/154/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 217
+    },
+    {
+      "id": "debb2916-81c0-45aa-8821-7f3e00697847",
+      "name": "TVN 7 HD",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/TVN+7.png",
+      "tvgId": "TVN 7",
+      "tvgName": "TVN 7",
+      "url": "http://cdnx1.plusx.tv:4000/152/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 218
+    },
+    {
+      "id": "9010410f-7547-4f66-b046-3cb832a66ec2",
+      "name": "TVN HD",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/TVN.png",
+      "tvgId": "TVN",
+      "tvgName": "TVN",
+      "url": "http://cdnx1.plusx.tv:4000/149/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 219
+    },
+    {
+      "id": "e5fb38e3-1e01-42df-8e77-f6283aa2578b",
+      "name": "iTVN HD",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/iTVN.png",
+      "tvgId": "iTVN",
+      "tvgName": "iTVN",
+      "url": "http://cdnx1.plusx.tv:4000/abc2/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 220
+    },
+    {
+      "id": "0b566b44-6d18-441d-85bf-f2a95fd0f30c",
+      "name": "TVP Kobieta HD",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/TVP+Kobieta.png",
+      "tvgId": "TVP Kobieta",
+      "tvgName": "TVP Kobieta",
+      "url": "http://cdnx1.plusx.tv:4000/TVPKobieta/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 221
+    },
+    {
+      "id": "7ecb0a9c-70cb-4e5a-9d9e-387c8ffe3eb0",
+      "name": "iTVN Extra HD",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/iTVN+extra.png",
+      "tvgId": "iTVN extra",
+      "tvgName": "iTVN extra",
+      "url": "http://cdnx1.plusx.tv:4000/tvnextra/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 222
+    },
+    {
+      "id": "6e444cc0-e187-43e1-83a5-1ebcbfae7c5a",
+      "name": "TVN Style HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/TVN+Style.png",
+      "tvgId": "TVN Style",
+      "tvgName": "TVN Style",
+      "url": "http://cdnx1.plusx.tv:4000/147/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 223
+    },
+    {
+      "id": "3f551b77-9678-4a52-9e67-f1d620d25a1d",
+      "name": "Kabaret TV",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Kabaret+TV.png",
+      "tvgId": "Kabaret TV",
+      "tvgName": "Kabaret TV",
+      "url": "http://cdnx1.plusx.tv:4000/kab10/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 224
+    },
+    {
+      "id": "550fb197-1fe9-425b-ae2b-4a70aed14e98",
+      "name": "TV ASTA",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/TV+ASTA.png",
+      "tvgId": "TV ASTA",
+      "tvgName": "TV ASTA",
+      "url": "http://cdnx1.plusx.tv:4000/dom10/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 225
+    },
+    {
+      "id": "76f5265c-71da-4563-b7a3-b38b5ebc025d",
+      "name": "Viasat True Crime",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Viasat+True+Crime.png",
+      "tvgId": "Viasat True Crime",
+      "tvgName": "Viasat True Crime",
+      "url": "http://cdnx1.plusx.tv:4000/6034/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 226
+    },
+    {
+      "id": "9aa81b78-827f-46d3-8d30-8181d557af5c",
+      "name": "TVN Turbo HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/TVN+Turbo.png",
+      "tvgId": "TVN Turbo",
+      "tvgName": "TVN Turbo",
+      "url": "http://cdnx1.plusx.tv:4000/145/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 227
+    },
+    {
+      "id": "a4e105ec-a81b-4298-b068-c17e778032aa",
+      "name": "TVP HD",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/TVP+HD.png",
+      "tvgId": "TVP HD",
+      "tvgName": "TVP HD",
+      "url": "http://cdnx1.plusx.tv:4000/141/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 228
+    },
+    {
+      "id": "9eda4da6-fe92-4eae-a51d-6695125144ff",
+      "name": "TVP 1 HD",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/TVP+1.png",
+      "tvgId": "TVP 1",
+      "tvgName": "TVP 1",
+      "url": "http://cdnx1.plusx.tv:4000/144/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 229
+    },
+    {
+      "id": "b76e82f3-c90c-4cb4-a6a0-118946cb13a1",
+      "name": "TVP 2 HD",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/TVP+2.png",
+      "tvgId": "TVP 2",
+      "tvgName": "TVP 2",
+      "url": "http://cdnx1.plusx.tv:4000/143/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 230
+    },
+    {
+      "id": "db7cdffa-dbfd-4286-83a4-7dc81aaa396a",
+      "name": "TVP 3 HD Warszawa",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/TVP+3+Warszawa.png",
+      "tvgId": "TVP 3",
+      "tvgName": "TVP 3",
+      "url": "http://cdnx1.plusx.tv:4000/142/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 231
+    },
+    {
+      "id": "33c850c7-2d23-45ff-b708-69b493e152e4",
+      "name": "TVP Miłość",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/tvp-milosc.png",
+      "tvgId": "TVP Miłość",
+      "tvgName": "TVP Miłość",
+      "url": "http://cdnx1.plusx.tv:4000/fruhd8/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 232
+    },
+    {
+      "id": "c52ed89a-6466-49f2-8b55-e34e3cb9919b",
+      "name": "TVP World",
+      "group": "Informacje",
+      "logo": "https://logo.itvn.io/TVP+World.png",
+      "tvgId": "TVP World",
+      "tvgName": "TVP World",
+      "url": "http://cdnx1.plusx.tv:4000/125/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 233
+    },
+    {
+      "id": "1b834550-c481-47d7-a2d5-d8c17d5908b7",
+      "name": "DLACIEBIE TV",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/playnowfull-dlaciebietv.png",
+      "tvgId": "DLACIEBIE TV",
+      "tvgName": "DLACIEBIE TV",
+      "url": "http://live67.itvn.io:4000/6015/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 234
+    },
+    {
+      "id": "4b303681-69ed-490b-96c6-92773564ca4b",
+      "name": "TV Boleslawiec",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/playnowfull-tvbolesawiec.png",
+      "tvgId": "TV Boleslawiec",
+      "tvgName": "TV Boleslawiec",
+      "url": "http://live67.itvn.io:4000/6017/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 235
+    },
+    {
+      "id": "8779095d-41d4-47a2-9243-0cfa59403eef",
+      "name": "Lubuska TV Horyzont",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/playnowfull-lubuskatvhoryzont.png",
+      "tvgId": "Lubuska TV Horyzont",
+      "tvgName": "Lubuska TV Horyzont",
+      "url": "http://live67.itvn.io:4000/6018/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 236
+    },
+    {
+      "id": "d109376d-4f82-48da-9b63-3a8ccb1270d3",
+      "name": "TVP 3 Białystok",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/TVP+3+Białystok.png",
+      "tvgId": "TVP 3",
+      "tvgName": "TVP 3",
+      "url": "http://cdnx1.plusx.tv:4000/tvpbialystok/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 237
+    },
+    {
+      "id": "7ff54245-d759-426a-9a85-5740d0d3688e",
+      "name": "TVP 3 Bydgoszcz",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/TVP+3+Bydgoszcz.png",
+      "tvgId": "TVP 3",
+      "tvgName": "TVP 3",
+      "url": "http://cdnx1.plusx.tv:4000/tvpbydgoszcz/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 238
+    },
+    {
+      "id": "1b271d1b-37c7-4522-94b7-eaaa96b9a366",
+      "name": "TVP 3 Gdańsk",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/TVP+3+Gdańsk.png",
+      "tvgId": "TVP 3",
+      "tvgName": "TVP 3",
+      "url": "http://cdnx1.plusx.tv:4000/tvpgdansk/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 239
+    },
+    {
+      "id": "1adf68c2-cb5c-4207-9ab4-69bd52c9b6c1",
+      "name": "TVP 3 Gorzów Wielkopolski",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/TVP+3+Gorzów+Wielkopolski.png",
+      "tvgId": "TVP 3",
+      "tvgName": "TVP 3",
+      "url": "http://cdnx1.plusx.tv:4000/tvpgorzow/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 240
+    },
+    {
+      "id": "7c023ff0-d34f-4680-8699-f83f0169e3b7",
+      "name": "TVP 3 Katowice",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/TVP+3+Katowice.png",
+      "tvgId": "TVP 3",
+      "tvgName": "TVP 3",
+      "url": "http://cdnx1.plusx.tv:4000/tvpkatowice/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 241
+    },
+    {
+      "id": "f28521fe-bf80-4a87-8afa-e85dbfc11989",
+      "name": "TVP 3 Kielce",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/TVP+3+Kielce.png",
+      "tvgId": "TVP 3",
+      "tvgName": "TVP 3",
+      "url": "http://cdnx1.plusx.tv:4000/tvpkielce/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 242
+    },
+    {
+      "id": "cc5ad39f-58af-4bba-bdec-f67c8952d2ba",
+      "name": "TVP 3 Kraków",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/TVP+3+Kraków.png",
+      "tvgId": "TVP 3",
+      "tvgName": "TVP 3",
+      "url": "http://cdnx1.plusx.tv:4000/tvpkrakow/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 243
+    },
+    {
+      "id": "a3ac7a9e-4d4c-4d02-a9b4-b6d0a796805b",
+      "name": "TVP 3 Lublin",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/TVP+3+Lublin.png",
+      "tvgId": "TVP 3",
+      "tvgName": "TVP 3",
+      "url": "http://cdnx1.plusx.tv:4000/tvplublin/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 244
+    },
+    {
+      "id": "bf5a22bf-54da-40be-822a-c8856e1de526",
+      "name": "TVP 3 Łódź",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/TVP+3+Łódź.png",
+      "tvgId": "TVP 3",
+      "tvgName": "TVP 3",
+      "url": "http://cdnx1.plusx.tv:4000/tvplodz/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 245
+    },
+    {
+      "id": "c2e5bd03-d139-41bd-806f-2388d0ca1a8c",
+      "name": "TVP 3 Olsztyn",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/TVP+3+Olsztyn.png",
+      "tvgId": "TVP 3",
+      "tvgName": "TVP 3",
+      "url": "http://cdnx1.plusx.tv:4000/tvpolsztyn/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 246
+    },
+    {
+      "id": "ac14ee1f-6bf4-4a25-b8dc-769cb9a977a3",
+      "name": "TVP 3 Opole",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/TVP+3+Opole.png",
+      "tvgId": "TVP 3",
+      "tvgName": "TVP 3",
+      "url": "http://cdnx1.plusx.tv:4000/tvpopole/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 247
+    },
+    {
+      "id": "78011f0b-ea7a-4e39-a79a-cedd89ef458d",
+      "name": "TVP 3 Poznań",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/TVP+3+Poznań.png",
+      "tvgId": "TVP 3",
+      "tvgName": "TVP 3",
+      "url": "http://cdnx1.plusx.tv:4000/tvppoznan/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 248
+    },
+    {
+      "id": "8d60a9f9-1deb-4484-bb8d-68511d8c7c77",
+      "name": "TVP 3 Rzeszów",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/TVP+3+Rzeszów.png",
+      "tvgId": "TVP 3",
+      "tvgName": "TVP 3",
+      "url": "http://cdnx1.plusx.tv:4000/tvprzeszow/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 249
+    },
+    {
+      "id": "a0b65842-9ebb-4fab-b3f7-9b488b3ef45d",
+      "name": "TVP 3 Szczecin",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/TVP+3+Szczecin.png",
+      "tvgId": "TVP 3",
+      "tvgName": "TVP 3",
+      "url": "http://cdnx1.plusx.tv:4000/tvpszczecin/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 250
+    },
+    {
+      "id": "85c9ecd2-11d0-4f2c-8a59-e200ebb03cf5",
+      "name": "TVP 3 Wrocław",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/TVP+3+Wrocław.png",
+      "tvgId": "TVP 3",
+      "tvgName": "TVP 3",
+      "url": "http://cdnx1.plusx.tv:4000/tvpwroclaw/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 251
+    },
+    {
+      "id": "62156d05-1865-495a-b5fb-59dfab985a98",
+      "name": "TVN 24+ live 1",
+      "group": "TVN24+",
+      "logo": "https://logo.itvn.io/tvn24-live1.png",
+      "tvgId": "tvn24+ live 1",
+      "tvgName": "tvn24+ live 1",
+      "url": "http://cdnx1.plusx.tv:4000/tvn24plus1/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 252
+    },
+    {
+      "id": "2d425372-a403-4899-b488-dadb7745d400",
+      "name": "TVN 24+ live 2",
+      "group": "TVN24+",
+      "logo": "https://logo.itvn.io/tvn24-live2.png",
+      "tvgId": "tvn24+ live 2",
+      "tvgName": "tvn24+ live 2",
+      "url": "http://cdnx1.plusx.tv:4000/tvn24plus2/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 253
+    },
+    {
+      "id": "5561b3c0-eeec-449d-82b4-c183ccc3b87d",
+      "name": "TVN 24+ live 3",
+      "group": "TVN24+",
+      "logo": "https://logo.itvn.io/tvn24-live3.png",
+      "tvgId": "tvn24+ live 3",
+      "tvgName": "tvn24+ live 3",
+      "url": "http://cdnx1.plusx.tv:4000/tvn24plus3/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 254
+    },
+    {
+      "id": "d0e8d357-2a07-409b-8fe8-2276e8fea0a6",
+      "name": "TVN 24+ live 4",
+      "group": "TVN24+",
+      "logo": "https://logo.itvn.io/tvn24-live4.png",
+      "tvgId": "tvn24+ live 4",
+      "tvgName": "tvn24+ live 4",
+      "url": "http://cdnx1.plusx.tv:4000/tvn24plus4/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 255
+    },
+    {
+      "id": "a7855120-c50b-489e-87f4-a10f202141cf",
+      "name": "TVN w Domu",
+      "group": "TVN Online",
+      "logo": "https://logo.itvn.io/TVN+W+Domu+Online.png",
+      "tvgId": "TVN W Domu Online",
+      "tvgName": "TVN W Domu Online",
+      "url": "http://cdnx1.plusx.tv:4000/tvn10/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 256
+    },
+    {
+      "id": "c3d2ceb0-8b00-412e-a8c7-50c5f39e625e",
+      "name": "TVN Moto",
+      "group": "TVN Online",
+      "logo": "https://logo.itvn.io/TVN+Moto+Online.png",
+      "tvgId": "TVN Moto Online",
+      "tvgName": "TVN Moto Online",
+      "url": "http://cdnx1.plusx.tv:4000/tvnm10/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 257
+    },
+    {
+      "id": "d6e17cc9-f2a5-4ac5-a162-2c2646598bab",
+      "name": "TVN Kultowe Seriale",
+      "group": "TVN Online",
+      "logo": "https://logo.itvn.io/TVN+Kultowe+Seriale+Online.png",
+      "tvgId": "TVN Kultowe Seriale Online",
+      "tvgName": "TVN Kultowe Seriale Online",
+      "url": "http://cdnx1.plusx.tv:4000/tvns10/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 258
+    },
+    {
+      "id": "97cb199b-2785-4fc2-85ac-b6f2454c24bd",
+      "name": "TVN Życie Jak w Bajce",
+      "group": "TVN Online",
+      "logo": "https://logo.itvn.io/TVN+Życie+Jak+w+Bajce+Online.png",
+      "tvgId": "TVN Życie Jak w Bajce Online",
+      "tvgName": "TVN Życie Jak w Bajce Online",
+      "url": "http://cdnx1.plusx.tv:4000/tvnb10/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 259
+    },
+    {
+      "id": "2c53b38b-1ee7-4318-a1fe-f819edb0e3cc",
+      "name": "TVN Kryminalnie",
+      "group": "TVN Online",
+      "logo": "https://logo.itvn.io/TVN+Kryminalnie+Online.png",
+      "tvgId": "TVN Kryminalnie Online",
+      "tvgName": "TVN Kryminalnie Online",
+      "url": "http://cdnx1.plusx.tv:4000/fastkryminalnie/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 260
+    },
+    {
+      "id": "636271c5-b201-4ab6-a0a9-440ad40a3ade",
+      "name": "TVN Momenty Prawdy",
+      "group": "TVN Online",
+      "logo": "https://logo.itvn.io/TVN+Momenty+Prawdy+Online.png",
+      "tvgId": "TVN Momenty Prawdy Online",
+      "tvgName": "TVN Momenty Prawdy Online",
+      "url": "http://cdnx1.plusx.tv:4000/fastmomentyprawdy/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 261
+    },
+    {
+      "id": "aa782ba0-cc62-4ec8-b626-4d0e7195ee6d",
+      "name": "TVN Prawo i Życie",
+      "group": "TVN Online",
+      "logo": "https://logo.itvn.io/TVN+Prawo+i+Życie+Online.png",
+      "tvgId": "TVN Prawo i Życie Online",
+      "tvgName": "TVN Prawo i Życie Online",
+      "url": "http://cdnx1.plusx.tv:4000/fastprawoizycie/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 262
+    },
+    {
+      "id": "41bc414d-4697-4dcb-ac4a-08a4fcea58e4",
+      "name": "TVN Rajska Miłość",
+      "group": "TVN Online",
+      "logo": "https://logo.itvn.io/TVN+Rajska+Miłość+Online.png",
+      "tvgId": "TVN Rajska Miłość Online",
+      "tvgName": "TVN Rajska Miłość Online",
+      "url": "http://cdnx1.plusx.tv:4000/fastrajskamilosc/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 263
+    },
+    {
+      "id": "3c48d2d8-0ff1-46d0-b2d8-7b3f1a3e2ba2",
+      "name": "TVN Rewolucje w Kuchni",
+      "group": "TVN Online",
+      "logo": "https://logo.itvn.io/TVN+Rewolucje+w+Kuchni+Online.png",
+      "tvgId": "TVN Rewolucje w Kuchni Online",
+      "tvgName": "TVN Rewolucje w Kuchni Online",
+      "url": "http://cdnx1.plusx.tv:4000/fastrewolucjewkuchni/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 264
+    },
+    {
+      "id": "f316154a-8f13-49aa-ba22-8ac413498039",
+      "name": "TVN Seriale o Kobietach",
+      "group": "TVN Online",
+      "logo": "https://logo.itvn.io/TVN+Seriale+o+Kobietach+Online.png",
+      "tvgId": "TVN Seriale o Kobietach Online",
+      "tvgName": "TVN Seriale o Kobietach Online",
+      "url": "http://cdnx1.plusx.tv:4000/fastserialeokobietach/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 265
+    },
+    {
+      "id": "5a5c2859-ba58-48ea-bee5-b15a60d48158",
+      "name": "TVN Szkoła Życia",
+      "group": "TVN Online",
+      "logo": "https://logo.itvn.io/TVN+Szkoła+Życia+Online.png",
+      "tvgId": "TVN Szkoła Życia Online",
+      "tvgName": "TVN Szkoła Życia Online",
+      "url": "http://cdnx1.plusx.tv:4000/fastszkolazycia/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 266
+    },
+    {
+      "id": "0f386562-1da1-437f-81a8-47d3fe64f214",
+      "name": "TVN Szpitalne Historie",
+      "group": "TVN Online",
+      "logo": "https://logo.itvn.io/TVN+Szpitalne+Historie+Online.png",
+      "tvgId": "TVN Szpitalne Historie Online",
+      "tvgName": "TVN Szpitalne Historie Online",
+      "url": "http://cdnx1.plusx.tv:4000/fastszpitalnehistorie/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 267
+    },
+    {
+      "id": "4a518369-042f-4ba1-a1dd-04feb263fb75",
+      "name": "TVN Talk Show",
+      "group": "TVN Online",
+      "logo": "https://logo.itvn.io/TVN+Talk+Show+Online.png",
+      "tvgId": "TVN Talk Show Online",
+      "tvgName": "TVN Talk Show Online",
+      "url": "http://cdnx1.plusx.tv:4000/fasttalkshow/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 268
+    },
+    {
+      "id": "d9a6028a-5fb4-49cf-85fb-f726b2f1de6e",
+      "name": "TVN Telenowele",
+      "group": "TVN Online",
+      "logo": "https://logo.itvn.io/TVN+Telenowele+Online.png",
+      "tvgId": "TVN Telenowele Online",
+      "tvgName": "TVN Telenowele Online",
+      "url": "http://cdnx1.plusx.tv:4000/fasttelenowele/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 269
+    },
+    {
+      "id": "8e946f73-f4da-43e7-a5fc-2e377bf8d2cd",
+      "name": "TVN Usterka",
+      "group": "TVN Online",
+      "logo": "https://logo.itvn.io/TVN+Usterka+Online.png",
+      "tvgId": "TVN Usterka Online",
+      "tvgName": "TVN Usterka Online",
+      "url": "http://cdnx1.plusx.tv:4000/fastusterka/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 270
+    },
+    {
+      "id": "a47642d7-b001-487d-86fe-8a42c6483331",
+      "name": "TVN Czas na Ślub",
+      "group": "TVN Online",
+      "logo": "https://logo.itvn.io/TVN+Czas+na+Ślub+Online.png",
+      "tvgId": "TVN Czas na Ślub Online",
+      "tvgName": "TVN Czas na Ślub Online",
+      "url": "http://cdnx1.plusx.tv:4000/tvnnew1/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 271
+    },
+    {
+      "id": "85bbac5a-7794-461e-a5f5-d964227b2d67",
+      "name": "TVN Kulinarne Podróże",
+      "group": "TVN Online",
+      "logo": "https://logo.itvn.io/TVN+Kulinarne+Podróże+Online.png",
+      "tvgId": "TVN Kulinarne Podróże Online",
+      "tvgName": "TVN Kulinarne Podróże Online",
+      "url": "http://cdnx1.plusx.tv:4000/tvnnew2/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 272
+    },
+    {
+      "id": "4e223548-5346-4555-802a-8e39f8921c24",
+      "name": "TVN Patrol",
+      "group": "TVN Online",
+      "logo": "https://logo.itvn.io/TVN+Patrol+Online.png",
+      "tvgId": "TVN Patrol Online",
+      "tvgName": "TVN Patrol Online",
+      "url": "http://cdnx1.plusx.tv:4000/tvnnew3/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 273
+    },
+    {
+      "id": "009acd80-b9ff-45bf-a440-3d5c8b4ec7d0",
+      "name": "TVN Brzydula",
+      "group": "TVN Online",
+      "logo": "https://logo.itvn.io/TVN+Brzydula+Online.png",
+      "tvgId": "TVN Brzydula Online",
+      "tvgName": "TVN Brzydula Online",
+      "url": "http://cdnx1.plusx.tv:4000/fastbrzydula/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 274
+    },
+    {
+      "id": "81950c0b-b10b-44aa-8124-c1b903c4289b",
+      "name": "TVN Mam Talent",
+      "group": "TVN Online",
+      "logo": "https://logo.itvn.io/TVN+Mam+Talent+Online.png",
+      "tvgId": "TVN Mam Talent Online",
+      "tvgName": "TVN Mam Talent Online",
+      "url": "http://cdnx1.plusx.tv:4000/fastmamtalent/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 275
+    },
+    {
+      "id": "28752ac5-8cea-494b-946f-212d53bac2cc",
+      "name": "TVN Milionerzy",
+      "group": "TVN Online",
+      "logo": "https://logo.itvn.io/TVN+Milionerzy+Online.png",
+      "tvgId": "TVN Milionerzy Online",
+      "tvgName": "TVN Milionerzy Online",
+      "url": "http://cdnx1.plusx.tv:4000/tntsport5/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 276
+    },
+    {
+      "id": "b2d88714-8c30-4f4b-93b2-7b3a768d9d02",
+      "name": "TVP Dokument HD",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/TVP+Dokument.png",
+      "tvgId": "TVP Dokument",
+      "tvgName": "TVPDokument.pl",
+      "url": "http://cdnx1.plusx.tv:4000/1901/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 277
+    },
+    {
+      "id": "d28dc35d-9fb5-4672-8b08-bcba3b7f8e29",
+      "name": "TVP ABC",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/TVP+ABC.png",
+      "tvgId": "TVP ABC",
+      "tvgName": "TVP-ABC",
+      "url": "http://cdnx1.plusx.tv:4000/151/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 278
+    },
+    {
+      "id": "82ed5c14-89c3-491d-9a7f-1870c9a3a969",
+      "name": "TVP ABC 2",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/TVP+ABC+2.png",
+      "tvgId": "TVP ABC 2",
+      "tvgName": "TVP ABC 2",
+      "url": "http://cdnx1.plusx.tv:4000/tvpabc25/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 279
+    },
+    {
+      "id": "89cb0228-bd6c-43a8-924d-62618ed56998",
+      "name": "TVP Alfa",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/Alfa+TVP.png",
+      "tvgId": "TVP Alfa",
+      "tvgName": "TVP Alfa",
+      "url": "http://cdnx1.plusx.tv:4000/tvpalfa25/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 280
+    },
+    {
+      "id": "a0dc0f6d-c99d-4ada-86cd-f40f9cee2edf",
+      "name": "Top Kids HD",
+      "group": "Dla Dzieci",
+      "logo": "https://logo.itvn.io/TOP+KIDS.png",
+      "tvgId": "TOP KIDS",
+      "tvgName": "TOP KIDS",
+      "url": "http://cdnx1.plusx.tv:4000/TopKidsJr/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 281
+    },
+    {
+      "id": "081c584c-4dec-4ab0-94cb-6a4af98dfffe",
+      "name": "TVP Historia",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/TVP+Historia.png",
+      "tvgId": "TVP Historia",
+      "tvgName": "TVP Historia",
+      "url": "http://cdnx1.plusx.tv:4000/140/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 282
+    },
+    {
+      "id": "c466b209-3753-4365-8238-d29e892d540c",
+      "name": "TVP Historia2",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/TVP+Historia+2.png",
+      "tvgId": "TVP Historia 2",
+      "tvgName": "TVP Historia 2",
+      "url": "http://cdnx1.plusx.tv:4000/history2/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 283
+    },
+    {
+      "id": "b0b24050-d21d-4647-899e-16fd13f1e51f",
+      "name": "TVP Info HD",
+      "group": "Informacje",
+      "logo": "https://logo.itvn.io/TVP+Info.png",
+      "tvgId": "TVP Info",
+      "tvgName": "TVP-Info",
+      "url": "http://cdnx1.plusx.tv:4000/139/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 284
+    },
+    {
+      "id": "d44bae58-0b0f-425c-8d7b-27d18f170dab",
+      "name": "TVP Kultura",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/TVP+Kultura.png",
+      "tvgId": "TVP Kultura",
+      "tvgName": "TVP-Kultura",
+      "url": "http://cdnx1.plusx.tv:4000/138/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 285
+    },
+    {
+      "id": "8c0d6c41-742f-412d-8ae7-25bba2d0dee9",
+      "name": "TVP Kultura 2",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/TVP+Kultura+2.png",
+      "tvgId": "TVP Kultura 2",
+      "tvgName": "TVP Kultura 2",
+      "url": "http://cdnx1.plusx.tv:4000/tvpkul25/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 286
+    },
+    {
+      "id": "8ffefb46-a2c0-4ca2-baef-5c02a1815600",
+      "name": "TVP Polonia",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/TVP+Polonia.png",
+      "tvgId": "TVP Polonia",
+      "tvgName": "TVP Regionalna",
+      "url": "http://cdnx1.plusx.tv:4000/137/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 287
+    },
+    {
+      "id": "107fe723-759d-4f01-b713-30bed2faa6da",
+      "name": "TVP Rozrywka",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/TVP+Rozrywka.png",
+      "tvgId": "TVP Rozrywka",
+      "tvgName": "TVP Rozrywka",
+      "url": "http://cdnx1.plusx.tv:4000/136/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 288
+    },
+    {
+      "id": "35890620-b194-4c79-a750-94f5dd65a911",
+      "name": "TVP Nauka",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/TVP+Nauka.png",
+      "tvgId": "TVP Nauka",
+      "tvgName": "TVP Nauka",
+      "url": "http://cdnx1.plusx.tv:4000/tvpnauka25/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 289
+    },
+    {
+      "id": "3119aef1-3c6e-43a2-a38d-2b1bec43cd88",
+      "name": "TVP Seriale",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/TVP+Seriale.png",
+      "tvgId": "TVP Seriale",
+      "tvgName": "TVP Seriale",
+      "url": "http://cdnx1.plusx.tv:4000/135/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 290
+    },
+    {
+      "id": "286ff257-7273-4e9d-87f3-eda3053a940c",
+      "name": "TVP Kryminaly",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/TVP+Kryminaly.png",
+      "tvgId": "TVP Kryminaly",
+      "tvgName": "TVP Kryminaly",
+      "url": "http://cdnx1.plusx.tv:4000/euro9/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 291
+    },
+    {
+      "id": "ec5b167b-71cd-47d8-b04d-0be1bc85a5ce",
+      "name": "Toruń TV HD",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/TV+TORUŃ.png",
+      "tvgId": "TV TORUŃ",
+      "tvgName": "TV TORUŃ",
+      "url": "http://cdnx1.plusx.tv:4000/tvporld/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 292
+    },
+    {
+      "id": "61784c44-5604-4810-abba-56f57c3dd6a0",
+      "name": "TBN Polska HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/TBN+Polska.png",
+      "tvgId": "TBN Polska",
+      "tvgName": "TBN Polska",
+      "url": "http://cdnx1.plusx.tv:4000/100g/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 293
+    },
+    {
+      "id": "6b6b3e30-37af-4ca4-8b6f-7db6fc496a4f",
+      "name": "TVT HD",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/TVT.png",
+      "tvgId": "TVT",
+      "tvgName": "TVT",
+      "url": "http://cdnx1.plusx.tv:4000/tvt/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 294
+    },
+    {
+      "id": "be1aae67-ff3a-4182-b735-3e8ebaee5075",
+      "name": "TVP Wilno HD",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/TVP+Wilno.png",
+      "tvgId": "TVP Wilno",
+      "tvgName": "TVP Wilno",
+      "url": "http://cdnx1.plusx.tv:4000/2021/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 295
+    },
+    {
+      "id": "51f686b2-5b10-488c-8c5b-384f133938c4",
+      "name": "TVP Sport HD",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/TVP+Sport.png",
+      "tvgId": "TVP Sport",
+      "tvgName": "TVP Sport",
+      "url": "http://cdnx1.plusx.tv:4000/134/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 296
+    },
+    {
+      "id": "73f1ca85-ea82-4578-bd95-13e64982de70",
+      "name": "Toya TV",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/Toya.png",
+      "tvgId": "Toya",
+      "tvgName": "Toya",
+      "url": "http://cdnx1.plusx.tv:4000/Heritage/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 297
+    },
+    {
+      "id": "57ca7c84-d1b3-4bd9-a957-c696eb4c3bff",
+      "name": "Canal+ 360",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/Canal++360.png",
+      "tvgId": "Canal+ 360",
+      "tvgName": "Canal+ 360",
+      "url": "http://cdnx1.plusx.tv:4000/300/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 298
+    },
+    {
+      "id": "253d9d41-4d86-4759-9d87-a9affc0638a8",
+      "name": "Canal+ Extra 1 HD",
+      "group": "Canal+ Extra",
+      "logo": "https://logo.itvn.io/Canal++Extra+1.png",
+      "tvgId": "Canal+ Extra 1",
+      "tvgName": "Canal+ Extra 1",
+      "url": "http://live67.itvn.io:4000/6027/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 299
+    },
+    {
+      "id": "ec2c01d7-d304-430d-9b70-27344c7767f9",
+      "name": "Canal+ Extra 2 HD",
+      "group": "Canal+ Extra",
+      "logo": "https://logo.itvn.io/Canal++Extra+2.png",
+      "tvgId": "Canal+ Extra 2",
+      "tvgName": "Canal+ Extra 2",
+      "url": "http://live67.itvn.io:4000/6028/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 300
+    },
+    {
+      "id": "69c6921d-05da-462f-98c1-76a993cba19d",
+      "name": "Canal+ Extra 3 HD",
+      "group": "Canal+ Extra",
+      "logo": "https://logo.itvn.io/Canal++Extra+3.png",
+      "tvgId": "Canal+ Extra 3",
+      "tvgName": "Canal+ Extra 3",
+      "url": "http://live67.itvn.io:4000/6029/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 301
+    },
+    {
+      "id": "7302949d-7f91-4ddd-95df-3c1ce548fffb",
+      "name": "Canal+ Extra 4 HD",
+      "group": "Canal+ Extra",
+      "logo": "https://logo.itvn.io/Canal++Extra+4.png",
+      "tvgId": "Canal+ Extra 4",
+      "tvgName": "Canal+ Extra 4",
+      "url": "http://live67.itvn.io:4000/6030/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 302
+    },
+    {
+      "id": "38a54b07-012c-44c3-b4e9-17a074b79304",
+      "name": "Canal+ Extra 5 HD",
+      "group": "Canal+ Extra",
+      "logo": "https://logo.itvn.io/Canal++Extra+5.png",
+      "tvgId": "Canal+ Extra 5",
+      "tvgName": "Canal+ Extra 5",
+      "url": "http://live67.itvn.io:4000/extra5plus/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 303
+    },
+    {
+      "id": "73a86941-b5bc-40f7-a974-c7305ada33b2",
+      "name": "Canal+ Extra 6 HD",
+      "group": "Canal+ Extra",
+      "logo": "https://logo.itvn.io/Canal++Extra+6.png",
+      "tvgId": "Canal+ Extra 6",
+      "tvgName": "Canal+ Extra 6",
+      "url": "http://live67.itvn.io:4000/extra6plus/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 304
+    },
+    {
+      "id": "b11e42f8-e597-432a-9801-fe69e8ee767f",
+      "name": "Canal+ Extra 7 HD",
+      "group": "Canal+ Extra",
+      "logo": "https://logo.itvn.io/Canal++Extra+7.png",
+      "tvgId": "Canal+ Extra 7",
+      "tvgName": "Canal+ Extra 7",
+      "url": "http://live67.itvn.io:4000/extra7plus/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 305
+    },
+    {
+      "id": "ed50f1a2-9c1a-47f6-b40e-6624e8203c35",
+      "name": "Canal+ Live 1 HD",
+      "group": "Canal+ Live",
+      "logo": "https://logo.itvn.io/Canal++Live+1.png",
+      "tvgId": "Canal+ Live 1",
+      "tvgName": "Canal+ Live 1",
+      "url": "http://cdnx1.plusx.tv:4000/6036/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 306
+    },
+    {
+      "id": "02fbdad3-81aa-4e4a-a023-9d3f73548c55",
+      "name": "Canal+ Live 2 HD",
+      "group": "Canal+ Live",
+      "logo": "https://logo.itvn.io/Canal++Live+2.png",
+      "tvgId": "Canal+ Live 2",
+      "tvgName": "Canal+ Live 2",
+      "url": "http://cdnx1.plusx.tv:4000/6037/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 307
+    },
+    {
+      "id": "4b3e47fc-b8be-4135-94a6-4d13c7df0ec4",
+      "name": "Canal+ Live 3 HD",
+      "group": "Canal+ Live",
+      "logo": "https://logo.itvn.io/Canal++Live+3.png",
+      "tvgId": "Canal+ Live 3",
+      "tvgName": "Canal+ Live 3",
+      "url": "http://cdnx1.plusx.tv:4000/6038/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 308
+    },
+    {
+      "id": "8cc22d31-0522-4c18-b04b-d30250f516d6",
+      "name": "Canal+ Live 4 HD",
+      "group": "Canal+ Live",
+      "logo": "https://logo.itvn.io/Canal++Live+4.png",
+      "tvgId": "Canal+ Live 4",
+      "tvgName": "Canal+ Live 4",
+      "url": "http://cdnx1.plusx.tv:4000/6039/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 309
+    },
+    {
+      "id": "34f97e7d-1986-4b12-b51a-93ac63516353",
+      "name": "Stargaze TV",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/playnowfull-nowostargazetv.png",
+      "tvgId": "Stargaze TV",
+      "tvgName": "Stargaze TV",
+      "url": "http://cdnx1.plusx.tv:4000/16024/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 310
+    },
+    {
+      "id": "476c185c-56f4-4505-8cb3-4fed02a63327",
+      "name": "Remonty TV",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/dark_1135.png",
+      "tvgId": "Remonty TV",
+      "tvgName": "Remonty TV",
+      "url": "http://cdnx1.plusx.tv:4000/fruhd3/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 311
+    },
+    {
+      "id": "f5fd8c6b-a063-4c1e-b024-8b2cdb7d037a",
+      "name": "TV Trwam",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/TV+TRWAM.png",
+      "tvgId": "TV TRWAM",
+      "tvgName": "TV TRWAM",
+      "url": "http://cdnx1.plusx.tv:4000/338/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 312
+    },
+    {
+      "id": "6dfbe1a9-b392-4537-af04-024cb8059378",
+      "name": "Mezzo Live HD",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/MEZZO+LIVE.png",
+      "tvgId": "MEZOO LIVE",
+      "tvgName": "MEZOO LIVE",
+      "url": "http://cdnx1.plusx.tv:4000/337/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 313
+    },
+    {
+      "id": "73578146-b43d-4ec3-8675-a81c8d615a53",
+      "name": "TVS",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/TVS.png",
+      "tvgId": "TVS",
+      "tvgName": "TVS (HD)",
+      "url": "http://cdnx1.plusx.tv:4000/132/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 314
+    },
+    {
+      "id": "9792b98b-bf8f-4de7-b920-4f279ef20f63",
+      "name": "Travel Channel HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/Travel+Channel.png",
+      "tvgId": "Travel Channel",
+      "tvgName": "Travel Channel",
+      "url": "http://cdnx1.plusx.tv:4000/163/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 315
+    },
+    {
+      "id": "be2f56b7-ae98-4271-8282-6260823ee617",
+      "name": "WP",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/WP.png",
+      "tvgId": "WP",
+      "tvgName": "WP",
+      "url": "http://cdnx1.plusx.tv:4000/121/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 316
+    },
+    {
+      "id": "9e53b419-1049-430f-b906-d5d766e3c239",
+      "name": "wPolsce.pl",
+      "group": "Informacje",
+      "logo": "https://logo.itvn.io/WPolsce.pl.png",
+      "tvgId": "wPolsce.pl",
+      "tvgName": "wPolsce.pl",
+      "url": "http://cdnx1.plusx.tv:4000/120/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 317
+    },
+    {
+      "id": "fd8a8d30-0e5b-49c2-a00f-04277b7c2b76",
+      "name": "Wydarzenia 24",
+      "group": "Informacje",
+      "logo": "https://logo.itvn.io/Wydarzenia+24.png",
+      "tvgId": "Wydarzenia 24",
+      "tvgName": "Wydarzenia 24",
+      "url": "http://cdnx1.plusx.tv:4000/10/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 318
+    },
+    {
+      "id": "a2343135-f950-46a8-9885-e3ba617c1380",
+      "name": "WTK",
+      "group": "Regionalny",
+      "logo": "https://logo.itvn.io/WTK.png",
+      "tvgId": "WTK",
+      "tvgName": "WTK",
+      "url": "http://cdnx1.plusx.tv:4000/wtk10/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 319
+    },
+    {
+      "id": "d9998762-a499-4853-b005-d996bb4d3676",
+      "name": "Water Planet",
+      "group": "Dokument",
+      "logo": "https://logo.itvn.io/WATER+PLANET.png",
+      "tvgId": "WATER PLANET",
+      "tvgName": "Water Planet",
+      "url": "http://cdnx1.plusx.tv:4000/122/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 320
+    },
+    {
+      "id": "bec276df-c883-4fef-bc5f-a923a31a009d",
+      "name": "Zoom TV",
+      "group": "Popularny",
+      "logo": "https://logo.itvn.io/ZOOM+TV.png",
+      "tvgId": "ZOOM TV",
+      "tvgName": "Zoom TV",
+      "url": "http://cdnx1.plusx.tv:4000/118/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 321
+    },
+    {
+      "id": "96bccca5-861b-4ab2-bb1b-a0fb3853f701",
+      "name": "English Club TV HD",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/English+Club+HD.png",
+      "tvgId": "English Club TV HD",
+      "tvgName": "English Club TV HD",
+      "url": "http://live67.itvn.io:4000/6014/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 322
+    },
+    {
+      "id": "b78d1297-664c-40d1-bee9-363c1f155230",
+      "name": "CANAL+ 4K Ultra HD",
+      "group": "4k",
+      "logo": "https://logo.itvn.io/Canal++4K+PL.png",
+      "tvgId": "Canalplus4K.pl",
+      "tvgName": "Canalplus4K.pl",
+      "url": "http://cdnx1.plusx.tv:4000/Filmax/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 323
+    },
+    {
+      "id": "eb0324d3-451f-4a9f-81c4-4578cbff1a57",
+      "name": "Love Nature 4K",
+      "group": "4k",
+      "logo": "https://logo.itvn.io/Love+Nature+4K.png",
+      "tvgId": "Love Nature 4K",
+      "tvgName": "Love Nature 4K",
+      "url": "http://cdnx1.plusx.tv:4000/LoveNature/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 324
+    },
+    {
+      "id": "04a165fd-4d78-43ce-bf8e-34399488e641",
+      "name": "Museum 4K",
+      "group": "4k",
+      "logo": "https://logo.itvn.io/Museum+UHD.png",
+      "tvgId": "Museum UHD",
+      "tvgName": "Museum UHD",
+      "url": "http://cdnx1.plusx.tv:4000/Museum/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 325
+    },
+    {
+      "id": "70927bc9-3336-484b-93e1-5ccd88c601d9",
+      "name": "MyZen 4K",
+      "group": "4k",
+      "logo": "https://logo.itvn.io/MYZEN.TV.png",
+      "tvgId": "MYZEN.TV",
+      "tvgName": "MYZEN.TV",
+      "url": "http://cdnx1.plusx.tv:4000/myZen/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 326
+    },
+    {
+      "id": "afd0145a-763a-4fbf-a511-418068303578",
+      "name": "Insight UHD",
+      "group": "4k",
+      "logo": "https://logo.itvn.io/InUltra.png",
+      "tvgId": "InUltra",
+      "tvgName": "InUltra",
+      "url": "http://cdnx1.plusx.tv:4000/InsightUHD11/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 327
+    },
+    {
+      "id": "01eccd4e-5911-4d25-841e-3fe2977bdacf",
+      "name": "Travelxp 4K",
+      "group": "4k",
+      "logo": "https://logo.itvn.io/Travelxp+4K.png",
+      "tvgId": "Travelxp 4K",
+      "tvgName": "Travelxp 4K",
+      "url": "http://cdnx1.plusx.tv:4000/Travelxp/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 328
+    },
+    {
+      "id": "a759b990-4ab4-4b95-9dce-cabde8118e1a",
+      "name": "FilMax 4k",
+      "group": "4k",
+      "logo": "https://logo.itvn.io/FILMAX.png",
+      "tvgId": "FILMAX",
+      "tvgName": "FILMAX",
+      "url": "http://cdnx1.plusx.tv:4000/filmax4k/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 329
+    },
+    {
+      "id": "67232a8d-86d4-40d2-81dd-73cbd9aa2330",
+      "name": "Ultra TV 4k",
+      "group": "4k",
+      "logo": "https://logo.itvn.io/ULTRA+TV+4K.png",
+      "tvgId": "ULTRA TV 4K",
+      "tvgName": "ULTRA TV 4K",
+      "url": "http://cdnx1.plusx.tv:4000/ultrahd/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 330
+    },
+    {
+      "id": "144ddfbe-4b5f-4f7f-8f65-756ebef5326a",
+      "name": "ViDocTV 4k",
+      "group": "4k",
+      "logo": "https://logo.itvn.io/ViDocTV+4К.png",
+      "tvgId": "ViDocTV 4k",
+      "tvgName": "ViDoc TV",
+      "url": "http://cdnx1.plusx.tv:4000/ViDocTV-4k/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 331
+    },
+    {
+      "id": "34461504-ce69-449d-ae9f-7d603a063ea9",
+      "name": "wPolsce24",
+      "group": "4k",
+      "logo": "https://logo.itvn.io/wPolsce+24+4K.png",
+      "tvgId": "wPolsce.pl",
+      "tvgName": "wPolsce.pl",
+      "url": "http://cdnx1.plusx.tv:4000/NASA/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 332
+    },
+    {
+      "id": "6449c676-4eb4-4276-b0f8-c4f8d6e78c44",
+      "name": "Sky Sports Main Event UHD",
+      "group": "4k",
+      "logo": "https://logo.itvn.io/Sky+Sports+Main+Event+UHD.png",
+      "tvgId": "Sky Sports Main Event",
+      "tvgName": "Sky Sports Main Event",
+      "url": "http://live67.itvn.io:4000/skyihd1/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 333
+    },
+    {
+      "id": "28a8734e-6b0b-444d-9954-812509d4dc35",
+      "name": "Sky Sports F1 UHD",
+      "group": "4k",
+      "logo": "https://logo.itvn.io/Sky+Sports+F1+UHD.png",
+      "tvgId": "Sky Sports F1",
+      "tvgName": "Sky Sports F1",
+      "url": "http://live67.itvn.io:4000/skyihd2/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 334
+    },
+    {
+      "id": "a81f3098-254c-48b5-99c0-07751480418c",
+      "name": "Sky UHD Sports 1",
+      "group": "4k",
+      "logo": "https://logo.itvn.io/Sky-Sports-UHD-1.png",
+      "tvgId": "Sky UHD Sports 1",
+      "tvgName": "Sky UHD Sports 1",
+      "url": "http://live67.itvn.io:4000/fruhd4/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 335
+    },
+    {
+      "id": "98894c6f-bdd9-4ef7-92d7-18d14480b113",
+      "name": "Sky UHD Sports 2",
+      "group": "4k",
+      "logo": "https://logo.itvn.io/Sky-Sports-UHD-2.png",
+      "tvgId": "Sky UHD Sports 2",
+      "tvgName": "Sky UHD Sports 2",
+      "url": "http://live67.itvn.io:4000/fruhd2/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 336
+    },
+    {
+      "id": "86388a88-dae2-411d-8364-7b0af2449461",
+      "name": "TSN 4k",
+      "group": "4k",
+      "logo": "https://logo.itvn.io/TSN+4K.png",
+      "tvgId": "TSN 4k",
+      "tvgName": "TSN 4k",
+      "url": "http://cdnx1.plusx.tv:4000/pat10/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 337
+    },
+    {
+      "id": "a8db180c-4af3-4b4b-9957-b42701e6291a",
+      "name": "Eurosport 4K",
+      "group": "4k",
+      "logo": "https://logo.itvn.io/antiktvpy-eurosport4k.png",
+      "tvgId": "Eurosport 4K",
+      "tvgName": "Eurosport 4K",
+      "url": "http://live67.itvn.io:4000/nowsport/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 338
+    },
+    {
+      "id": "eed7bb5c-75e4-4588-9cac-65ee225e4e3f",
+      "name": "FunBox UHD",
+      "group": "4k",
+      "logo": "https://logo.itvn.io/FUN+BOX.png",
+      "tvgId": "FUN BOX",
+      "tvgName": "FUN BOX",
+      "url": "http://cdnx1.plusx.tv:4000/funboxuhd/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 339
+    },
+    {
+      "id": "cd952bbe-61af-4550-bfc6-ed821a1afb9b",
+      "name": "TNT Sports Ultimate UHD",
+      "group": "4k",
+      "logo": "https://logo.itvn.io/TNT+Sports+Ultimate.png",
+      "tvgId": "TNT Sports Ultimate UHD",
+      "tvgName": "TNT Sports Ultimate UHD",
+      "url": "http://live67.itvn.io:4000/fruhdtnt/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 340
+    },
+    {
+      "id": "48dd99e5-f4cf-46e6-8fee-eaf2f40a41b0",
+      "name": "Quadro 4K",
+      "group": "4k",
+      "logo": "https://logo.itvn.io/Quadro+4K.png",
+      "tvgId": "Quadro 4K",
+      "tvgName": "Quadro 4K",
+      "url": "http://cdnx1.plusx.tv:4000/316/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 341
+    },
+    {
+      "id": "c32e9343-96d6-4116-a32d-85c100b3eb03",
+      "name": "FashionTV 4K",
+      "group": "4k",
+      "logo": "https://logo.itvn.io/Fashion+TV+HD.png",
+      "tvgId": "FashionTV4K.eu",
+      "tvgName": "FashionTV4K.eu",
+      "url": "http://cdnx1.plusx.tv:4000/FashionTV4K/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 342
+    },
+    {
+      "id": "bfeac699-78ac-4cd5-9783-1754256988b8",
+      "name": "Home 4K",
+      "group": "4k",
+      "logo": "https://logo.itvn.io/home4k.png",
+      "tvgId": "home4k",
+      "tvgName": "home4k",
+      "url": "http://cdnx1.plusx.tv:4000/C4K360/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 343
+    },
+    {
+      "id": "ee1870d2-87ba-45a8-b998-7a6b915573a6",
+      "name": "TVC Super",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/TVC+Super.png",
+      "tvgId": "TVC Super",
+      "tvgName": "TVC Super",
+      "url": "http://cdnx1.plusx.tv:4000/euro3/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 344
+    },
+    {
+      "id": "da077687-5137-47b8-9b98-11acf18e023d",
+      "name": "TVC Reality",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/playnowfull-tvcreality.png",
+      "tvgId": "TVC Reality",
+      "tvgName": "TVC Reality",
+      "url": "http://cdnx1.plusx.tv:4000/TVC-Reality/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 345
+    },
+    {
+      "id": "7b9e9c9b-8aeb-4f43-a1a5-14ca3533b91a",
+      "name": "Dolce Vita",
+      "group": "Rozrywka",
+      "logo": "https://logo.itvn.io/toya-dolcevitahd.png",
+      "tvgId": "Dolce Vita",
+      "tvgName": "Dolce Vita",
+      "url": "http://live67.itvn.io:4000/6019/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 346
+    },
+    {
+      "id": "f94593b7-a968-4e01-9b0d-6c8959aac076",
+      "name": "Szlagier TV",
+      "group": "Muzyka",
+      "logo": "https://logo.itvn.io/Szlagier+TV.png",
+      "tvgId": "Szlagier TV",
+      "tvgName": "Szlagier TV",
+      "url": "http://cdnx1.plusx.tv:4000/euro4/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 347
+    },
+    {
+      "id": "00c76ae7-9f21-40a7-abde-abb243c4b2eb",
+      "name": "TVP Sport Extra 1",
+      "group": "tvpsport.pl",
+      "logo": "https://logo.itvn.io/TVP+Sport+Extra.png",
+      "tvgId": "TVP Sport Extra 1",
+      "tvgName": "TVP Sport Extra 1",
+      "url": "http://cdnx1.plusx.tv:4000/tvps1/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 348
+    },
+    {
+      "id": "1123054e-81f9-4ba1-aa6d-a99b55d1235f",
+      "name": "TVP Sport Extra 2",
+      "group": "tvpsport.pl",
+      "logo": "https://logo.itvn.io/TVP+Sport+Extra.png",
+      "tvgId": "TVP Sport Extra 2",
+      "tvgName": "TVP Sport Extra 2",
+      "url": "http://cdnx1.plusx.tv:4000/tvps2/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 349
+    },
+    {
+      "id": "aa64f7b9-7e47-4eb2-b2f5-e5d6d1f20ee4",
+      "name": "TVP Sport Extra 3",
+      "group": "tvpsport.pl",
+      "logo": "https://logo.itvn.io/TVP+Sport+Extra.png",
+      "tvgId": "TVP Sport Extra 3",
+      "tvgName": "TVP Sport Extra 3",
+      "url": "http://cdnx1.plusx.tv:4000/tvps3/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 350
+    },
+    {
+      "id": "79aa98f8-ad94-4690-8cca-b095c3e44cbf",
+      "name": "TVP Sport Extra 4",
+      "group": "tvpsport.pl",
+      "logo": "https://logo.itvn.io/TVP+Sport+Extra.png",
+      "tvgId": "TVP Sport Extra 4",
+      "tvgName": "TVP Sport Extra 4",
+      "url": "http://cdnx1.plusx.tv:4000/tvps4/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 351
+    },
+    {
+      "id": "5b4ca059-4fe0-4e50-b654-22ca53964eab",
+      "name": "TVP Sport Extra 5",
+      "group": "tvpsport.pl",
+      "logo": "https://logo.itvn.io/TVP+Sport+Extra.png",
+      "tvgId": "TVP Sport Extra 5",
+      "tvgName": "TVP Sport Extra 5",
+      "url": "http://cdnx1.plusx.tv:4000/tvps5/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 352
+    },
+    {
+      "id": "883af404-0b9f-4edc-bd2b-bbb1c5f49016",
+      "name": "TVP Sport Extra 6",
+      "group": "tvpsport.pl",
+      "logo": "https://logo.itvn.io/TVP+Sport+Extra.png",
+      "tvgId": "TVP Sport Extra 6",
+      "tvgName": "TVP Sport Extra 6",
+      "url": "http://cdnx1.plusx.tv:4000/tvps6/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 353
+    },
+    {
+      "id": "9c794f79-2838-4744-8aaa-c6691f004208",
+      "name": "TVP Sport Extra 7",
+      "group": "tvpsport.pl",
+      "logo": "https://logo.itvn.io/TVP+Sport+Extra.png",
+      "tvgId": "TVP Sport Extra 7",
+      "tvgName": "TVP Sport Extra 7",
+      "url": "http://cdnx1.plusx.tv:4000/tvps7/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 354
+    },
+    {
+      "id": "3810f91b-3fd0-4e85-ace9-4626a156022b",
+      "name": "TVP Sport Extra 8",
+      "group": "tvpsport.pl",
+      "logo": "https://logo.itvn.io/TVP+Sport+Extra.png",
+      "tvgId": "TVP Sport Extra 8",
+      "tvgName": "TVP Sport Extra 8",
+      "url": "http://cdnx1.plusx.tv:4000/tvps8/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 355
+    },
+    {
+      "id": "ff457004-091d-4f74-a5a2-c5ed6d670f89",
+      "name": "TVP Sport Extra 9",
+      "group": "tvpsport.pl",
+      "logo": "https://logo.itvn.io/TVP+Sport+Extra.png",
+      "tvgId": "TVP Sport Extra 9",
+      "tvgName": "TVP Sport Extra 9",
+      "url": "http://cdnx1.plusx.tv:4000/tvps9/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 356
+    },
+    {
+      "id": "ed153834-0920-477b-9fbf-e9720da6e070",
+      "name": "TVP Sport Extra 10",
+      "group": "tvpsport.pl",
+      "logo": "https://logo.itvn.io/TVP+Sport+Extra.png",
+      "tvgId": "TVP Sport Extra 10",
+      "tvgName": "TVP Sport Extra 10",
+      "url": "http://cdnx1.plusx.tv:4000/tvps10/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 357
+    },
+    {
+      "id": "95250444-eb59-4b1f-92bc-e99339f844f0",
+      "name": "Emocje Extra 1",
+      "group": "emocje.tv",
+      "logo": "https://logo.itvn.io/ex1emoj.png",
+      "tvgId": "Emocje Extra 1",
+      "tvgName": "Emocje Extra 1",
+      "url": "http://cdnx1.plusx.tv:4000/extremoj1/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 358
+    },
+    {
+      "id": "98c05d28-ca10-4d4d-a8d5-aef1a2743b7d",
+      "name": "Emocje Extra 2",
+      "group": "emocje.tv",
+      "logo": "https://logo.itvn.io/ex2emoj.png",
+      "tvgId": "Emocje Extra 2",
+      "tvgName": "Emocje Extra 2",
+      "url": "http://cdnx1.plusx.tv:4000/extremoj2/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 359
+    },
+    {
+      "id": "4451c45d-dc3d-4d5e-8969-d9dfcca88725",
+      "name": "Emocje Extra 3",
+      "group": "emocje.tv",
+      "logo": "https://logo.itvn.io/ex3emoj.png",
+      "tvgId": "Emocje Extra 3",
+      "tvgName": "Emocje Extra 3",
+      "url": "http://cdnx1.plusx.tv:4000/extremoj3/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 360
+    },
+    {
+      "id": "10d12aa6-41f1-4647-915b-d463f62e1c04",
+      "name": "Emocje Extra 4",
+      "group": "emocje.tv",
+      "logo": "https://logo.itvn.io/ex4emoj.png",
+      "tvgId": "Emocje Extra 4",
+      "tvgName": "Emocje Extra 4",
+      "url": "http://cdnx1.plusx.tv:4000/extremoj4/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 361
+    },
+    {
+      "id": "c4e778d8-ae50-4d62-928a-33682a821637",
+      "name": "Emocje Extra 5",
+      "group": "emocje.tv",
+      "logo": "https://logo.itvn.io/ex5emoj.png",
+      "tvgId": "Emocje Extra 5",
+      "tvgName": "Emocje Extra 5",
+      "url": "http://cdnx1.plusx.tv:4000/extremoj5/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 362
+    },
+    {
+      "id": "db72b5a5-557f-4c50-bd8e-38002de5810f",
+      "name": "Polsat GO 1",
+      "group": "Polsat GO",
+      "logo": "https://logo.itvn.io/polsat-go-1.png",
+      "tvgId": "Polsat GO 1",
+      "tvgName": "Polsat GO 1",
+      "url": "http://cdnx1.plusx.tv:4000/Eleven-Sports-Online-1/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 363
+    },
+    {
+      "id": "0b048809-f102-4194-8ac1-fdacf5f2c6ff",
+      "name": "Polsat GO 2",
+      "group": "Polsat GO",
+      "logo": "https://logo.itvn.io/polsat-go-2.png",
+      "tvgId": "Polsat GO 2",
+      "tvgName": "Polsat GO 2",
+      "url": "http://cdnx1.plusx.tv:4000/Eleven-Sports-Online-2/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 364
+    },
+    {
+      "id": "24a79e4a-e91d-4684-a348-5e2bc5cd02ed",
+      "name": "Polsat GO 3",
+      "group": "Polsat GO",
+      "logo": "https://logo.itvn.io/polsat-go-3.png",
+      "tvgId": "Polsat GO 3",
+      "tvgName": "Polsat GO 3",
+      "url": "http://cdnx1.plusx.tv:4000/Eleven-Sports-Online-3/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 365
+    },
+    {
+      "id": "3f6e5dc4-2919-4203-a529-5b7c0f422756",
+      "name": "Polsat GO 4",
+      "group": "Polsat GO",
+      "logo": "https://logo.itvn.io/polsat-go-4.png",
+      "tvgId": "Polsat GO 4",
+      "tvgName": "Polsat GO 4",
+      "url": "http://cdnx1.plusx.tv:4000/Eleven-Sports-Online-4/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 366
+    },
+    {
+      "id": "ed109421-0b55-4116-b816-f643d12d58aa",
+      "name": "Polsat GO 5",
+      "group": "Polsat GO",
+      "logo": "https://logo.itvn.io/polsat-go-5.png",
+      "tvgId": "Polsat GO 5",
+      "tvgName": "Polsat GO 5",
+      "url": "http://cdnx1.plusx.tv:4000/Eleven-Sports-Online-5/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 367
+    },
+    {
+      "id": "35d96317-8f90-4907-9e35-acb91e6eb319",
+      "name": "Polsat GO 6",
+      "group": "Polsat GO",
+      "logo": "https://logo.itvn.io/polsat-go-6.png",
+      "tvgId": "Polsat GO 6",
+      "tvgName": "Polsat GO 6",
+      "url": "http://cdnx1.plusx.tv:4000/Eleven-Sports-Online-6/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 368
+    },
+    {
+      "id": "6cf0e4c3-4768-4926-910c-9acee11dccd2",
+      "name": "Polsat GO 7",
+      "group": "Polsat GO",
+      "logo": "https://logo.itvn.io/polsat-go-7.png",
+      "tvgId": "Polsat GO 7",
+      "tvgName": "Polsat GO 7",
+      "url": "http://live67.itvn.io:4000/VSport-1-HD/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 369
+    },
+    {
+      "id": "5494fb63-78fc-47f3-811c-6b177155ac51",
+      "name": "Polsat GO 8",
+      "group": "Polsat GO",
+      "logo": "https://logo.itvn.io/polsat-go-8.png",
+      "tvgId": "Polsat GO 8",
+      "tvgName": "Polsat GO 8",
+      "url": "http://live67.itvn.io:4000/VSport-Vinter-HD/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 370
+    },
+    {
+      "id": "2f146491-ad28-4871-88e3-9505d501e15c",
+      "name": "Polsat GO 9",
+      "group": "Polsat GO",
+      "logo": "https://logo.itvn.io/polsat-go-9.png",
+      "tvgId": "Polsat GO 9",
+      "tvgName": "Polsat GO 9",
+      "url": "http://live67.itvn.io:4000/VSport-Extra-HD/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 371
+    },
+    {
+      "id": "1388b43c-d29a-48e9-91e1-e9c2f2266830",
+      "name": "Polsat GO 10",
+      "group": "Polsat GO",
+      "logo": "https://logo.itvn.io/polsat-go-10.png",
+      "tvgId": "Polsat GO 10",
+      "tvgName": "Polsat GO 10",
+      "url": "http://cdnx1.plusx.tv:4000/302fps/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 372
+    },
+    {
+      "id": "46cdffe7-e4b0-449b-9d9d-e90e146a85ca",
+      "name": "Dazn Event 1",
+      "group": "Dazn Event",
+      "logo": "https://logo.itvn.io/Dazn+Event+1.png",
+      "tvgId": "Dazn Event 1",
+      "tvgName": "Dazn Event 1",
+      "url": "http://cdnx1.plusx.tv:4000/daznevent1/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 373
+    },
+    {
+      "id": "3b024456-8961-4253-8149-5d148b27927b",
+      "name": "Dazn Event 2",
+      "group": "Dazn Event",
+      "logo": "https://logo.itvn.io/Dazn+Event+2.png",
+      "tvgId": "Dazn Event 2",
+      "tvgName": "Dazn Event 2",
+      "url": "http://cdnx1.plusx.tv:4000/daznevent2/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 374
+    },
+    {
+      "id": "33f016f9-c457-4773-8a03-0040b370dd9d",
+      "name": "Dazn Event 3",
+      "group": "Dazn Event",
+      "logo": "https://logo.itvn.io/Dazn+Event+3.png",
+      "tvgId": "Dazn Event 3",
+      "tvgName": "Dazn Event 3",
+      "url": "http://cdnx1.plusx.tv:4000/daznevent3/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 375
+    },
+    {
+      "id": "2f415510-0b8e-4fdf-b7a9-eebf77e89f74",
+      "name": "Dazn Event 4",
+      "group": "Dazn Event",
+      "logo": "https://logo.itvn.io/Dazn+Event+4.png",
+      "tvgId": "Dazn Event 4",
+      "tvgName": "Dazn Event 4",
+      "url": "http://cdnx1.plusx.tv:4000/daznevent4/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 376
+    },
+    {
+      "id": "40d63d3a-2991-420d-be6e-6b20b7ca1412",
+      "name": "Dazn Event 5",
+      "group": "Dazn Event",
+      "logo": "https://logo.itvn.io/Dazn+Event+5.png",
+      "tvgId": "Dazn Event 5",
+      "tvgName": "Dazn Event 5",
+      "url": "http://cdnx1.plusx.tv:4000/daznevent5/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 377
+    },
+    {
+      "id": "532882e5-7e66-405b-b8ce-cbb4767efb2e",
+      "name": "Dazn Event 6",
+      "group": "Dazn Event",
+      "logo": "https://logo.itvn.io/Dazn+Event+6.png",
+      "tvgId": "Dazn Event 6",
+      "tvgName": "Dazn Event 6",
+      "url": "http://cdnx1.plusx.tv:4000/daznevent6/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 378
+    },
+    {
+      "id": "66ef6cc6-4ef0-44ea-8d86-a6acbd32bfd5",
+      "name": "Dazn Event 7",
+      "group": "Dazn Event",
+      "logo": "https://logo.itvn.io/Dazn+Event+7.png",
+      "tvgId": "Dazn Event 7",
+      "tvgName": "Dazn Event 7",
+      "url": "http://cdnx1.plusx.tv:4000/daznevent7/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 379
+    },
+    {
+      "id": "a31e0e08-ca5e-4f88-a092-82dca80e614b",
+      "name": "Dazn Event 8",
+      "group": "Dazn Event",
+      "logo": "https://logo.itvn.io/Dazn+Event+8.png",
+      "tvgId": "Dazn Event 8",
+      "tvgName": "Dazn Event 8",
+      "url": "http://cdnx1.plusx.tv:4000/daznevent8/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 380
+    },
+    {
+      "id": "6622561c-6356-4c9f-a209-e7aa752815f5",
+      "name": "Dazn Event 9",
+      "group": "Dazn Event",
+      "logo": "https://logo.itvn.io/Dazn+Event+9.png",
+      "tvgId": "Dazn Event 9",
+      "tvgName": "Dazn Event 9",
+      "url": "http://cdnx1.plusx.tv:4000/daznevent9/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 381
+    },
+    {
+      "id": "8b832340-14a0-4668-b82a-057ec9fe8241",
+      "name": "Dazn Event 10",
+      "group": "Dazn Event",
+      "logo": "https://logo.itvn.io/Dazn+Event+10.png",
+      "tvgId": "Dazn Event 10",
+      "tvgName": "Dazn Event 10",
+      "url": "http://cdnx1.plusx.tv:4000/daznevent10/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 382
+    },
+    {
+      "id": "dd44c74c-59d4-4a98-86ce-5930b77a92d9",
+      "name": "Dazn Event 11",
+      "group": "Dazn Event",
+      "logo": "https://logo.itvn.io/Dazn+Event+11.png",
+      "tvgId": "Dazn Event 11",
+      "tvgName": "Dazn Event 11",
+      "url": "http://cdnx1.plusx.tv:4000/daznevent11/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 383
+    },
+    {
+      "id": "9514d2bc-dcf4-4d73-89f5-9d45e65c75c4",
+      "name": "Dazn Event 12",
+      "group": "Dazn Event",
+      "logo": "https://logo.itvn.io/Dazn+Event+12.png",
+      "tvgId": "Dazn Event 12",
+      "tvgName": "Dazn Event 12",
+      "url": "http://cdnx1.plusx.tv:4000/daznevent12/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 384
+    },
+    {
+      "id": "3be91458-ed94-47b8-a6b5-753ece6c84b0",
+      "name": "Dazn Event 13",
+      "group": "Dazn Event",
+      "logo": "https://logo.itvn.io/Dazn+Event+13.png",
+      "tvgId": "Dazn Event 13",
+      "tvgName": "Dazn Event 13",
+      "url": "http://cdnx1.plusx.tv:4000/daznevent13/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 385
+    },
+    {
+      "id": "d38d5e8d-a9eb-4a59-b49f-3572aede547d",
+      "name": "Dazn Event 14",
+      "group": "Dazn Event",
+      "logo": "https://logo.itvn.io/Dazn+Event+14.png",
+      "tvgId": "Dazn Event 14",
+      "tvgName": "Dazn Event 14",
+      "url": "http://cdnx1.plusx.tv:4000/daznevent14/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 386
+    },
+    {
+      "id": "240f0e4d-bd6c-4c40-b78e-6b1e160c9a62",
+      "name": "Dazn Event 15",
+      "group": "Dazn Event",
+      "logo": "https://logo.itvn.io/Dazn+Event+15.png",
+      "tvgId": "Dazn Event 15",
+      "tvgName": "Dazn Event 15",
+      "url": "http://cdnx1.plusx.tv:4000/daznevent15/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 387
+    },
+    {
+      "id": "2d2fe261-42bc-4a9b-b90a-954dfa217cd3",
+      "name": "Eurosport Extra 1 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+1.png",
+      "tvgId": "Eurosport Extra 1",
+      "tvgName": "Eurosport Extra 1",
+      "url": "http://cdnx1.plusx.tv:4000/euroex1/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 388
+    },
+    {
+      "id": "88edacf3-4c17-472c-b33b-3b28c17611f4",
+      "name": "Eurosport Extra 2 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+2.png",
+      "tvgId": "Eurosport Extra 2",
+      "tvgName": "Eurosport Extra 2",
+      "url": "http://cdnx1.plusx.tv:4000/euroex2/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 389
+    },
+    {
+      "id": "682cedcd-98a9-45b6-91cd-842b822b4b1f",
+      "name": "Eurosport Extra 3 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+3.png",
+      "tvgId": "Eurosport Extra 3",
+      "tvgName": "Eurosport Extra 3",
+      "url": "http://cdnx1.plusx.tv:4000/euroex3/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 390
+    },
+    {
+      "id": "a31371e0-4430-4622-aafe-754e043bf399",
+      "name": "Eurosport Extra 4 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+4.png",
+      "tvgId": "Eurosport Extra 4",
+      "tvgName": "Eurosport Extra 4",
+      "url": "http://cdnx1.plusx.tv:4000/euroex4/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 391
+    },
+    {
+      "id": "de2c7ffb-a249-426d-a36d-54457b321c1d",
+      "name": "Eurosport Extra 5 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+5.png",
+      "tvgId": "Eurosport Extra 5",
+      "tvgName": "Eurosport Extra 5",
+      "url": "http://cdnx1.plusx.tv:4000/euroex5/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 392
+    },
+    {
+      "id": "eab6e5bd-8aa7-46ff-aeb1-b6562c1a1899",
+      "name": "Eurosport Extra 6 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+6.png",
+      "tvgId": "Eurosport Extra 6",
+      "tvgName": "Eurosport Extra 6",
+      "url": "http://cdnx1.plusx.tv:4000/euroex6/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 393
+    },
+    {
+      "id": "e3b0bae2-f508-4f4e-9c35-431ae303a19b",
+      "name": "Eurosport Extra 7 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+7.png",
+      "tvgId": "Eurosport Extra 7",
+      "tvgName": "Eurosport Extra 7",
+      "url": "http://cdnx1.plusx.tv:4000/euroex7/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 394
+    },
+    {
+      "id": "0fef02e8-c27c-4634-92ca-57827ad9a55a",
+      "name": "Eurosport Extra 8 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+8.png",
+      "tvgId": "Eurosport Extra 8",
+      "tvgName": "Eurosport Extra 8",
+      "url": "http://cdnx1.plusx.tv:4000/euroex8/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 395
+    },
+    {
+      "id": "367b5caf-1fe3-4ccd-9604-f499d8eb78f3",
+      "name": "Eurosport Extra 9 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+9.png",
+      "tvgId": "Eurosport Extra 9",
+      "tvgName": "Eurosport Extra 9",
+      "url": "http://cdnx1.plusx.tv:4000/euroex9/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 396
+    },
+    {
+      "id": "a94d3609-68e7-4807-b9a7-a9de6852606b",
+      "name": "Eurosport Extra 10 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+10.png",
+      "tvgId": "Eurosport Extra 10",
+      "tvgName": "Eurosport Extra 10",
+      "url": "http://cdnx1.plusx.tv:4000/euroex10/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 397
+    },
+    {
+      "id": "5b678aa5-d880-42f3-8fbd-525213715afa",
+      "name": "Eurosport Extra 11 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+11.png",
+      "tvgId": "Eurosport Extra 11",
+      "tvgName": "Eurosport Extra 11",
+      "url": "http://cdnx1.plusx.tv:4000/euroex11/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 398
+    },
+    {
+      "id": "8388a45b-641a-4c70-be2c-32aff6d0b931",
+      "name": "Eurosport Extra 12 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+12.png",
+      "tvgId": "Eurosport Extra 12",
+      "tvgName": "Eurosport Extra 12",
+      "url": "http://cdnx1.plusx.tv:4000/euroex12/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 399
+    },
+    {
+      "id": "1bbffe4a-f1d6-4f10-aa59-0240f55cb8a7",
+      "name": "Eurosport Extra 13 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+13.png",
+      "tvgId": "Eurosport Extra 13",
+      "tvgName": "Eurosport Extra 13",
+      "url": "http://cdnx1.plusx.tv:4000/euroex13/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 400
+    },
+    {
+      "id": "363f9e0a-4d9d-485d-a6e4-3ad59132e416",
+      "name": "Eurosport Extra 14 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+14.png",
+      "tvgId": "Eurosport Extra 14",
+      "tvgName": "Eurosport Extra 14",
+      "url": "http://cdnx1.plusx.tv:4000/euroex14/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 401
+    },
+    {
+      "id": "d46f8ea0-ae80-4bfc-bf35-166f5be07dfc",
+      "name": "Eurosport Extra 15 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+15.png",
+      "tvgId": "Eurosport Extra 15",
+      "tvgName": "Eurosport Extra 15",
+      "url": "http://cdnx1.plusx.tv:4000/euroex15/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 402
+    },
+    {
+      "id": "fbca7ee0-3b2d-4b78-889c-88b6985cb1bb",
+      "name": "Eurosport Extra 16 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+16.png",
+      "tvgId": "Eurosport Extra 16",
+      "tvgName": "Eurosport Extra 16",
+      "url": "http://cdnx1.plusx.tv:4000/16004/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 403
+    },
+    {
+      "id": "b58bade9-ba43-47b8-a2fa-d21eeab76a51",
+      "name": "Eurosport Extra 17 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+17.png",
+      "tvgId": "Eurosport Extra 17",
+      "tvgName": "Eurosport Extra 17",
+      "url": "http://cdnx1.plusx.tv:4000/16005/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 404
+    },
+    {
+      "id": "ff6f7ad5-73f9-4cf3-ae8e-e0a5132e33c6",
+      "name": "Eurosport Extra 18 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+18.png",
+      "tvgId": "Eurosport Extra 18",
+      "tvgName": "Eurosport Extra 18",
+      "url": "http://cdnx1.plusx.tv:4000/16006/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 405
+    },
+    {
+      "id": "f6edfafe-5cda-434f-984d-ba6ef783d108",
+      "name": "Eurosport Extra 19 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+19.png",
+      "tvgId": "Eurosport Extra 19",
+      "tvgName": "Eurosport Extra 19",
+      "url": "http://cdnx1.plusx.tv:4000/16007/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 406
+    },
+    {
+      "id": "e89230e8-ca41-4e8b-94d1-0497745b4096",
+      "name": "Eurosport Extra 20 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+20.png",
+      "tvgId": "Eurosport Extra 20",
+      "tvgName": "Eurosport Extra 20",
+      "url": "http://cdnx1.plusx.tv:4000/16008/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 407
+    },
+    {
+      "id": "cebbfff2-4ff7-4007-8e42-1f580e637da4",
+      "name": "Eurosport Extra 21 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+21.png",
+      "tvgId": "Eurosport Extra 21",
+      "tvgName": "Eurosport Extra 21",
+      "url": "http://cdnx1.plusx.tv:4000/16009/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 408
+    },
+    {
+      "id": "22651665-dd9e-448e-b83e-1bf2c70b8dd0",
+      "name": "Eurosport Extra 22 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+22.png",
+      "tvgId": "Eurosport Extra 22",
+      "tvgName": "Eurosport Extra 22",
+      "url": "http://cdnx1.plusx.tv:4000/16010/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 409
+    },
+    {
+      "id": "80f370cc-62c8-415e-b9f7-3087ed610c68",
+      "name": "Eurosport Extra 23 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+23.png",
+      "tvgId": "Eurosport Extra 23",
+      "tvgName": "Eurosport Extra 23",
+      "url": "http://cdnx1.plusx.tv:4000/16011/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 410
+    },
+    {
+      "id": "397b422f-ec31-4c07-b9c9-6db627972ff5",
+      "name": "Eurosport Extra 24 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+24.png",
+      "tvgId": "Eurosport Extra 24",
+      "tvgName": "Eurosport Extra 24",
+      "url": "http://cdnx1.plusx.tv:4000/16012/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 411
+    },
+    {
+      "id": "59377ffd-c4f5-4b8a-be23-eda45f212009",
+      "name": "Eurosport Extra 25 HD",
+      "group": "Eurosport Extra",
+      "logo": "https://logo.itvn.io/Eurosport+Extra+25.png",
+      "tvgId": "Eurosport Extra 25",
+      "tvgName": "Eurosport Extra 25",
+      "url": "http://cdnx1.plusx.tv:4000/16013/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 412
+    },
+    {
+      "id": "8a8d6987-f71e-4e27-a6b6-5ab63bf945a6",
+      "name": "NBA TV",
+      "group": "MIX (Network)",
+      "logo": "https://logo.itvn.io/sling-nbatv.png",
+      "tvgId": "NBA TV",
+      "tvgName": "NBA TV",
+      "url": "http://cdnx1.plusx.tv:4000/16023/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 413
+    },
+    {
+      "id": "1a6d4cff-a0cd-4614-b413-379e995d4a54",
+      "name": "NBC Sports Now",
+      "group": "MIX (Network)",
+      "logo": "https://logo.itvn.io/sling-nbcsportsnow.png",
+      "tvgId": "NBC Sports Now",
+      "tvgName": "NBC Sports Now",
+      "url": "http://cdnx1.plusx.tv:4000/16022/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 414
+    },
+    {
+      "id": "b4dd5781-a3f6-46ce-97e2-81f7bdd01b2e",
+      "name": "NFL Network",
+      "group": "MIX (Network)",
+      "logo": "https://logo.itvn.io/NFL+Network.png",
+      "tvgId": "NFL Network",
+      "tvgName": "NFL Network",
+      "url": "http://cdnx1.plusx.tv:4000/6032/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 415
+    },
+    {
+      "id": "b0ee6dfc-fe7e-4410-b33f-4a663aa56ba9",
+      "name": "BBC News",
+      "group": "MIX (Network)",
+      "logo": "https://logo.itvn.io/BBC+World+News.png",
+      "tvgId": "BBC World News",
+      "tvgName": "BBC World News",
+      "url": "http://cdnx1.plusx.tv:4000/6025/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 416
+    },
+    {
+      "id": "27755eba-09fb-4f77-83ad-a2b705be4cd4",
+      "name": "Sky News",
+      "group": "MIX (Network)",
+      "logo": "https://logo.itvn.io/Sky+News.png",
+      "tvgId": "Sky News",
+      "tvgName": "Sky News",
+      "url": "http://cdnx1.plusx.tv:4000/6026/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 417
+    },
+    {
+      "id": "4fcde9dd-afa0-42c6-b1f5-96841a2d794c",
+      "name": "TVN Pora na Show",
+      "group": "TVN Online",
+      "logo": "https://logo.itvn.io/TVN+Pora+na+Show+Online.png",
+      "tvgId": "TVN Pora na Show Online",
+      "tvgName": "TVN Pora na Show Online",
+      "url": "http://cdnx1.plusx.tv:4000/6031/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 418
+    },
+    {
+      "id": "3468cad7-a8e1-4d12-a586-8ad4d978a642",
+      "name": "ESPN",
+      "group": "MIX (US)",
+      "logo": "https://logo.itvn.io/ESPN.png",
+      "tvgId": "ESPN",
+      "tvgName": "ESPN",
+      "url": "http://cdnx1.plusx.tv:4000/mls1/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 419
+    },
+    {
+      "id": "f17980d0-63f1-4997-b0d4-d4a506424133",
+      "name": "ESPN 2",
+      "group": "MIX (US)",
+      "logo": "https://logo.itvn.io/ESPN2.png",
+      "tvgId": "ESPN 2",
+      "tvgName": "ESPN 2",
+      "url": "http://cdnx1.plusx.tv:4000/mls2/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 420
+    },
+    {
+      "id": "20cd4730-513d-4ad3-ab65-131d1c480576",
+      "name": "ESPNU",
+      "group": "MIX (US)",
+      "logo": "https://logo.itvn.io/ESPNU.png",
+      "tvgId": "ESPNU",
+      "tvgName": "ESPNU",
+      "url": "http://cdnx1.plusx.tv:4000/mls5/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 421
+    },
+    {
+      "id": "d1460876-6334-48bb-98fd-c9f678e1799f",
+      "name": "FS1",
+      "group": "MIX (US)",
+      "logo": "https://logo.itvn.io/FS1.png",
+      "tvgId": "FS1",
+      "tvgName": "FS1",
+      "url": "http://cdnx1.plusx.tv:4000/mls3/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 422
+    },
+    {
+      "id": "793cec46-bddb-48a4-9e4f-2a202356aa46",
+      "name": "FS2",
+      "group": "MIX (US)",
+      "logo": "https://logo.itvn.io/FS2.png",
+      "tvgId": "FS2",
+      "tvgName": "FS2",
+      "url": "http://cdnx1.plusx.tv:4000/mls4/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 423
+    },
+    {
+      "id": "e2c9b242-e824-4e66-b13a-7ba9cb82123f",
+      "name": "Sky Sport F1",
+      "group": "MIX (DE)",
+      "logo": "https://logo.itvn.io/Sky+Sport+F1.png",
+      "tvgId": "SkySportF1.de",
+      "tvgName": "SkySportF1.de",
+      "url": "http://live67.itvn.io:4000/6042/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 424
+    },
+    {
+      "id": "c74f2f95-261c-42e2-aa61-6036aa226c90",
+      "name": "Sky Sport Premier League",
+      "group": "MIX (DE)",
+      "logo": "https://logo.itvn.io/Sky+Sport+Premier+League.png",
+      "tvgId": "SkySportPremierLeague.de",
+      "tvgName": "SkySportPremierLeague.de",
+      "url": "http://live67.itvn.io:4000/6044/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 425
+    },
+    {
+      "id": "60227f1b-ff4a-4f02-b4c0-57ad98cc70db",
+      "name": "Sky Sport Golf",
+      "group": "MIX (DE)",
+      "logo": "https://logo.itvn.io/Sky+Sport+Golf.png",
+      "tvgId": "SkySportGolf.de",
+      "tvgName": "SkySportGolf.de",
+      "url": "http://live67.itvn.io:4000/6045/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 426
+    },
+    {
+      "id": "c80b628a-79a1-40ca-93dd-e8ed742838f9",
+      "name": "Sky Sport Bundesliga",
+      "group": "MIX (DE)",
+      "logo": "https://logo.itvn.io/Sky+Sport+Bundesliga.png",
+      "tvgId": "Sky Sport Bundesliga",
+      "tvgName": "Sky Sport Bundesliga",
+      "url": "http://live67.itvn.io:4000/6047/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 427
+    },
+    {
+      "id": "317b0b82-cac3-4181-8474-59f172b54453",
+      "name": "Sky Sport Top Event",
+      "group": "MIX (DE)",
+      "logo": "https://logo.itvn.io/Sky+Sport+Top+Event.png",
+      "tvgId": "Sky Sport Top Event",
+      "tvgName": "Sky Sport Top Event",
+      "url": "http://live67.itvn.io:4000/6048/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 428
+    },
+    {
+      "id": "31cdb5d7-cc2c-447a-8f86-a5d24f86cb1f",
+      "name": "Sky Sport MIX",
+      "group": "MIX (DE)",
+      "logo": "https://logo.itvn.io/Sky+Sport+MIX.png",
+      "tvgId": "Sky Sport MIX",
+      "tvgName": "Sky Sport MIX",
+      "url": "http://live67.itvn.io:4000/6050/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 429
+    },
+    {
+      "id": "88ce0e4c-f378-4857-971f-94e7812e7580",
+      "name": "Sky Sport Tennis",
+      "group": "MIX (DE)",
+      "logo": "https://logo.itvn.io/Sky+Sport+Tennis.png",
+      "tvgId": "Sky Sport Tennis",
+      "tvgName": "Sky Sport Tennis",
+      "url": "http://live67.itvn.io:4000/6035/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 430
+    },
+    {
+      "id": "b54d14ea-704a-405f-8105-c9a22e9d3d25",
+      "name": "Bein Sports 1",
+      "group": "MIX (FR)",
+      "logo": "https://logo.itvn.io/Bein+Sports+1.png",
+      "tvgId": "beinSports1.fr",
+      "tvgName": "beinSports1.fr",
+      "url": "http://cdnx1.plusx.tv:4000/fruhd5/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 431
+    },
+    {
+      "id": "50dbfd6c-3bb1-46a9-8482-f52d70d2e1bb",
+      "name": "Bein Sports 2",
+      "group": "MIX (FR)",
+      "logo": "https://logo.itvn.io/Bein+Sports+2.png",
+      "tvgId": "beinSports2.fr",
+      "tvgName": "beinSports2.fr",
+      "url": "http://cdnx1.plusx.tv:4000/fruhd6/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 432
+    },
+    {
+      "id": "f162cf59-279c-4a3d-8b96-c190d4348eef",
+      "name": "Bein Sports 3",
+      "group": "MIX (FR)",
+      "logo": "https://logo.itvn.io/Bein+Sports+3.png",
+      "tvgId": "beinSports3.fr",
+      "tvgName": "beinSports3.fr",
+      "url": "http://cdnx1.plusx.tv:4000/fruhd7/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 433
+    },
+    {
+      "id": "72ee5248-34f1-4670-a75c-efd734a818d8",
+      "name": "RMC Sport 1",
+      "group": "MIX (FR)",
+      "logo": "https://logo.itvn.io/RMC-Sport.png",
+      "tvgId": "RMC Sport 1",
+      "tvgName": "RMC Sport 1",
+      "url": "http://cdnx1.plusx.tv:4000/6049/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 434
+    },
+    {
+      "id": "470b44b3-17ef-4b06-97fb-2f025f972c27",
+      "name": "RMC Sport 2",
+      "group": "MIX (FR)",
+      "logo": "https://logo.itvn.io/RMC-Sport-2.png",
+      "tvgId": "RMC Sport 2",
+      "tvgName": "RMC Sport 2",
+      "url": "http://cdnx1.plusx.tv:4000/6043/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 435
+    },
+    {
+      "id": "d2061445-56ff-46dc-8df5-914ee99598be",
+      "name": "RMC Sport 3",
+      "group": "MIX (FR)",
+      "logo": "https://logo.itvn.io/RMC-Sport-3.png",
+      "tvgId": "RMC Sport 3",
+      "tvgName": "RMC Sport 3",
+      "url": "http://cdnx1.plusx.tv:4000/6041/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 436
+    },
+    {
+      "id": "5ce8869b-3cd8-42a1-932e-5b9a25cfb910",
+      "name": "RMC Sport 4",
+      "group": "MIX (FR)",
+      "logo": "https://logo.itvn.io/RMC-Sport-4.png",
+      "tvgId": "RMC Sport 4",
+      "tvgName": "RMC Sport 4",
+      "url": "http://cdnx1.plusx.tv:4000/6040/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 437
+    },
+    {
+      "id": "e53e0c43-2e5f-4369-ab00-8cafc5a69b62",
+      "name": "Premier Sports 1",
+      "group": "MIX (GB)",
+      "logo": "https://logo.itvn.io/Premier+Sports+1.png",
+      "tvgId": "PremierSports.uk",
+      "tvgName": "PremierSports.uk",
+      "url": "http://live67.itvn.io:4000/124/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 438
+    },
+    {
+      "id": "14d56bff-5422-4557-8b14-26bb4b153e26",
+      "name": "Premier Sports 2",
+      "group": "MIX (GB)",
+      "logo": "https://logo.itvn.io/Premier+Sports+2.png",
+      "tvgId": "Premier Sports 2",
+      "tvgName": "Premier Sports 2",
+      "url": "http://live67.itvn.io:4000/xt123/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 439
+    },
+    {
+      "id": "417cdd26-27c2-416d-8b28-efe6e291d3dc",
+      "name": "Sky Sports Premier League",
+      "group": "MIX (GB)",
+      "logo": "https://logo.itvn.io/Sky+Sports+Premier+League.png",
+      "tvgId": "Sky Sports Premier League",
+      "tvgName": "Sky Sports Premier League",
+      "url": "http://live67.itvn.io:4000/Sky-Sports-Premier-League/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 440
+    },
+    {
+      "id": "0f655b7f-c38b-46c8-a914-af617dfae135",
+      "name": "Sky Sports +",
+      "group": "MIX (GB)",
+      "logo": "https://logo.itvn.io/Sky+Sports++.png",
+      "tvgId": "Sky Sports +",
+      "tvgName": "Sky Sports +",
+      "url": "http://live67.itvn.io:4000/Sky-Sports-Arena/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 441
+    },
+    {
+      "id": "58068912-0782-45ac-96b2-98afc1b6fde1",
+      "name": "Sky Sports Cricket",
+      "group": "MIX (GB)",
+      "logo": "https://logo.itvn.io/Sky+Sports+Cricket.png",
+      "tvgId": "Sky Sports Cricket",
+      "tvgName": "Sky Sports Cricket",
+      "url": "http://live67.itvn.io:4000/Sky-Sports-Cricket/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 442
+    },
+    {
+      "id": "c8a38826-7731-4d54-add5-1f717410c36f",
+      "name": "Sky Sports F1",
+      "group": "MIX (GB)",
+      "logo": "https://logo.itvn.io/Sky+Sports+F1.png",
+      "tvgId": "Sky Sports F1",
+      "tvgName": "Sky Sports F1",
+      "url": "http://live67.itvn.io:4000/Sky-Sports-F1/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 443
+    },
+    {
+      "id": "e4e4cf99-9406-480d-a8b3-686b996ef0c3",
+      "name": "Sky Sports Football",
+      "group": "MIX (GB)",
+      "logo": "https://logo.itvn.io/Sky+Sports+Football.png",
+      "tvgId": "Sky Sports Football",
+      "tvgName": "Sky Sports Football",
+      "url": "http://live67.itvn.io:4000/Sky-Sports-Football/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 444
+    },
+    {
+      "id": "a720037d-5efa-4727-b905-b9743616b496",
+      "name": "Sky Sports Golf",
+      "group": "MIX (GB)",
+      "logo": "https://logo.itvn.io/Sky+Sports+Golf.png",
+      "tvgId": "Sky Sports Golf",
+      "tvgName": "Sky Sports Golf",
+      "url": "http://live67.itvn.io:4000/Sky-Sports-Golf/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 445
+    },
+    {
+      "id": "51f6ac43-dbe0-43b5-b50e-2ed7397a4924",
+      "name": "Sky Sports Main Event",
+      "group": "MIX (GB)",
+      "logo": "https://logo.itvn.io/Sky+Sports+Main+Event (1).png",
+      "tvgId": "Sky Sports Main Event",
+      "tvgName": "Sky Sports Main Event",
+      "url": "http://live67.itvn.io:4000/Sky-Sports-Main-Event/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 446
+    },
+    {
+      "id": "e8e66eea-a9d6-4204-b61b-6640d3941493",
+      "name": "Sky Sports Mix",
+      "group": "MIX (GB)",
+      "logo": "https://logo.itvn.io/Sky+Sports+Mix.png",
+      "tvgId": "Sky Sports Mix",
+      "tvgName": "Sky Sports Mix",
+      "url": "http://live67.itvn.io:4000/Sky-Sports-Mix/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 447
+    },
+    {
+      "id": "a22d35cc-8209-4c26-a6b3-a50352318cb1",
+      "name": "Sky Sports News",
+      "group": "MIX (GB)",
+      "logo": "https://logo.itvn.io/Sky+Sports+News.png",
+      "tvgId": "SkySpNews.uk",
+      "tvgName": "SkySpNews.uk",
+      "url": "http://live67.itvn.io:4000/Sky-Sports-News/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 448
+    },
+    {
+      "id": "d780f111-f0d0-436b-972b-4e501fdf753a",
+      "name": "Sky Sports Action",
+      "group": "MIX (GB)",
+      "logo": "https://logo.itvn.io/Sky+Sports+Action.png",
+      "tvgId": "Sky Sports Action",
+      "tvgName": "Sky Sports Action",
+      "url": "http://live67.itvn.io:4000/Sky-Sports-Action/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 449
+    },
+    {
+      "id": "b40a5fef-c7c4-40d5-87a2-3a37cff30ddf",
+      "name": "Sky Sports Racing",
+      "group": "MIX (GB)",
+      "logo": "https://logo.itvn.io/Sky+Sports+Racing.png",
+      "tvgId": "Sky Sports Racing",
+      "tvgName": "Sky Sports Racing",
+      "url": "http://live67.itvn.io:4000/Sky-Sports-Racing/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 450
+    },
+    {
+      "id": "3344a06c-2de1-4b64-b64a-1a66af2d5955",
+      "name": "Sky Sports Tennis",
+      "group": "MIX (GB)",
+      "logo": "https://logo.itvn.io/Sky+Sports+Tennis.png",
+      "tvgId": "Sky Sports Tennis",
+      "tvgName": "Sky Sports Tennis",
+      "url": "http://live67.itvn.io:4000/Sky-Sports-Tennis/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 451
+    },
+    {
+      "id": "7c294d9d-4b45-40f4-961f-88476a3588d2",
+      "name": "TNT Sports 1",
+      "group": "MIX (GB)",
+      "logo": "https://logo.itvn.io/TNT+Sports+1.png",
+      "tvgId": "TNTSport1.uk",
+      "tvgName": "TNTSport1.uk",
+      "url": "http://live67.itvn.io:4000/tntsport1/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 452
+    },
+    {
+      "id": "1cfb4098-8a35-4c01-860c-d32e88854479",
+      "name": "TNT Sports 2",
+      "group": "MIX (GB)",
+      "logo": "https://logo.itvn.io/TNT+Sports+2.png",
+      "tvgId": "TNTSport2.uk",
+      "tvgName": "TNTSport2.uk",
+      "url": "http://live67.itvn.io:4000/tntsport2/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 453
+    },
+    {
+      "id": "1fd43058-0b0b-4cd9-ac01-c9830c1ee136",
+      "name": "TNT Sports 3",
+      "group": "MIX (GB)",
+      "logo": "https://logo.itvn.io/TNT+Sports+3.png",
+      "tvgId": "TNTSport3.uk",
+      "tvgName": "TNTSport3.uk",
+      "url": "http://live67.itvn.io:4000/tntsport3/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 454
+    },
+    {
+      "id": "cfa0b1cf-a002-478d-82d3-1ad81056d04a",
+      "name": "TNT Sports 4",
+      "group": "MIX (GB)",
+      "logo": "https://logo.itvn.io/TNT+Sports+4.png",
+      "tvgId": "TNTSport4.uk",
+      "tvgName": "TNTSport4.uk",
+      "url": "http://live67.itvn.io:4000/tntsport4/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 455
+    },
+    {
+      "id": "d98aa44d-b079-4657-88ee-57824e014ebb",
+      "name": "Tennis Channel",
+      "group": "MIX (GB)",
+      "logo": "https://logo.itvn.io/sling-tennischannel.png",
+      "tvgId": "Tennis Channel",
+      "tvgName": "Tennis Channel",
+      "url": "http://live67.itvn.io:4000/laliga/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 456
+    },
+    {
+      "id": "0f3002f8-febc-4f2d-881b-15ce8e31100a",
+      "name": "TSN 1",
+      "group": "MIX (CA)",
+      "logo": "https://logo.itvn.io/TSN+1.png",
+      "tvgId": "TSN1",
+      "tvgName": "TSN1",
+      "url": "http://cdnx1.plusx.tv:4000/TSN1/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 457
+    },
+    {
+      "id": "ad2e34ff-b967-4e3b-a6f3-25ac4bd3d456",
+      "name": "TSN 2",
+      "group": "MIX (CA)",
+      "logo": "https://logo.itvn.io/TSN+2.png",
+      "tvgId": "TSN2",
+      "tvgName": "TSN2",
+      "url": "http://cdnx1.plusx.tv:4000/TSN2/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 458
+    },
+    {
+      "id": "52ce42f2-6f95-411f-8b5c-1dc410c41b9d",
+      "name": "TSN 3",
+      "group": "MIX (CA)",
+      "logo": "https://logo.itvn.io/TSN+3.png",
+      "tvgId": "TSN3",
+      "tvgName": "TSN3",
+      "url": "http://cdnx1.plusx.tv:4000/TSN3/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 459
+    },
+    {
+      "id": "3741a699-0964-4c2d-85cc-cd370d8953c4",
+      "name": "TSN 4",
+      "group": "MIX (CA)",
+      "logo": "https://logo.itvn.io/TSN+4.png",
+      "tvgId": "TSN4",
+      "tvgName": "TSN4",
+      "url": "http://cdnx1.plusx.tv:4000/TSN4/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 460
+    },
+    {
+      "id": "72d906b3-d9e8-45d5-ae4c-352d67296ee3",
+      "name": "TSN 5",
+      "group": "MIX (CA)",
+      "logo": "https://logo.itvn.io/TSN+5.png",
+      "tvgId": "TSN5",
+      "tvgName": "TSN5",
+      "url": "http://cdnx1.plusx.tv:4000/TSN5/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 461
+    },
+    {
+      "id": "60a2977d-3873-4010-918b-edac471a926a",
+      "name": "Super Express",
+      "group": "Informacje",
+      "logo": "https://logo.itvn.io/Super+Express+TV.png",
+      "tvgId": "Super Express",
+      "tvgName": "Super Express",
+      "url": "http://cdnx1.plusx.tv:4000/1020f/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 462
+    },
+    {
+      "id": "860cd93f-a345-4cfa-a81b-a8748120c6d1",
+      "name": "E-SPORT",
+      "group": "Sport",
+      "logo": "https://logo.itvn.io/E-SPORT.png",
+      "tvgId": "E-SPORT",
+      "tvgName": "E-SPORT",
+      "url": "http://cdnx1.plusx.tv:4000/Sky-Sport-Bundesliga-2-HD/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 463
+    },
+    {
+      "id": "992a0a3a-1a00-47bc-b3c4-fa29a39c6ef1",
+      "name": "PPV Event 1 HD",
+      "group": "PPV Event",
+      "logo": "https://logo.itvn.io/ppv-event-1.png",
+      "tvgId": "PPV Event 1 HD",
+      "tvgName": "PPV Event 1 HD",
+      "url": "http://live67.itvn.io:4000/325m/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 464
+    },
+    {
+      "id": "4fb20562-7da4-41e3-8e54-c2e22dae92c7",
+      "name": "PPV Event 2 HD",
+      "group": "PPV Event",
+      "logo": "https://logo.itvn.io/ppv-event-2.png",
+      "tvgId": "PPV Event 2 HD",
+      "tvgName": "PPV Event 2 HD",
+      "url": "http://cdnx1.plusx.tv:4000/325m2/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 465
+    },
+    {
+      "id": "1fc747f2-336f-4bd0-83ca-8d9c00d85753",
+      "name": "PPV Event 3 HD",
+      "group": "PPV Event",
+      "logo": "https://logo.itvn.io/ppv-event-3.png",
+      "tvgId": "PPV Event 3 HD",
+      "tvgName": "PPV Event 3 HD",
+      "url": "http://cdnx1.plusx.tv:4000/PPV-Event-3-HD/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 466
+    },
+    {
+      "id": "04442fe4-b7af-4f67-bfbd-ec70611b755b",
+      "name": "PPV Event 4 HD",
+      "group": "PPV Event",
+      "logo": "https://logo.itvn.io/ppv-event-4.png",
+      "tvgId": "PPV Event 4 HD",
+      "tvgName": "PPV Event 4 HD",
+      "url": "http://cdnx1.plusx.tv:4000/PPV-Event-4-HD/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 467
+    },
+    {
+      "id": "0218c471-9981-463e-90b0-1909daa84f1e",
+      "name": "PPV Event 5 HD",
+      "group": "PPV Event",
+      "logo": "https://logo.itvn.io/ppv-event-5.png",
+      "tvgId": "PPV Event 5 HD",
+      "tvgName": "PPV Event 5 HD",
+      "url": "http://cdnx1.plusx.tv:4000/PPV-Event-5-HD/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 468
+    },
+    {
+      "id": "192b6d5a-c1af-4036-893c-389b1eb7da65",
+      "name": "CNN HD",
+      "group": "MIX (Network)",
+      "logo": "https://logo.itvn.io/CNN.png",
+      "tvgId": "CNN",
+      "tvgName": "CNN",
+      "url": "http://cdnx1.plusx.tv:4000/103g/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 469
+    },
+    {
+      "id": "377f1bae-9965-4498-9b84-ecba4c14ec82",
+      "name": "CNBC HD",
+      "group": "MIX (Network)",
+      "logo": "https://logo.itvn.io/CNBC.png",
+      "tvgId": "CNBC",
+      "tvgName": "CNBC",
+      "url": "http://cdnx1.plusx.tv:4000/234/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 470
+    },
+    {
+      "id": "3cfaac6c-e556-4f64-ba26-e93bb690649f",
+      "name": "FOX News Channel HD",
+      "group": "MIX (Network)",
+      "logo": "https://logo.itvn.io/Fox+News.png",
+      "tvgId": "FOXNewsChannel.us",
+      "tvgName": "FOXNewsChannel.us",
+      "url": "http://cdnx1.plusx.tv:4000/Fox-News-US/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 471
+    },
+    {
+      "id": "620e5976-ad8f-48f9-97d6-7878bf6d8c14",
+      "name": "Nova Sport 1",
+      "group": "MIX (CZ)",
+      "logo": "https://logo.itvn.io/0094.png",
+      "tvgId": "Nova Sport 1",
+      "tvgName": "Nova Sport 1",
+      "url": "http://cdnx1.plusx.tv:4000/Nova-Sport-1/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 472
+    },
+    {
+      "id": "1857f1e5-f91d-40c0-a9cb-15260b0f18a4",
+      "name": "Nova Sport 2",
+      "group": "MIX (CZ)",
+      "logo": "https://logo.itvn.io/0095.png",
+      "tvgId": "Nova Sport 2",
+      "tvgName": "Nova Sport 2",
+      "url": "http://cdnx1.plusx.tv:4000/Nova-Sport-2/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 473
+    },
+    {
+      "id": "8f16afbb-1683-412f-99fc-fca0f6c70d77",
+      "name": "Nova Sport 3",
+      "group": "MIX (CZ)",
+      "logo": "https://logo.itvn.io/0027.png",
+      "tvgId": "Nova Sport 3",
+      "tvgName": "Nova Sport 3",
+      "url": "http://cdnx1.plusx.tv:4000/Nova-Sport-3/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 474
+    },
+    {
+      "id": "4f127e18-6ed3-43a0-a13b-80d30cda413b",
+      "name": "Nova Sport 4",
+      "group": "MIX (CZ)",
+      "logo": "https://logo.itvn.io/0028.png",
+      "tvgId": "Nova Sport 4",
+      "tvgName": "Nova Sport 4",
+      "url": "http://cdnx1.plusx.tv:4000/Nova-Sport-4/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 475
+    },
+    {
+      "id": "f94a2051-47b7-4cf7-bd60-2593b3d9b5a3",
+      "name": "Nova Sport 5",
+      "group": "MIX (CZ)",
+      "logo": "https://logo.itvn.io/0056.png",
+      "tvgId": "Nova Sport 5",
+      "tvgName": "Nova Sport 5",
+      "url": "http://cdnx1.plusx.tv:4000/Nova-Sport-5/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 476
+    },
+    {
+      "id": "be956bcf-f216-43a9-84e5-cee86cb7e782",
+      "name": "JOJ Sport",
+      "group": "MIX (CZ)",
+      "logo": "https://logo.itvn.io/antiktvpy-jojport.png",
+      "tvgId": "JOJ Sport",
+      "tvgName": "JOJ Sport",
+      "url": "http://cdnx1.plusx.tv:4000/JOJ-Sport/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 477
+    },
+    {
+      "id": "4de668b8-7b86-481d-8dc4-f5f9f934925a",
+      "name": "JOJ Sport 2",
+      "group": "MIX (CZ)",
+      "logo": "https://logo.itvn.io/antiktvpy-jojport2.png",
+      "tvgId": "JOJ Sport 2",
+      "tvgName": "JOJ Sport 2",
+      "url": "http://cdnx1.plusx.tv:4000/JOJ-Sport-2/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 478
+    },
+    {
+      "id": "5cca34ff-4eed-4ede-a075-5b5f9e1725a8",
+      "name": "CT sport",
+      "group": "MIX (CZ)",
+      "logo": "https://logo.itvn.io/cf304ad5ce54c328ecedaeb28f7a5576.png",
+      "tvgId": "CT sport",
+      "tvgName": "CT sport",
+      "url": "http://cdnx1.plusx.tv:4000/CT-sport/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 479
+    },
+    {
+      "id": "dad10901-6472-4ef0-8208-bdf315641183",
+      "name": "RTVS Sport",
+      "group": "MIX (CZ)",
+      "logo": "https://logo.itvn.io/49a274a907dc015c6abe79a2ba0fafdd.png",
+      "tvgId": "RTVS Sport",
+      "tvgName": "RTVS Sport",
+      "url": "http://cdnx1.plusx.tv:4000/RTVS-Sport/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 480
+    },
+    {
+      "id": "d188dabf-9727-49ea-bcbe-2ccbe4c7e1a2",
+      "name": "Sport 1",
+      "group": "MIX (CZ)",
+      "logo": "https://logo.itvn.io/antiktvpy-sport1.png",
+      "tvgId": "Sport 1",
+      "tvgName": "Sport 1",
+      "url": "http://cdnx1.plusx.tv:4000/Sport-1/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 481
+    },
+    {
+      "id": "33f7da15-f040-4714-8619-473db0df2072",
+      "name": "Sport 2",
+      "group": "MIX (CZ)",
+      "logo": "https://logo.itvn.io/antiktvpy-sport2.png",
+      "tvgId": "Sport 2",
+      "tvgName": "Sport 2",
+      "url": "http://cdnx1.plusx.tv:4000/Sport-2/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 482
+    },
+    {
+      "id": "ea9a72cd-64d3-44ba-b323-ca8ba250ad76",
+      "name": "CT 1",
+      "group": "MIX (CZ)",
+      "logo": "https://logo.itvn.io/webtvcz-t1.png",
+      "tvgId": "CT 1",
+      "tvgName": "CT 1",
+      "url": "http://cdnx1.plusx.tv:4000/CT-1/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 483
+    },
+    {
+      "id": "c672725e-739b-45fd-91af-032fc4542e78",
+      "name": "CT 2",
+      "group": "MIX (CZ)",
+      "logo": "https://logo.itvn.io/webtvcz-t2.png",
+      "tvgId": "CT 2",
+      "tvgName": "CT 2",
+      "url": "http://cdnx1.plusx.tv:4000/CT-2/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 484
+    },
+    {
+      "id": "0fc59690-e26d-4d9c-b119-7101ecff9089",
+      "name": "Jednotka",
+      "group": "MIX (CZ)",
+      "logo": "https://logo.itvn.io/webtvcz-jednotka.png",
+      "tvgId": "Jednotka",
+      "tvgName": "Jednotka",
+      "url": "http://cdnx1.plusx.tv:4000/Jednotka/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 485
+    },
+    {
+      "id": "638cc619-1686-46a8-a8a3-f5f6342b1e81",
+      "name": "Dvojka",
+      "group": "MIX (CZ)",
+      "logo": "https://logo.itvn.io/webtvcz-dvojka.png",
+      "tvgId": "Dvojka",
+      "tvgName": "Dvojka",
+      "url": "http://cdnx1.plusx.tv:4000/Dvojka/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 486
+    },
+    {
+      "id": "c60195e4-1598-4d79-892b-90c87dbf380c",
+      "name": "1+1 HD",
+      "group": "MIX (UA)",
+      "logo": "https://logo.itvn.io/1+1+International.png",
+      "tvgId": "1+1",
+      "tvgName": "1+1",
+      "url": "http://cdnx1.plusx.tv:4000/201p/mono.m3u8?token=d4ccc6204fcfef35126029871187f0ab3333",
+      "order": 487
+    }
+  ],
+  "groups": [
+    "Rozrywka",
+    "Informacje",
+    "Muzyka",
+    "Dla Dzieci",
+    "Film",
+    "Dokument",
+    "Sport",
+    "4k",
+    "Popularny",
+    "Regionalny",
+    "TVN24+",
+    "TVN Online",
+    "Canal+ Extra",
+    "Canal+ Live",
+    "tvpsport.pl",
+    "emocje.tv",
+    "Polsat GO",
+    "Dazn Event",
+    "Eurosport Extra",
+    "MIX (Network)",
+    "MIX (US)",
+    "MIX (DE)",
+    "MIX (FR)",
+    "MIX (GB)",
+    "MIX (CA)",
+    "PPV Event",
+    "MIX (CZ)",
+    "MIX (UA)"
+  ],
+  "sourceUrl": "http://itvn.io/play2device.php?access_key=d4ccc6204fcfef35126029871187f0ab",
+  "lastSync": "2026-05-15T11:07:38.022Z"
+}
