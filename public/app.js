@@ -470,5 +470,80 @@ syncNowBtn.addEventListener('click', async () => {
     }
 });
 
+// ─── Cron builder ─────────────────────────────────────────────────────────────
+const cronInput = document.getElementById('cron-input');
+const cronPreview = document.getElementById('cron-preview');
+const cronSaveBtn = document.getElementById('cron-save-btn');
+const cronPresetBtns = document.querySelectorAll('.cron-preset');
+
+const CRON_DESCRIPTIONS = {
+    '0 4 * * *': 'Every day at 04:00',
+    '0 */6 * * *': 'Every 6 hours',
+    '0 * * * *': 'Every hour',
+    '0 4 * * 1': 'Every Monday at 04:00',
+    'manual': 'Manual sync only (no auto-sync)',
+};
+
+function updateCronPreview(expr) {
+    const trimmed = expr.trim();
+    const desc = CRON_DESCRIPTIONS[trimmed];
+    if (desc) {
+        cronPreview.textContent = desc;
+        cronPreview.className = 'valid';
+    } else {
+        const parts = trimmed.split(/\s+/);
+        if (parts.length === 5 && parts.every(p => p.length > 0)) {
+            cronPreview.textContent = '✓ custom expression';
+            cronPreview.className = 'valid';
+        } else {
+            cronPreview.textContent = 'Need 5 fields: minute hour dom month dow';
+            cronPreview.className = 'invalid';
+        }
+    }
+}
+
+function highlightActivePreset(expr) {
+    cronPresetBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.expr === expr.trim()));
+}
+
+cronInput.addEventListener('input', () => {
+    updateCronPreview(cronInput.value);
+    highlightActivePreset(cronInput.value);
+});
+
+cronPresetBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        cronInput.value = btn.dataset.expr;
+        updateCronPreview(btn.dataset.expr);
+        highlightActivePreset(btn.dataset.expr);
+    });
+});
+
+cronSaveBtn.addEventListener('click', async () => {
+    const expr = cronInput.value.trim();
+    if (!expr) return;
+    cronSaveBtn.disabled = true;
+    try {
+        await api('POST', '/cron', { expression: expr });
+        showToast('Schedule saved!', 'success');
+    } catch (err) {
+        showToast('Failed: ' + err.message, 'error');
+    } finally {
+        cronSaveBtn.disabled = false;
+    }
+});
+
+async function loadCronConfig() {
+    try {
+        const data = await api('GET', '/cron');
+        const expr = data.expression || '0 4 * * *';
+        cronInput.value = expr;
+        updateCronPreview(expr);
+        highlightActivePreset(expr);
+    } catch { }
+}
+
 // ─── Init ─────────────────────────────────────────────────────────────────────
 loadPlaylist().catch(err => showToast('Load failed: ' + err.message, 'error'));
+loadCronConfig();
+

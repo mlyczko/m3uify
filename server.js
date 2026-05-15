@@ -234,23 +234,61 @@ app.get('/api/token', (req, res) => {
     res.json({ token, url: `http://localhost:${PORT}/${token}` });
 });
 
-// ─── Daily sync cron ────────────────────────────────────────────────────────
+// ─── Configurable sync cron ─────────────────────────────────────────────────
 
-// Run every day at 04:00
-cron.schedule('0 4 * * *', async () => {
-    const playlist = loadPlaylist();
-    if (playlist.sourceUrl) {
-        try {
-            await fetchAndSync(playlist.sourceUrl);
-        } catch (err) {
-            console.error('Daily sync failed:', err.message);
-        }
+const DEFAULT_CRON = '0 4 * * *';
+let activeCronTask = null;
+
+function startCron(expression) {
+    if (activeCronTask) {
+        activeCronTask.stop();
+        activeCronTask = null;
     }
+    if (!expression || expression === 'manual') return;
+    if (!cron.validate(expression)) {
+        console.error('Invalid cron expression:', expression);
+        return;
+    }
+    activeCronTask = cron.schedule(expression, async () => {
+        console.log(`Cron triggered [${expression}]`);
+        const playlist = loadPlaylist();
+        if (playlist.sourceUrl) {
+            try {
+                await fetchAndSync(playlist.sourceUrl);
+            } catch (err) {
+                console.error('Cron sync failed:', err.message);
+            }
+        }
+    });
+    console.log(`Cron scheduled: ${expression}`);
+}
+
+// GET current cron config
+app.get('/api/cron', (req, res) => {
+    const config = loadConfig();
+    res.json({ expression: config.cronExpression || DEFAULT_CRON });
+});
+
+// POST new cron config
+app.post('/api/cron', (req, res) => {
+    const { expression } = req.body;
+    if (!expression) return res.status(400).json({ error: 'expression required' });
+    if (expression !== 'manual' && !cron.validate(expression)) {
+        return res.status(400).json({ error: 'Invalid cron expression' });
+    }
+    const config = loadConfig();
+    config.cronExpression = expression;
+    saveConfig(config);
+    startCron(expression);
+    res.json({ ok: true, expression });
 });
 
 // ─── Start ──────────────────────────────────────────────────────────────────
 
 const token = getOrCreateToken();
+const initialConfig = loadConfig();
+startCron(initialConfig.cronExpression || DEFAULT_CRON);
+
 app.listen(PORT, () => {
     console.log(`\nIPTV Manager running at http://localhost:${PORT}`);
     console.log(`Web GUI:      http://localhost:${PORT}/`);

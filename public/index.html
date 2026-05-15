@@ -33,7 +33,20 @@
                 <h3>Sync</h3>
                 <div id="last-sync-info">Last sync: —</div>
                 <button id="sync-now-btn" class="btn-secondary">Sync Now</button>
-                <small>Auto-syncs daily at 04:00</small>
+
+                <div class="cron-builder">
+                    <label class="cron-label">Auto-sync schedule</label>
+                    <input type="text" id="cron-input" placeholder="0 4 * * *" spellcheck="false" />
+                    <div class="cron-presets">
+                        <button class="cron-preset" data-expr="0 4 * * *">Daily 4AM</button>
+                        <button class="cron-preset" data-expr="0 */6 * * *">Every 6h</button>
+                        <button class="cron-preset" data-expr="0 * * * *">Hourly</button>
+                        <button class="cron-preset" data-expr="0 4 * * 1">Weekly Mon</button>
+                        <button class="cron-preset" data-expr="manual">Manual only</button>
+                    </div>
+                    <div id="cron-preview"></div>
+                    <button id="cron-save-btn" class="btn-primary">Save Schedule</button>
+                </div>
             </section>
         </aside>
 

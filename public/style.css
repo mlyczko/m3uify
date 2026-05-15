@@ -450,6 +450,62 @@ button {
   }
 }
 
+/* ── Cron builder ── */
+.cron-builder {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cron-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+#cron-input {
+  font-family: monospace;
+  letter-spacing: 0.5px;
+}
+
+.cron-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.cron-preset {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.cron-preset:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+.cron-preset.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--bg);
+}
+
+#cron-preview {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: monospace;
+  min-height: 16px;
+}
+#cron-preview.valid {
+  color: var(--success);
+}
+#cron-preview.invalid {
+  color: var(--danger);
+}
+
 /* ── Scrollbar ── */
 ::-webkit-scrollbar {
   width: 6px;
