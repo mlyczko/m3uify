@@ -32,19 +32,33 @@ function getOrCreateToken() {
  */
 function mergeChannels(existing, fresh) {
     const freshByUrl = new Map(fresh.map(ch => [ch.url, ch]));
-    const existingByUrl = new Map(existing.map(ch => [ch.url, ch]));
+    // Fallback match by tvg-id (non-empty) or name — handles token/URL changes in same list
+    const freshByTvgId = new Map(
+        fresh.filter(ch => ch.tvgId).map(ch => [ch.tvgId, ch])
+    );
+    const freshByName = new Map(fresh.map(ch => [ch.name, ch]));
 
-    // Remove channels no longer in source
-    const kept = existing.filter(ch => freshByUrl.has(ch.url));
+    function findFresh(ch) {
+        return freshByUrl.get(ch.url)
+            || (ch.tvgId && freshByTvgId.get(ch.tvgId))
+            || freshByName.get(ch.name)
+            || null;
+    }
 
-    // Add new channels at the end
-    const keptUrls = new Set(kept.map(ch => ch.url));
-    const added = fresh.filter(ch => !keptUrls.has(ch.url));
+    // Keep existing channels that still exist in fresh (by URL, tvg-id, or name)
+    const kept = existing.filter(ch => findFresh(ch) !== null);
 
-    // Assign stable ids
+    // New channels: in fresh but not matched by any existing channel
+    const matchedFreshUrls = new Set();
+    kept.forEach(ch => {
+        const f = findFresh(ch);
+        if (f) matchedFreshUrls.add(f.url);
+    });
+    const added = fresh.filter(ch => !matchedFreshUrls.has(ch.url));
+
+    // Assign stable ids, update stream URL and attributes from fresh
     const merged = [...kept, ...added].map((ch, idx) => {
-        // For kept channels, get the fresh version to update attributes
-        const freshCh = freshByUrl.get(ch.url) || ch;
+        const freshCh = findFresh(ch) || ch;
         return {
             id: ch.id || uuidv4(),
             name: freshCh.name,
@@ -53,8 +67,8 @@ function mergeChannels(existing, fresh) {
             tvgId: freshCh.tvgId,
             tvgName: freshCh.tvgName,
             extraAttrs: freshCh.extraAttrs || '',
-            url: ch.url,
-            order: idx,
+            url: freshCh.url,  // always use fresh URL (token may have changed)
+            order: ch.order ?? idx,
         };
     });
 

@@ -18,8 +18,6 @@ const playlistUrlText = document.getElementById('playlist-url-text');
 const copyUrlBtn = document.getElementById('copy-url-btn');
 const sourceUrlInput = document.getElementById('source-url-input');
 const fetchSourceBtn = document.getElementById('fetch-source-btn');
-const m3uPasteArea = document.getElementById('m3u-paste-area');
-const importPasteBtn = document.getElementById('import-paste-btn');
 const syncNowBtn = document.getElementById('sync-now-btn');
 const lastSyncInfo = document.getElementById('last-sync-info');
 
@@ -453,25 +451,6 @@ fetchSourceBtn.addEventListener('click', async () => {
     } finally {
         fetchSourceBtn.disabled = false;
         fetchSourceBtn.textContent = 'Fetch & Set Source';
-    }
-});
-
-// ─── Import paste ─────────────────────────────────────────────────────────────
-importPasteBtn.addEventListener('click', async () => {
-    const text = m3uPasteArea.value.trim();
-    if (!text) { showToast('Paste an M3U list first', 'error'); return; }
-    importPasteBtn.disabled = true;
-    importPasteBtn.innerHTML = '<span class="spinner"></span>Importing...';
-    try {
-        const data = await api('POST', '/import', { text });
-        applyState(data);
-        m3uPasteArea.value = '';
-        showToast(`Imported ${data.channels.length} channels`, 'success');
-    } catch (err) {
-        showToast('Error: ' + err.message, 'error');
-    } finally {
-        importPasteBtn.disabled = false;
-        importPasteBtn.textContent = 'Import Pasted M3U';
     }
 });
 
