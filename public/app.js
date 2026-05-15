@@ -126,6 +126,7 @@ function renderGroup(groupName, channels, search) {
     <span class="drag-handle">⠿</span>
     <span class="group-title">${escapeHtml(groupName)}</span>
     <span class="group-count">${channels.length}</span>
+    <button class="group-rename-btn" title="Rename group">✎</button>
     <button class="group-toggle" title="Collapse">▼</button>
   `;
 
@@ -149,11 +150,70 @@ function renderGroup(groupName, channels, search) {
         toggleBtn.textContent = collapsed ? '▶' : '▼';
     });
 
+    const renameBtn = header.querySelector('.group-rename-btn');
+    renameBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        startGroupRename(card, header, groupName);
+    });
+
     card.appendChild(header);
     card.appendChild(list);
 
     initChannelDrag(list);
     return card;
+}
+
+function startGroupRename(card, header, oldName) {
+    const titleEl = header.querySelector('.group-title');
+    const renameBtn = header.querySelector('.group-rename-btn');
+
+    // Prevent double-invoke
+    if (header.querySelector('.group-rename-input')) return;
+
+    // Temporarily disable group drag while editing
+    header.draggable = false;
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'group-rename-input';
+    input.value = oldName;
+    titleEl.replaceWith(input);
+    input.focus();
+    input.select();
+
+    function commit() {
+        const newName = input.value.trim();
+        header.draggable = true;
+        if (!newName || newName === oldName) {
+            input.replaceWith(titleEl);
+            return;
+        }
+
+        // Update state
+        state.groups = state.groups.map(g => g === oldName ? newName : g);
+        state.channels = state.channels.map(ch => ch.group === oldName ? { ...ch, group: newName } : ch);
+
+        // Update card dataset
+        card.dataset.group = newName;
+        card.querySelector('.channel-list').dataset.group = newName;
+        titleEl.textContent = newName;
+        input.replaceWith(titleEl);
+        renameBtn.disabled = false;
+
+        markDirty(true);
+        showToast(`Renamed to "${newName}"`, 'success');
+    }
+
+    function cancel() {
+        header.draggable = true;
+        input.replaceWith(titleEl);
+    }
+
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') { e.preventDefault(); commit(); }
+        if (e.key === 'Escape') { e.preventDefault(); cancel(); }
+    });
+    input.addEventListener('blur', commit);
 }
 
 function renderChannel(ch, search) {

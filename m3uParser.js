@@ -53,6 +53,7 @@ function parseExtInf(line) {
         logo: '',
         tvgId: '',
         tvgName: '',
+        extraAttrs: '',
         url: '',
         order: 0,
     };
@@ -73,6 +74,11 @@ function parseExtInf(line) {
 
         const group = attrStr.match(/group-title="([^"]*)"/);
         if (group && group[1]) channel.group = group[1];
+
+        // Preserve any extra unknown attributes (e.g. timeshift, catchup)
+        const known = /tvg-id="[^"]*"|tvg-name="[^"]*"|tvg-logo="[^"]*"|group-title="[^"]*"|#EXTINF:[\d-]+\s*/g;
+        const extra = attrStr.replace(known, '').trim();
+        if (extra) channel.extraAttrs = extra;
     }
 
     // Extract channel name (after the last comma)
@@ -92,7 +98,8 @@ function parseExtInf(line) {
 function serializeM3U(channels) {
     let out = '#EXTM3U\n';
     for (const ch of channels) {
-        out += `#EXTINF:-1 tvg-id="${ch.tvgId}" tvg-name="${ch.tvgName}" tvg-logo="${ch.logo}" group-title="${ch.group}",${ch.name}\n`;
+        const extra = ch.extraAttrs ? ` ${ch.extraAttrs}` : '';
+        out += `#EXTINF:-1 tvg-id="${ch.tvgId}" tvg-name="${ch.tvgName}" tvg-logo="${ch.logo}" group-title="${ch.group}"${extra},${ch.name}\n`;
         out += `${ch.url}\n`;
     }
     return out;

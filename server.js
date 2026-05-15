@@ -42,16 +42,21 @@ function mergeChannels(existing, fresh) {
     const added = fresh.filter(ch => !keptUrls.has(ch.url));
 
     // Assign stable ids
-    const merged = [...kept, ...added].map((ch, idx) => ({
-        id: ch.id || uuidv4(),
-        name: ch.name,
-        group: ch.group,
-        logo: ch.logo,
-        tvgId: ch.tvgId,
-        tvgName: ch.tvgName,
-        url: ch.url,
-        order: idx,
-    }));
+    const merged = [...kept, ...added].map((ch, idx) => {
+        // For kept channels, get the fresh version to update attributes
+        const freshCh = freshByUrl.get(ch.url) || ch;
+        return {
+            id: ch.id || uuidv4(),
+            name: freshCh.name,
+            group: ch.group,  // preserve user-renamed group
+            logo: freshCh.logo,
+            tvgId: freshCh.tvgId,
+            tvgName: freshCh.tvgName,
+            extraAttrs: freshCh.extraAttrs || '',
+            url: ch.url,
+            order: idx,
+        };
+    });
 
     return merged;
 }
