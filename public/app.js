@@ -181,7 +181,7 @@ function startGroupRename(card, header, oldName) {
     input.focus();
     input.select();
 
-    function commit() {
+    async function commit() {
         const newName = input.value.trim();
         header.draggable = true;
         if (!newName || newName === oldName) {
@@ -200,8 +200,15 @@ function startGroupRename(card, header, oldName) {
         input.replaceWith(titleEl);
         renameBtn.disabled = false;
 
-        markDirty(true);
-        showToast(`Renamed to "${newName}"`, 'success');
+        // Auto-save immediately
+        try {
+            await api('POST', '/save', { channels: state.channels, groups: state.groups });
+            markDirty(false);
+            showToast(`Renamed to "${newName}"`, 'success');
+        } catch (err) {
+            markDirty(true);
+            showToast('Rename saved in UI but failed to persist: ' + err.message, 'error');
+        }
     }
 
     function cancel() {
