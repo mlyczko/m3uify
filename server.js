@@ -89,7 +89,16 @@ function buildGroupOrder(channels, existingGroups) {
     return groups.filter(g => activeGroups.has(g));
 }
 
-async function fetchAndSync(sourceUrl) {
+const MIN_SYNC_INTERVAL_MS = 5 * 60 * 1000; // 5 minutes
+let lastSyncTime = 0;
+
+async function fetchAndSync(sourceUrl, force = false) {
+    const now = Date.now();
+    if (!force && now - lastSyncTime < MIN_SYNC_INTERVAL_MS) {
+        const wait = Math.ceil((MIN_SYNC_INTERVAL_MS - (now - lastSyncTime)) / 1000);
+        throw new Error(`Too soon — last sync was ${Math.floor((now - lastSyncTime) / 1000)}s ago. Wait ${wait}s or use manual Sync Now.`);
+    }
+    lastSyncTime = now;
     console.log(`Syncing from ${sourceUrl}...`);
     const res = await fetch(sourceUrl, { timeout: 30000 });
     if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
@@ -219,7 +228,7 @@ app.post('/api/sync', async (req, res) => {
     try {
         const playlist = loadPlaylist();
         if (!playlist.sourceUrl) return res.status(400).json({ error: 'No source URL configured' });
-        const updated = await fetchAndSync(playlist.sourceUrl);
+        const updated = await fetchAndSync(playlist.sourceUrl, true); // force=true for manual
         const config = loadConfig();
         res.json({ ...updated, token: config.token });
     } catch (err) {
@@ -232,6 +241,14 @@ app.post('/api/sync', async (req, res) => {
 app.get('/api/token', (req, res) => {
     const token = getOrCreateToken();
     res.json({ token, url: `http://localhost:${PORT}/${token}` });
+});
+
+// Regenerate token
+app.post('/api/token/regenerate', (req, res) => {
+    const config = loadConfig();
+    config.token = uuidv4();
+    saveConfig(config);
+    res.json({ token: config.token, url: `http://localhost:${PORT}/${config.token}` });
 });
 
 // ─── Configurable sync cron ─────────────────────────────────────────────────

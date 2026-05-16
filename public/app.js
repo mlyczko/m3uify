@@ -436,6 +436,19 @@ copyUrlBtn.addEventListener('click', () => {
     }
 });
 
+// ─── Regenerate token ────────────────────────────────────────────────────────
+document.getElementById('regen-token-btn').addEventListener('click', async () => {
+    if (!confirm('Generate a new token? Your old playlist URL will stop working immediately.')) return;
+    try {
+        const data = await api('POST', '/token/regenerate', {});
+        state.token = data.token;
+        playlistUrlText.textContent = data.url;
+        showToast('New token generated!', 'success');
+    } catch (err) {
+        showToast('Failed: ' + err.message, 'error');
+    }
+});
+
 // ─── Fetch source ─────────────────────────────────────────────────────────────
 fetchSourceBtn.addEventListener('click', async () => {
     const url = sourceUrlInput.value.trim();

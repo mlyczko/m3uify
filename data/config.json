@@ -1,4 +1,4 @@
 {
   "token": "4d45a491-8ec1-48ba-9e9e-e85c9da33fa9",
-  "cronExpression": "* * * * *"
+  "cronExpression": "0 4 * * *"
 }
