@@ -279,8 +279,11 @@ app.post('/api/reset', async (req, res) => {
         const reset = { channels, groups, disabledGroups: [], customGroups: [], sourceUrl, lastSync: new Date().toISOString() };
         savePlaylist(reset);
         const config = loadConfig();
+        config.cronExpression = DEFAULT_CRON;
+        saveConfig(config);
+        startCron(DEFAULT_CRON);
         console.log(`Reset complete. ${channels.length} channels, ${groups.length} groups.`);
-        res.json({ ...reset, token: config.token });
+        res.json({ ...reset, token: config.token, cronExpression: DEFAULT_CRON });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: err.message });
@@ -318,7 +321,7 @@ app.post('/api/backup/import', (req, res) => {
         }
     }
     const config = loadConfig();
-    res.json({ ...bundle.playlist, token: config.token });
+    res.json({ ...bundle.playlist, token: config.token, cronExpression: config.cronExpression || DEFAULT_CRON });
 });
 
 // Get token info

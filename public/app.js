@@ -719,6 +719,11 @@ document.getElementById('import-input').addEventListener('change', async (e) => 
     try {
         const data = await api('POST', '/backup/import', bundle);
         applyState(data);
+        if (data.cronExpression) {
+            cronInput.value = data.cronExpression;
+            updateCronPreview(data.cronExpression);
+            highlightActivePreset(data.cronExpression);
+        }
         showToast('Settings imported successfully!', 'success');
     } catch (err) {
         showToast('Import failed: ' + err.message, 'error');
@@ -736,7 +741,8 @@ document.getElementById('reset-btn').addEventListener('click', async () => {
         '  • Re-fetch the original source playlist\n' +
         '  • Restore the original channel and group order\n' +
         '  • Remove all custom groups\n' +
-        '  • Re-enable all disabled groups and channels\n\n' +
+        '  • Re-enable all disabled groups and channels\n' +
+        '  • Reset the auto-sync schedule to daily 4AM\n\n' +
         'All your customisations will be lost. This cannot be undone.\n\n' +
         'Click OK to reset.'
     );
@@ -747,6 +753,11 @@ document.getElementById('reset-btn').addEventListener('click', async () => {
     try {
         const data = await api('POST', '/reset', {});
         applyState(data);
+        if (data.cronExpression) {
+            cronInput.value = data.cronExpression;
+            updateCronPreview(data.cronExpression);
+            highlightActivePreset(data.cronExpression);
+        }
         showToast('Reset to original playlist!', 'success');
     } catch (err) {
         showToast('Reset failed: ' + err.message, 'error');
