@@ -181,6 +181,19 @@ button {
   cursor: default;
 }
 
+.btn-danger {
+  background: var(--danger);
+  color: #fff;
+  font-weight: 600;
+}
+.btn-danger:hover {
+  background: #c94f5c;
+}
+.btn-danger:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
 .btn-secondary {
   background: var(--surface2);
   color: var(--text);

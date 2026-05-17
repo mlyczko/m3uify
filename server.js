@@ -244,6 +244,29 @@ app.post('/api/sync', async (req, res) => {
     }
 });
 
+// Full reset — re-fetch source, discard all custom ordering/disabled flags
+app.post('/api/reset', async (req, res) => {
+    try {
+        const playlist = loadPlaylist();
+        if (!playlist.sourceUrl) return res.status(400).json({ error: 'No source URL configured' });
+        const sourceUrl = playlist.sourceUrl;
+        const res2 = await fetch(sourceUrl, { timeout: 30000 });
+        if (!res2.ok) throw new Error(`Fetch failed: ${res2.status}`);
+        const text = await res2.text();
+        const fresh = parseM3U(text);
+        const channels = fresh.map((ch, idx) => ({ ...ch, id: uuidv4(), order: idx, disabled: false }));
+        const groups = [...new Set(channels.map(ch => ch.group))];
+        const reset = { channels, groups, disabledGroups: [], sourceUrl, lastSync: new Date().toISOString() };
+        savePlaylist(reset);
+        const config = loadConfig();
+        console.log(`Reset complete. ${channels.length} channels, ${groups.length} groups.`);
+        res.json({ ...reset, token: config.token });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: err.message });
+    }
+});
+
 // Get token info
 app.get('/api/token', (req, res) => {
     const token = getOrCreateToken();

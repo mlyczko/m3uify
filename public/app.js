@@ -576,7 +576,37 @@ syncNowBtn.addEventListener('click', async () => {
         syncNowBtn.textContent = 'Sync Now';
     }
 });
-
+// ─── Reset everything ───────────────────────────────────────────────────────
+document.getElementById('reset-btn').addEventListener('click', async () => {
+    if (!state.sourceUrl) {
+        showToast('No source URL configured — nothing to reset to', 'error');
+        return;
+    }
+    const ok = confirm(
+        'Reset everything?\n\n' +
+        'This will:\n' +
+        '  • Re-fetch the original source playlist\n' +
+        '  • Restore the original channel and group order\n' +
+        '  • Remove all custom groups\n' +
+        '  • Re-enable all disabled groups and channels\n\n' +
+        'All your customisations will be lost. This cannot be undone.\n\n' +
+        'Click OK to reset.'
+    );
+    if (!ok) return;
+    const btn = document.getElementById('reset-btn');
+    btn.disabled = true;
+    btn.textContent = 'Resetting...';
+    try {
+        const data = await api('POST', '/reset', {});
+        applyState(data);
+        showToast('Reset to original playlist!', 'success');
+    } catch (err) {
+        showToast('Reset failed: ' + err.message, 'error');
+    } finally {
+        btn.disabled = false;
+        btn.textContent = 'Reset Everything';
+    }
+});
 // ─── Cron builder ─────────────────────────────────────────────────────────────
 const cronInput = document.getElementById('cron-input');
 const cronPreview = document.getElementById('cron-preview');
