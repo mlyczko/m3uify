@@ -921,7 +921,7 @@ const TWO_COL_KEY = 'm3uify_two_col';
 
 function applyLayout(twoCol) {
     dualPane.classList.toggle('two-col', twoCol);
-    layoutBtn.textContent = twoCol ? '▣ 2 Columns' : '⬜ 1 Column';
+    layoutBtn.textContent = twoCol ? '⊞ 2 Columns' : '☰ 1 Column';
     layoutBtn.title = twoCol ? 'Switch to 1 column' : 'Switch to 2 columns — useful for moving channels between groups';
 }
 
