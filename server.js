@@ -7,7 +7,7 @@ const { parseM3U, serializeM3U } = require('./m3uParser');
 const { loadPlaylist, savePlaylist, loadConfig, saveConfig } = require('./storage');
 
 const app = express();
-const PORT = process.env.PORT || 1234;
+const PORT = process.env.PORT || 6767;
 
 app.use(express.json({ limit: '50mb' }));
 app.use(express.static(path.join(__dirname, 'public')));

@@ -1,14 +1,38 @@
-# IPTV Manager
+# M3Uify
 
-Web-based IPTV playlist manager with drag & drop ordering and daily sync.
+Web-based IPTV playlist manager — fetch, organise, and serve a custom-ordered M3U playlist to your IPTV player.
 
 ## Features
 
-- Paste or fetch any M3U playlist
-- View channels organized by groups
-- Drag & drop to reorder channels and groups
-- Serves your custom-ordered playlist at a secret localhost URL
-- Auto-syncs the source playlist daily at 04:00 (adds new, removes deleted channels, preserves your ordering)
+**Playlist management**
+
+- Fetch an M3U playlist from a URL or paste raw M3U text
+- Channels grouped automatically by `group-title`
+- Channel logos displayed with fallback placeholder
+- Live search / filter across all channels
+
+**Ordering & organisation**
+
+- Drag & drop to reorder channels within a group
+- Drag & drop to reorder groups
+- Inline group renaming
+- Changes tracked with an unsaved-indicator; persist with **Save Order**
+
+**Sync**
+
+- **Sync Now** — re-fetches the source and merges changes immediately (force, ignores rate limit)
+- **Auto-sync** — configurable cron schedule (default: daily at 04:00); presets: Daily 4AM · Every 6h · Hourly · Weekly Mon · Manual only
+- Smart merge: adds new channels, removes deleted ones, preserves your custom ordering
+  - Channels matched by URL, then `tvg-id`, then name — survives token rotations in the source URL
+- Rate-limit: automatic background syncs are throttled to at most once every 5 minutes
+
+**Playlist serving**
+
+- Serves your reordered playlist at a secret token URL: `http://localhost:6767/<token>`
+- Token stored in `./data/config.json`; regenerate at any time from the UI (old URL stops working immediately)
+- One-click copy of the playlist URL
+
+**Extra M3U attributes** (`timeshift`, `catchup`, etc.) are parsed and round-tripped correctly.
 
 ## Run locally
 
@@ -17,41 +41,58 @@ npm install
 npm start
 ```
 
-Then open **http://localhost:1234** in your browser.
+Open **http://localhost:6767** in your browser.
 
-The playlist URL (for your IPTV player) will be shown in the sidebar, e.g.:
+For development with auto-restart:
 
-```
-http://localhost:1234/your-secret-token
+```bash
+npm run dev
 ```
 
 ## First-time setup
 
-1. Paste your source URL in the **Source M3U** field (e.g. `http://hls.gd/pl/41/b0lyfnlglere8/playlist.m3u8`)
+1. Paste your source M3U URL into the **Source M3U** field in the sidebar
 2. Click **Fetch & Set Source** — channels load grouped
-3. Drag & drop channels or group headers to reorder
+3. Drag channels and group headers to your preferred order; rename groups with the ✎ button
 4. Click **Save Order**
 5. Copy the playlist URL from the sidebar into your IPTV player
 
-## Docker (for QNAP NAS)
+## API
+
+| Method | Path                    | Description                                   |
+| ------ | ----------------------- | --------------------------------------------- |
+| `GET`  | `/api/playlist`         | Current playlist state + token                |
+| `POST` | `/api/source`           | Set source URL and sync                       |
+| `POST` | `/api/import`           | Import M3U text or URL (merges into existing) |
+| `POST` | `/api/save`             | Persist channel/group order                   |
+| `POST` | `/api/sync`             | Force re-sync from saved source URL           |
+| `GET`  | `/api/cron`             | Get current auto-sync schedule                |
+| `POST` | `/api/cron`             | Set auto-sync schedule (`{ expression }`)     |
+| `GET`  | `/api/token`            | Get current token and playlist URL            |
+| `POST` | `/api/token/regenerate` | Generate a new secret token                   |
+| `GET`  | `/:token`               | Serve the playlist as `audio/x-mpegurl`       |
+
+## Docker
 
 ```bash
 # Build
-docker build -t iptv-manager .
+docker build -t m3uify .
 
 # Run (persist data across restarts)
 docker run -d \
-  --name iptv-manager \
-  -p 1234:1234 \
-  -v /path/on/nas/iptv-data:/app/data \
+  --name m3uify \
+  -p 6767:6767 \
+  -v /path/to/iptv-data:/app/data \
   --restart unless-stopped \
-  iptv-manager
+  m3uify
 ```
 
-The secret token is stored in `/app/data/config.json`. Mount that directory to a host path to persist it.
+The secret token is stored in `/app/data/config.json`. Mount that directory to a host path to keep it across container recreations.
 
-## Config
+## Configuration
 
-- Port: set `PORT` env var (default: 1234)
-- Data: stored in `./data/` (auto-created)
-# m3u-martin
+| Setting            | How to set                             | Default                   |
+| ------------------ | -------------------------------------- | ------------------------- |
+| Port               | `PORT` env var                         | `6767`                    |
+| Data directory     | hardcoded `./data/`                    | auto-created              |
+| Auto-sync schedule | UI → Sync section, or `POST /api/cron` | `0 4 * * *` (daily 04:00) |

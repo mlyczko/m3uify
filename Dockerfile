@@ -10,8 +10,8 @@ COPY . .
 # Data is stored in /app/data — mount a volume here for persistence
 VOLUME ["/app/data"]
 
-ENV PORT=1234
+ENV PORT=6767
 
-EXPOSE 1234
+EXPOSE 6767
 
 CMD ["node", "server.js"]
