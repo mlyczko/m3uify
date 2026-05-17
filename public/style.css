@@ -313,7 +313,12 @@ button {
 #dual-pane.two-col .pane-b {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
+}
+
+#pane-b-toolbar {
+  display: flex;
+  gap: 6px;
 }
 
 #groups-container {

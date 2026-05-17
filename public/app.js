@@ -151,14 +151,13 @@ function renderGroup(groupName, channels, search) {
         list.appendChild(item);
     }
 
-    let collapsed = true;
     list.style.display = 'none';
 
     header.addEventListener('click', (e) => {
         // Don't toggle if clicking rename button, toggle button, delete button, or rename input
         if (e.target.closest('.group-rename-btn, .group-rename-input, .group-toggle-btn, .group-delete-btn')) return;
-        collapsed = !collapsed;
-        list.style.display = collapsed ? 'none' : '';
+        const collapsed = list.style.display === 'none';
+        list.style.display = collapsed ? '' : 'none';
     });
 
     const toggleBtn = header.querySelector('.group-toggle-btn');
@@ -900,6 +899,18 @@ document.getElementById('expand-all-btn').addEventListener('click', () => {
 
 document.getElementById('collapse-all-btn').addEventListener('click', () => {
     groupsContainer.querySelectorAll('.channel-list').forEach(list => {
+        list.style.display = 'none';
+    });
+});
+
+document.getElementById('expand-all-btn-b').addEventListener('click', () => {
+    groupsContainerB.querySelectorAll('.channel-list').forEach(list => {
+        list.style.display = '';
+    });
+});
+
+document.getElementById('collapse-all-btn-b').addEventListener('click', () => {
+    groupsContainerB.querySelectorAll('.channel-list').forEach(list => {
         list.style.display = 'none';
     });
 });
