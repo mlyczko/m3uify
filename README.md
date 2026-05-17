@@ -2,6 +2,17 @@
 
 Web-based IPTV playlist manager — fetch, organise, and serve a custom-ordered M3U playlist to your IPTV player.
 
+## Screenshots
+
+**Group overview — sidebar with playlist URL, source & sync controls**
+![Overview](docs/overview.png)
+
+**Expanded group — channels with logos, drag handles**
+![Channels](docs/channels.png)
+
+**Live search — filter across all groups in real time**
+![Search](docs/search.png)
+
 ## Features
 
 **Playlist management**
