@@ -345,7 +345,8 @@ button {
   opacity: 0.35;
 }
 
-.group-rename-btn {
+.group-rename-btn,
+.group-delete-btn {
   background: none;
   border: none;
   color: var(--text-muted);
@@ -354,11 +355,15 @@ button {
   opacity: 0;
   transition: opacity 0.15s;
 }
-.group-header:hover .group-rename-btn {
+.group-header:hover .group-rename-btn,
+.group-header:hover .group-delete-btn {
   opacity: 1;
 }
 .group-rename-btn:hover {
   color: var(--accent);
+}
+.group-delete-btn:hover {
+  color: var(--danger);
 }
 
 .group-rename-input {

@@ -81,7 +81,7 @@ function updateLastSync() {
 function renderAll() {
     groupsContainer.innerHTML = '';
 
-    if (!state.channels.length) {
+    if (!state.channels.length && !state.groups.length) {
         emptyState.classList.remove('hidden');
         channelCount.textContent = '';
         return;
@@ -101,7 +101,6 @@ function renderAll() {
     let totalVisible = 0;
 
     for (const [groupName, channels] of channelsByGroup) {
-        if (!channels.length) continue;
         const card = renderGroup(groupName, channels, search);
         groupsContainer.appendChild(card);
         const visible = channels.filter(ch => !search || ch.name.toLowerCase().includes(search));
@@ -131,6 +130,7 @@ function renderGroup(groupName, channels, search) {
     <span class="group-count">${channels.length}</span>
     <button class="group-toggle-btn ${isDisabled ? 'off' : 'on'}" title="${isDisabled ? 'Enable group in playlist' : 'Disable group in playlist'}">●</button>
     <button class="group-rename-btn" title="Rename group">✎</button>
+    <button class="group-delete-btn" title="Delete group">🗑</button>
   `;
 
     const list = document.createElement('ul');
@@ -146,8 +146,8 @@ function renderGroup(groupName, channels, search) {
     list.style.display = 'none';
 
     header.addEventListener('click', (e) => {
-        // Don't toggle if clicking rename button, toggle button, or rename input
-        if (e.target.closest('.group-rename-btn, .group-rename-input, .group-toggle-btn')) return;
+        // Don't toggle if clicking rename button, toggle button, delete button, or rename input
+        if (e.target.closest('.group-rename-btn, .group-rename-input, .group-toggle-btn, .group-delete-btn')) return;
         collapsed = !collapsed;
         list.style.display = collapsed ? 'none' : '';
     });
@@ -174,6 +174,12 @@ function renderGroup(groupName, channels, search) {
     renameBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         startGroupRename(card, header, groupName);
+    });
+
+    const deleteBtn = header.querySelector('.group-delete-btn');
+    deleteBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        deleteGroup(groupName, card);
     });
 
     card.appendChild(header);
@@ -285,6 +291,29 @@ function renderChannel(ch, search) {
 
 function escapeHtml(str) {
     return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function deleteGroup(groupName, card) {
+    const channelsInGroup = state.channels.filter(ch => ch.group === groupName);
+    const msg = channelsInGroup.length
+        ? `Delete group "${groupName}"? Its ${channelsInGroup.length} channel(s) will be moved to "Ungrouped".`
+        : `Delete empty group "${groupName}"?`;
+    if (!confirm(msg)) return;
+
+    // Move channels to Ungrouped
+    state.channels = state.channels.map(ch =>
+        ch.group === groupName ? { ...ch, group: 'Ungrouped' } : ch
+    );
+    // Ensure Ungrouped exists in groups list if we moved channels there
+    if (channelsInGroup.length && !state.groups.includes('Ungrouped')) {
+        state.groups.push('Ungrouped');
+    }
+    state.groups = state.groups.filter(g => g !== groupName);
+    state.disabledGroups = state.disabledGroups.filter(g => g !== groupName);
+
+    card.remove();
+    markDirty(true);
+    renderAll();
 }
 
 // ─── Drag & Drop — Groups ────────────────────────────────────────────────────
@@ -429,6 +458,21 @@ function syncChannelOrderFromDOM() {
     });
     state.channels = newChannels;
 }
+
+// ─── Add group ───────────────────────────────────────────────────────────────
+document.getElementById('add-group-btn').addEventListener('click', () => {
+    const name = prompt('New group name:');
+    if (!name || !name.trim()) return;
+    const trimmed = name.trim();
+    if (state.groups.includes(trimmed)) {
+        showToast(`Group "${trimmed}" already exists`, 'error');
+        return;
+    }
+    state.groups.push(trimmed);
+    markDirty(true);
+    renderAll();
+    showToast(`Group "${trimmed}" created`, 'success');
+});
 
 // ─── Dirty state ─────────────────────────────────────────────────────────────
 function markDirty(dirty) {
