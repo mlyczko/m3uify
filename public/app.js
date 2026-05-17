@@ -409,12 +409,15 @@ saveBtn.addEventListener('click', async () => {
 });
 
 // ─── Search ──────────────────────────────────────────────────────────────────
+const searchClear = document.getElementById('search-clear');
 searchInput.addEventListener('input', () => {
+    searchClear.style.display = searchInput.value ? 'block' : 'none';
     const q = searchInput.value.trim().toLowerCase();
     document.querySelectorAll('.channel-item').forEach(item => {
         const name = item.querySelector('.channel-name').textContent.toLowerCase();
         item.classList.toggle('hidden-by-search', !!q && !name.includes(q));
     });
+
 
     // Update count
     const total = state.channels.length;
@@ -424,6 +427,13 @@ searchInput.addEventListener('input', () => {
     } else {
         channelCount.textContent = `${total} channels · ${state.groups.length} groups`;
     }
+});
+
+searchClear.addEventListener('click', () => {
+    searchInput.value = '';
+    searchClear.style.display = 'none';
+    searchInput.dispatchEvent(new Event('input'));
+    searchInput.focus();
 });
 
 // ─── Copy URL ────────────────────────────────────────────────────────────────

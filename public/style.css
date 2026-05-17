@@ -212,8 +212,30 @@ button {
   background: var(--surface);
 }
 
-#toolbar input {
+#search-wrap {
+  position: relative;
   max-width: 280px;
+  display: flex;
+  align-items: center;
+}
+#search-wrap input {
+  width: 100%;
+  padding-right: 28px;
+}
+#search-clear {
+  position: absolute;
+  right: 6px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  display: none;
+}
+#search-clear:hover {
+  color: var(--text);
 }
 
 #channel-count {
