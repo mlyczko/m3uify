@@ -399,6 +399,26 @@ button {
 .channel-item.hidden-by-search {
   display: none;
 }
+.channel-item.channel-disabled {
+  opacity: 0.4;
+}
+
+.channel-toggle-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  padding: 0 2px;
+  opacity: 1;
+  transition: color 0.15s, transform 0.1s;
+  cursor: pointer;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.channel-toggle-btn:hover {
+  transform: scale(1.2);
+}
+.channel-toggle-btn.on  { color: var(--success); }
+.channel-toggle-btn.off { color: var(--danger); }
 
 .channel-logo {
   width: 32px;

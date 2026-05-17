@@ -249,6 +249,7 @@ function renderChannel(ch, search) {
     li.className = 'channel-item';
     li.draggable = true;
     li.dataset.id = ch.id;
+    if (ch.disabled) li.classList.add('channel-disabled');
 
     if (search && !ch.name.toLowerCase().includes(search)) {
         li.classList.add('hidden-by-search');
@@ -261,8 +262,24 @@ function renderChannel(ch, search) {
     li.innerHTML = `
     ${logoEl}
     <span class="channel-name">${escapeHtml(ch.name)}</span>
+    <button class="channel-toggle-btn ${ch.disabled ? 'off' : 'on'}" title="${ch.disabled ? 'Enable channel' : 'Disable channel'}">●</button>
     <span class="channel-drag-handle">⠿</span>
   `;
+
+    li.querySelector('.channel-toggle-btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        const idx = state.channels.findIndex(c => c.id === ch.id);
+        if (idx === -1) return;
+        state.channels[idx] = { ...state.channels[idx], disabled: !state.channels[idx].disabled };
+        ch = state.channels[idx];
+        li.classList.toggle('channel-disabled', !!ch.disabled);
+        const btn = li.querySelector('.channel-toggle-btn');
+        btn.classList.toggle('on', !ch.disabled);
+        btn.classList.toggle('off', !!ch.disabled);
+        btn.title = ch.disabled ? 'Enable channel' : 'Disable channel';
+        markDirty(true);
+    });
+
     return li;
 }
 

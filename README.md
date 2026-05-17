@@ -27,7 +27,7 @@ Web-based IPTV playlist manager — fetch, organise, and serve a custom-ordered 
 - Drag & drop to reorder channels within a group
 - Drag & drop to reorder groups
 - Inline group renaming
-- Changes tracked with an unsaved-indicator; persist with **Save Order**
+- Changes tracked with an unsaved-indicator; persist with **Save Changes**
 
 **Sync**
 
@@ -65,7 +65,7 @@ npm run dev
 1. Paste your source M3U URL into the **Source M3U** field in the sidebar
 2. Click **Fetch & Set Source** — channels load grouped
 3. Drag channels and group headers to your preferred order; rename groups with the ✎ button
-4. Click **Save Order**
+4. Click **Save Changes**
 5. Copy the playlist URL from the sidebar into your IPTV player
 
 ## API

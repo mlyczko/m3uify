@@ -69,6 +69,7 @@ function mergeChannels(existing, fresh) {
             extraAttrs: freshCh.extraAttrs || '',
             url: freshCh.url,  // always use fresh URL (token may have changed)
             order: ch.order ?? idx,
+            disabled: ch.disabled || false,  // preserve user's disabled flag
         };
     });
 
@@ -135,7 +136,7 @@ app.get('/:token', (req, res) => {
     // Sort channels: by group order, then by channel order; exclude disabled groups
     const groupIndex = new Map((groups || []).map((g, i) => [g, i]));
     const sorted = [...(channels || [])]
-        .filter(ch => !disabledSet.has(ch.group))
+        .filter(ch => !disabledSet.has(ch.group) && !ch.disabled)
         .sort((a, b) => {
             const gi = (groupIndex.get(a.group) ?? 9999) - (groupIndex.get(b.group) ?? 9999);
             if (gi !== 0) return gi;
