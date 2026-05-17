@@ -264,19 +264,21 @@ button {
   gap: 10px;
   padding: 10px 14px;
   background: var(--surface2);
-  cursor: grab;
+  cursor: pointer;
   user-select: none;
   border-bottom: 1px solid var(--border);
 }
 
 .group-header:active {
-  cursor: grabbing;
+  cursor: pointer;
 }
 
 .drag-handle {
   color: var(--text-muted);
   font-size: 16px;
+  cursor: grab;
 }
+.drag-handle:active { cursor: grabbing; }
 .group-title {
   font-weight: 600;
   flex: 1;
@@ -288,17 +290,6 @@ button {
   padding: 2px 8px;
   border-radius: 20px;
 }
-.group-toggle {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  font-size: 12px;
-  padding: 2px 6px;
-}
-.group-toggle:hover {
-  color: var(--text);
-}
-
 .group-rename-btn {
   background: none;
   border: none;

@@ -1,7 +1,7 @@
 {
-  "name": "m3u-martin",
+  "name": "m3uify",
   "version": "1.0.0",
-  "description": "IPTV Web GUI Client",
+  "description": "M3Uify - IPTV Playlist Manager",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

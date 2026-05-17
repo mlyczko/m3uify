@@ -125,7 +125,6 @@ function renderGroup(groupName, channels, search) {
     <span class="group-title">${escapeHtml(groupName)}</span>
     <span class="group-count">${channels.length}</span>
     <button class="group-rename-btn" title="Rename group">✎</button>
-    <button class="group-toggle" title="Collapse">▼</button>
   `;
 
     const list = document.createElement('ul');
@@ -137,15 +136,14 @@ function renderGroup(groupName, channels, search) {
         list.appendChild(item);
     }
 
-    const toggleBtn = header.querySelector('.group-toggle');
     let collapsed = true;
     list.style.display = 'none';
-    toggleBtn.textContent = '▶';
-    toggleBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
+
+    header.addEventListener('click', (e) => {
+        // Don't toggle if clicking rename button or rename input
+        if (e.target.closest('.group-rename-btn, .group-rename-input')) return;
         collapsed = !collapsed;
         list.style.display = collapsed ? 'none' : '';
-        toggleBtn.textContent = collapsed ? '▶' : '▼';
     });
 
     const renameBtn = header.querySelector('.group-rename-btn');
