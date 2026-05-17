@@ -149,6 +149,25 @@ app.get('/:token', (req, res) => {
     res.send(m3u);
 });
 
+// Download modified M3U as a file
+app.get('/api/download', (req, res) => {
+    const playlist = loadPlaylist();
+    const { channels, groups, disabledGroups = [] } = playlist;
+    const disabledSet = new Set(disabledGroups);
+    const groupIndex = new Map((groups || []).map((g, i) => [g, i]));
+    const sorted = [...(channels || [])]
+        .filter(ch => !disabledSet.has(ch.group) && !ch.disabled)
+        .sort((a, b) => {
+            const gi = (groupIndex.get(a.group) ?? 9999) - (groupIndex.get(b.group) ?? 9999);
+            if (gi !== 0) return gi;
+            return (a.order ?? 0) - (b.order ?? 0);
+        });
+    const m3u = serializeM3U(sorted);
+    res.setHeader('Content-Type', 'audio/x-mpegurl');
+    res.setHeader('Content-Disposition', 'attachment; filename="playlist.m3u"');
+    res.send(m3u);
+});
+
 // ─── API ─────────────────────────────────────────────────────────────────────
 
 // Get current state

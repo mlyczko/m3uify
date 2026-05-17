@@ -677,6 +677,13 @@ syncNowBtn.addEventListener('click', async () => {
 });
 // ─── Reset everything ───────────────────────────────────────────────────────
 // ─── Export / Import ────────────────────────────────────────────────────────
+document.getElementById('download-m3u-btn').addEventListener('click', () => {
+    const a = document.createElement('a');
+    a.href = '/api/download';
+    a.download = 'playlist.m3u';
+    a.click();
+});
+
 document.getElementById('import-btn').addEventListener('click', () => {
     document.getElementById('import-input').click();
 });
