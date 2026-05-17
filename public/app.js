@@ -3,6 +3,7 @@ let state = {
     channels: [],
     groups: [],
     disabledGroups: [],
+    customGroups: [],
     token: null,
     sourceUrl: null,
     lastSync: null,
@@ -52,6 +53,7 @@ function applyState(data) {
     state.channels = data.channels || [];
     state.groups = data.groups || [];
     state.disabledGroups = data.disabledGroups || [];
+    state.customGroups = data.customGroups || [];
     state.token = data.token;
     state.sourceUrl = data.sourceUrl || null;
     state.lastSync = data.lastSync || null;
@@ -120,6 +122,7 @@ function renderGroup(groupName, channels, search) {
 
     const isDisabled = state.disabledGroups.includes(groupName);
     if (isDisabled) card.classList.add('group-disabled');
+    const isCustom = state.customGroups.includes(groupName);
 
     const header = document.createElement('div');
     header.className = 'group-header';
@@ -130,7 +133,7 @@ function renderGroup(groupName, channels, search) {
     <span class="group-count">${channels.length}</span>
     <button class="group-toggle-btn ${isDisabled ? 'off' : 'on'}" title="${isDisabled ? 'Enable group in playlist' : 'Disable group in playlist'}">●</button>
     <button class="group-rename-btn" title="Rename group">✎</button>
-    <button class="group-delete-btn" title="Delete group">🗑</button>
+    ${isCustom ? `<button class="group-delete-btn" title="Delete group">🗑</button>` : ''}
   `;
 
     const list = document.createElement('ul');
@@ -177,13 +180,35 @@ function renderGroup(groupName, channels, search) {
     });
 
     const deleteBtn = header.querySelector('.group-delete-btn');
-    deleteBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        deleteGroup(groupName, card);
-    });
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            deleteGroup(groupName, card);
+        });
+    }
 
     card.appendChild(header);
     card.appendChild(list);
+
+    // Allow dropping channels onto the group header (for collapsed groups)
+    header.addEventListener('dragover', e => {
+        if (!channelDragSrc) return;
+        e.preventDefault();
+        e.stopPropagation();
+        header.classList.add('group-header-drop-over');
+    });
+    header.addEventListener('dragleave', () => {
+        header.classList.remove('group-header-drop-over');
+    });
+    header.addEventListener('drop', e => {
+        if (!channelDragSrc) return;
+        e.preventDefault();
+        e.stopPropagation();
+        header.classList.remove('group-header-drop-over');
+        list.appendChild(channelDragSrc);
+        syncChannelOrderFromDOM();
+        markDirty(true);
+    });
 
     initChannelDrag(list);
     return card;
@@ -219,6 +244,7 @@ function startGroupRename(card, header, oldName) {
         state.groups = state.groups.map(g => g === oldName ? newName : g);
         state.channels = state.channels.map(ch => ch.group === oldName ? { ...ch, group: newName } : ch);
         state.disabledGroups = state.disabledGroups.map(g => g === oldName ? newName : g);
+        state.customGroups = state.customGroups.map(g => g === oldName ? newName : g);
 
         // Update card dataset
         card.dataset.group = newName;
@@ -229,7 +255,7 @@ function startGroupRename(card, header, oldName) {
 
         // Auto-save immediately
         try {
-            await api('POST', '/save', { channels: state.channels, groups: state.groups, disabledGroups: state.disabledGroups });
+            await api('POST', '/save', { channels: state.channels, groups: state.groups, disabledGroups: state.disabledGroups, customGroups: state.customGroups });
             markDirty(false);
             showToast(`Renamed to "${newName}"`, 'success');
         } catch (err) {
@@ -268,6 +294,7 @@ function renderChannel(ch, search) {
     li.innerHTML = `
     ${logoEl}
     <span class="channel-name">${escapeHtml(ch.name)}</span>
+    <button class="channel-move-btn" title="Move to group">↪</button>
     <button class="channel-toggle-btn ${ch.disabled ? 'off' : 'on'}" title="${ch.disabled ? 'Enable channel' : 'Disable channel'}">●</button>
     <span class="channel-drag-handle">⠿</span>
   `;
@@ -286,6 +313,56 @@ function renderChannel(ch, search) {
         markDirty(true);
     });
 
+    const moveBtn = li.querySelector('.channel-move-btn');
+    moveBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        // Replace button with inline group select
+        const select = document.createElement('select');
+        select.className = 'channel-move-select';
+        for (const g of state.groups) {
+            const opt = document.createElement('option');
+            opt.value = g;
+            opt.textContent = g;
+            if (g === ch.group) opt.selected = true;
+            select.appendChild(opt);
+        }
+        moveBtn.replaceWith(select);
+        select.focus();
+
+        let committed = false;
+
+        function commit() {
+            if (committed) return;
+            committed = true;
+            const newGroup = select.value;
+            if (select.isConnected) select.replaceWith(moveBtn);
+            if (newGroup === ch.group) return;
+            // Update state
+            const idx = state.channels.findIndex(c => c.id === ch.id);
+            if (idx !== -1) state.channels[idx] = { ...state.channels[idx], group: newGroup };
+            ch = state.channels[idx] || ch;
+            // Move in DOM
+            const targetCard = [...groupsContainer.querySelectorAll('.group-card')]
+                .find(c => c.dataset.group === newGroup);
+            if (targetCard) targetCard.querySelector('.channel-list').appendChild(li);
+            syncChannelOrderFromDOM();
+            markDirty(true);
+        }
+
+        function cancel() {
+            if (committed) return;
+            committed = true;
+            if (select.isConnected) select.replaceWith(moveBtn);
+        }
+
+        select.addEventListener('change', commit);
+        select.addEventListener('blur', cancel);
+        select.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') commit();
+            if (e.key === 'Escape') cancel();
+        });
+    });
+
     return li;
 }
 
@@ -293,30 +370,44 @@ function escapeHtml(str) {
     return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
-function deleteGroup(groupName, card) {
+async function deleteGroup(groupName, card) {
     const channelsInGroup = state.channels.filter(ch => ch.group === groupName);
     const msg = channelsInGroup.length
-        ? `Delete group "${groupName}"? Its ${channelsInGroup.length} channel(s) will be moved to "Ungrouped".`
+        ? `Delete group "${groupName}"? Its ${channelsInGroup.length} channel(s) will be restored to their original groups.`
         : `Delete empty group "${groupName}"?`;
     if (!confirm(msg)) return;
 
-    // Move channels to Ungrouped
-    state.channels = state.channels.map(ch =>
-        ch.group === groupName ? { ...ch, group: 'Ungrouped' } : ch
-    );
-    // Ensure Ungrouped exists in groups list if we moved channels there
-    if (channelsInGroup.length && !state.groups.includes('Ungrouped')) {
-        state.groups.push('Ungrouped');
+    // Restore channels to their original group (fallback to Ungrouped)
+    const groupsToAdd = new Set();
+    state.channels = state.channels.map(ch => {
+        if (ch.group !== groupName) return ch;
+        const target = ch.originalGroup || 'Ungrouped';
+        groupsToAdd.add(target);
+        return { ...ch, group: target };
+    });
+    // Ensure any needed groups exist in the list
+    for (const g of groupsToAdd) {
+        if (!state.groups.includes(g)) state.groups.push(g);
     }
     state.groups = state.groups.filter(g => g !== groupName);
     state.disabledGroups = state.disabledGroups.filter(g => g !== groupName);
+    state.customGroups = state.customGroups.filter(g => g !== groupName);
 
     card.remove();
-    markDirty(true);
     renderAll();
+    try {
+        await api('POST', '/save', { channels: state.channels, groups: state.groups, disabledGroups: state.disabledGroups, customGroups: state.customGroups });
+        markDirty(false);
+        showToast(`Group "${groupName}" deleted`, 'success');
+    } catch (err) {
+        markDirty(true);
+        showToast(`Deleted in UI but not saved: ${err.message}`, 'error');
+    }
 }
 
 // ─── Drag & Drop — Groups ────────────────────────────────────────────────────
+let channelDragSrc = null; // global so cross-group drag works
+
 function initGroupDrag() {
     const cards = groupsContainer.querySelectorAll('.group-card');
     let dragSrc = null;
@@ -374,12 +465,11 @@ function initGroupDrag() {
 
 // ─── Drag & Drop — Channels ───────────────────────────────────────────────────
 function initChannelDrag(list) {
-    let dragSrc = null;
 
     list.addEventListener('dragstart', e => {
         const item = e.target.closest('.channel-item');
         if (!item) return;
-        dragSrc = item;
+        channelDragSrc = item;
         item.classList.add('dragging');
         e.dataTransfer.effectAllowed = 'move';
         e.dataTransfer.setData('text/plain', item.dataset.id);
@@ -388,19 +478,22 @@ function initChannelDrag(list) {
     list.addEventListener('dragend', e => {
         const item = e.target.closest('.channel-item');
         if (item) item.classList.remove('dragging');
-        list.querySelectorAll('.drag-over-top, .drag-over-bottom').forEach(el => {
+        document.querySelectorAll('.drag-over-top, .drag-over-bottom').forEach(el => {
             el.classList.remove('drag-over-top', 'drag-over-bottom');
         });
-        dragSrc = null;
+        document.querySelectorAll('.group-header-drop-over').forEach(el => {
+            el.classList.remove('group-header-drop-over');
+        });
+        channelDragSrc = null;
     });
 
     list.addEventListener('dragover', e => {
-        if (!dragSrc) return;
+        if (!channelDragSrc) return;
         e.preventDefault();
         const target = e.target.closest('.channel-item');
-        if (!target || target === dragSrc) return;
+        if (!target || target === channelDragSrc) return;
 
-        list.querySelectorAll('.drag-over-top, .drag-over-bottom').forEach(el => {
+        document.querySelectorAll('.drag-over-top, .drag-over-bottom').forEach(el => {
             el.classList.remove('drag-over-top', 'drag-over-bottom');
         });
 
@@ -422,24 +515,23 @@ function initChannelDrag(list) {
 
     list.addEventListener('drop', e => {
         e.preventDefault();
-        if (!dragSrc) return;
+        if (!channelDragSrc) return;
 
         const target = e.target.closest('.channel-item');
-        if (!target || target === dragSrc) return;
-
-        target.classList.remove('drag-over-top', 'drag-over-bottom');
-
-        const rect = target.getBoundingClientRect();
-        const mid = rect.top + rect.height / 2;
-
-        // Move dragSrc in DOM
-        if (e.clientY < mid) {
-            list.insertBefore(dragSrc, target);
-        } else {
-            target.after(dragSrc);
+        if (target && target !== channelDragSrc) {
+            target.classList.remove('drag-over-top', 'drag-over-bottom');
+            const rect = target.getBoundingClientRect();
+            const mid = rect.top + rect.height / 2;
+            if (e.clientY < mid) {
+                list.insertBefore(channelDragSrc, target);
+            } else {
+                target.after(channelDragSrc);
+            }
+        } else if (!target) {
+            // Dropped on empty area of list — append to end
+            list.appendChild(channelDragSrc);
         }
 
-        // Update state.channels order for this group
         syncChannelOrderFromDOM();
         markDirty(true);
     });
@@ -460,7 +552,7 @@ function syncChannelOrderFromDOM() {
 }
 
 // ─── Add group ───────────────────────────────────────────────────────────────
-document.getElementById('add-group-btn').addEventListener('click', () => {
+document.getElementById('add-group-btn').addEventListener('click', async () => {
     const name = prompt('New group name:');
     if (!name || !name.trim()) return;
     const trimmed = name.trim();
@@ -469,9 +561,16 @@ document.getElementById('add-group-btn').addEventListener('click', () => {
         return;
     }
     state.groups.push(trimmed);
-    markDirty(true);
+    state.customGroups.push(trimmed);
     renderAll();
-    showToast(`Group "${trimmed}" created`, 'success');
+    try {
+        await api('POST', '/save', { channels: state.channels, groups: state.groups, disabledGroups: state.disabledGroups, customGroups: state.customGroups });
+        markDirty(false);
+        showToast(`Group "${trimmed}" created`, 'success');
+    } catch (err) {
+        markDirty(true);
+        showToast(`Group created but not saved: ${err.message}`, 'error');
+    }
 });
 
 // ─── Dirty state ─────────────────────────────────────────────────────────────
@@ -485,7 +584,7 @@ saveBtn.addEventListener('click', async () => {
     syncChannelOrderFromDOM();
     try {
         saveBtn.disabled = true;
-        await api('POST', '/save', { channels: state.channels, groups: state.groups, disabledGroups: state.disabledGroups });
+        await api('POST', '/save', { channels: state.channels, groups: state.groups, disabledGroups: state.disabledGroups, customGroups: state.customGroups });
         showToast('Order saved!', 'success');
         markDirty(false);
     } catch (err) {

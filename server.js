@@ -63,6 +63,7 @@ function mergeChannels(existing, fresh) {
             id: ch.id || uuidv4(),
             name: freshCh.name,
             group: ch.group,  // preserve user-renamed group
+            originalGroup: ch.originalGroup || freshCh.group,  // always the source group
             logo: freshCh.logo,
             tvgId: freshCh.tvgId,
             tvgName: freshCh.tvgName,
@@ -198,16 +199,16 @@ app.post('/api/import', async (req, res) => {
 // Save reordered channels + groups
 app.post('/api/save', (req, res) => {
     try {
-        const { channels, groups, disabledGroups } = req.body;
+        const { channels, groups, disabledGroups, customGroups } = req.body;
         if (!Array.isArray(channels) || !Array.isArray(groups)) {
             return res.status(400).json({ error: 'channels and groups arrays required' });
         }
         const playlist = loadPlaylist();
-        // Reassign order based on position
         const reordered = channels.map((ch, idx) => ({ ...ch, order: idx }));
         const updated = {
             ...playlist, channels: reordered, groups,
             disabledGroups: Array.isArray(disabledGroups) ? disabledGroups : (playlist.disabledGroups || []),
+            customGroups: Array.isArray(customGroups) ? customGroups : (playlist.customGroups || []),
         };
         savePlaylist(updated);
         res.json({ ok: true });
@@ -254,9 +255,9 @@ app.post('/api/reset', async (req, res) => {
         if (!res2.ok) throw new Error(`Fetch failed: ${res2.status}`);
         const text = await res2.text();
         const fresh = parseM3U(text);
-        const channels = fresh.map((ch, idx) => ({ ...ch, id: uuidv4(), order: idx, disabled: false }));
+        const channels = fresh.map((ch, idx) => ({ ...ch, id: uuidv4(), order: idx, disabled: false, originalGroup: ch.group }));
         const groups = [...new Set(channels.map(ch => ch.group))];
-        const reset = { channels, groups, disabledGroups: [], sourceUrl, lastSync: new Date().toISOString() };
+        const reset = { channels, groups, disabledGroups: [], customGroups: [], sourceUrl, lastSync: new Date().toISOString() };
         savePlaylist(reset);
         const config = loadConfig();
         console.log(`Reset complete. ${channels.length} channels, ${groups.length} groups.`);
