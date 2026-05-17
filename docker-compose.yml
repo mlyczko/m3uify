@@ -1,0 +1,11 @@
+services:
+  m3uify:
+    build: .
+    container_name: m3uify
+    restart: unless-stopped
+    ports:
+      - "6767:6767"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - PORT=6767
