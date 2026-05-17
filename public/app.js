@@ -891,6 +891,19 @@ async function loadCronConfig() {
     } catch { }
 }
 
+// ─── Expand / Collapse all ──────────────────────────────────────────────────
+document.getElementById('expand-all-btn').addEventListener('click', () => {
+    groupsContainer.querySelectorAll('.channel-list').forEach(list => {
+        list.style.display = '';
+    });
+});
+
+document.getElementById('collapse-all-btn').addEventListener('click', () => {
+    groupsContainer.querySelectorAll('.channel-list').forEach(list => {
+        list.style.display = 'none';
+    });
+});
+
 // ─── Layout toggle ──────────────────────────────────────────────────────────
 const layoutBtn = document.getElementById('layout-btn');
 const TWO_COL_KEY = 'm3uify_two_col';
@@ -898,7 +911,7 @@ const TWO_COL_KEY = 'm3uify_two_col';
 function applyLayout(twoCol) {
     dualPane.classList.toggle('two-col', twoCol);
     layoutBtn.textContent = twoCol ? '▣ 2 Columns' : '⬜ 1 Column';
-    layoutBtn.title = twoCol ? 'Switch to 1 column' : 'Switch to 2 columns';
+    layoutBtn.title = twoCol ? 'Switch to 1 column' : 'Switch to 2 columns — useful for moving channels between groups';
 }
 
 // Restore saved preference (default: 1 column)

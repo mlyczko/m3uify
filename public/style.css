@@ -283,6 +283,22 @@ button {
   display: contents;
 }
 
+#pane-a-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#pane-a-toolbar {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-sm {
+  font-size: 12px;
+  padding: 3px 10px;
+}
+
 #dual-pane.two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
