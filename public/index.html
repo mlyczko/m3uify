@@ -60,6 +60,7 @@
                 </div>
                 <span id="channel-count"></span>
                 <button id="add-group-btn" class="btn-secondary">＋ New Group</button>
+                <button id="layout-btn" class="btn-secondary" title="Toggle 1 / 2 column layout">⬜ 1 Column</button>
                 <button id="download-m3u-btn" class="btn-secondary" title="Download modified M3U playlist">⬇ Download
                     M3U</button>
                 <button id="export-btn" class="btn-secondary" title="Export all settings to a JSON file">⬇
@@ -75,7 +76,10 @@
                     <div class="empty-icon">📋</div>
                     <p>No channels yet. Fetch a source URL or paste an M3U list.</p>
                 </div>
-                <div id="groups-container"></div>
+                <div id="dual-pane">
+                    <div id="groups-container"></div>
+                    <div id="groups-container-b" class="pane-b"></div>
+                </div>
             </div>
         </main>
     </div>

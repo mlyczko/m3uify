@@ -12,6 +12,8 @@ let state = {
 
 // ─── DOM refs ────────────────────────────────────────────────────────────────
 const groupsContainer = document.getElementById('groups-container');
+const groupsContainerB = document.getElementById('groups-container-b');
+const dualPane = document.getElementById('dual-pane');
 const emptyState = document.getElementById('empty-state');
 const saveBtn = document.getElementById('save-btn');
 const searchInput = document.getElementById('search-input');
@@ -82,6 +84,7 @@ function updateLastSync() {
 // ─── Render ──────────────────────────────────────────────────────────────────
 function renderAll() {
     groupsContainer.innerHTML = '';
+    groupsContainerB.innerHTML = '';
 
     if (!state.channels.length && !state.groups.length) {
         emptyState.classList.remove('hidden');
@@ -105,6 +108,9 @@ function renderAll() {
     for (const [groupName, channels] of channelsByGroup) {
         const card = renderGroup(groupName, channels, search);
         groupsContainer.appendChild(card);
+        // Render a mirror card in pane B
+        const cardB = renderGroup(groupName, channels, search);
+        groupsContainerB.appendChild(cardB);
         const visible = channels.filter(ch => !search || ch.name.toLowerCase().includes(search));
         totalVisible += visible.length;
     }
@@ -341,10 +347,22 @@ function renderChannel(ch, search) {
             const idx = state.channels.findIndex(c => c.id === ch.id);
             if (idx !== -1) state.channels[idx] = { ...state.channels[idx], group: newGroup };
             ch = state.channels[idx] || ch;
-            // Move in DOM
-            const targetCard = [...groupsContainer.querySelectorAll('.group-card')]
-                .find(c => c.dataset.group === newGroup);
-            if (targetCard) targetCard.querySelector('.channel-list').appendChild(li);
+            // Move in DOM — update in both panes
+            [groupsContainer, groupsContainerB].forEach(container => {
+                const targetCard = [...container.querySelectorAll('.group-card')]
+                    .find(c => c.dataset.group === newGroup);
+                const srcCard = [...container.querySelectorAll('.group-card')]
+                    .find(c => c.dataset.group === ch.group);
+                // Only move the actual li (which is in one pane); clone for the other
+                if (targetCard) {
+                    const existingItem = container.querySelector(`.channel-item[data-id="${ch.id}"]`);
+                    if (existingItem) {
+                        targetCard.querySelector('.channel-list').appendChild(existingItem);
+                    } else {
+                        // Not yet rendered in this pane — re-render will handle it
+                    }
+                }
+            });
             syncChannelOrderFromDOM();
             markDirty(true);
         }
@@ -409,56 +427,65 @@ async function deleteGroup(groupName, card) {
 let channelDragSrc = null; // global so cross-group drag works
 
 function initGroupDrag() {
-    const cards = groupsContainer.querySelectorAll('.group-card');
-    let dragSrc = null;
+    // Run drag init on both panes; each pane is self-contained for group reordering
+    [groupsContainer, groupsContainerB].forEach(container => {
+        const cards = container.querySelectorAll('.group-card');
+        let dragSrc = null;
 
-    cards.forEach(card => {
-        const header = card.querySelector('.group-header');
+        cards.forEach(card => {
+            const header = card.querySelector('.group-header');
 
-        header.addEventListener('dragstart', e => {
-            dragSrc = card;
-            card.classList.add('dragging');
-            e.dataTransfer.effectAllowed = 'move';
-            e.dataTransfer.setData('text/plain', card.dataset.group);
-        });
+            header.addEventListener('dragstart', e => {
+                dragSrc = card;
+                card.classList.add('dragging');
+                e.dataTransfer.effectAllowed = 'move';
+                e.dataTransfer.setData('text/plain', card.dataset.group);
+            });
 
-        header.addEventListener('dragend', () => {
-            card.classList.remove('dragging');
-            cards.forEach(c => c.classList.remove('group-drag-over'));
-            dragSrc = null;
-        });
+            header.addEventListener('dragend', () => {
+                card.classList.remove('dragging');
+                cards.forEach(c => c.classList.remove('group-drag-over'));
+                dragSrc = null;
+            });
 
-        card.addEventListener('dragover', e => {
-            if (!dragSrc || dragSrc === card) return;
-            e.preventDefault();
-            e.dataTransfer.dropEffect = 'move';
-            cards.forEach(c => c.classList.remove('group-drag-over'));
-            card.classList.add('group-drag-over');
-        });
+            card.addEventListener('dragover', e => {
+                if (!dragSrc || dragSrc === card) return;
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
+                cards.forEach(c => c.classList.remove('group-drag-over'));
+                card.classList.add('group-drag-over');
+            });
 
-        card.addEventListener('dragleave', () => {
-            card.classList.remove('group-drag-over');
-        });
+            card.addEventListener('dragleave', () => {
+                card.classList.remove('group-drag-over');
+            });
 
-        card.addEventListener('drop', e => {
-            e.preventDefault();
-            if (!dragSrc || dragSrc === card) return;
-            card.classList.remove('group-drag-over');
+            card.addEventListener('drop', e => {
+                e.preventDefault();
+                if (!dragSrc || dragSrc === card) return;
+                card.classList.remove('group-drag-over');
 
-            const allCards = [...groupsContainer.querySelectorAll('.group-card')];
-            const srcIdx = allCards.indexOf(dragSrc);
-            const dstIdx = allCards.indexOf(card);
+                const allCards = [...container.querySelectorAll('.group-card')];
+                const srcIdx = allCards.indexOf(dragSrc);
+                const dstIdx = allCards.indexOf(card);
 
-            if (srcIdx < dstIdx) {
-                card.after(dragSrc);
-            } else {
-                card.before(dragSrc);
-            }
+                if (srcIdx < dstIdx) {
+                    card.after(dragSrc);
+                } else {
+                    card.before(dragSrc);
+                }
 
-            // Update state.groups order
-            const newOrder = [...groupsContainer.querySelectorAll('.group-card')].map(c => c.dataset.group);
-            state.groups = newOrder;
-            markDirty(true);
+                // Update state.groups order from this pane
+                const newOrder = [...container.querySelectorAll('.group-card')].map(c => c.dataset.group);
+                state.groups = newOrder;
+                // Mirror the new order in the other pane
+                const otherContainer = container === groupsContainer ? groupsContainerB : groupsContainer;
+                newOrder.forEach(groupName => {
+                    const mirror = [...otherContainer.querySelectorAll('.group-card')].find(c => c.dataset.group === groupName);
+                    if (mirror) otherContainer.appendChild(mirror);
+                });
+                markDirty(true);
+            });
         });
     });
 }
@@ -538,10 +565,12 @@ function initChannelDrag(list) {
 }
 
 function syncChannelOrderFromDOM() {
-    // Rebuild channel list from DOM order
+    // Use whichever pane was last interacted with, else left pane
+    const activeContainer = (channelDragSrc && channelDragSrc.closest('#groups-container-b'))
+        ? groupsContainerB
+        : groupsContainer;
     const newChannels = [];
-    const groupCards = groupsContainer.querySelectorAll('.group-card');
-    groupCards.forEach(card => {
+    activeContainer.querySelectorAll('.group-card').forEach(card => {
         const groupName = card.dataset.group;
         card.querySelectorAll('.channel-item').forEach((item, idx) => {
             const ch = state.channels.find(c => c.id === item.dataset.id);
@@ -549,6 +578,29 @@ function syncChannelOrderFromDOM() {
         });
     });
     state.channels = newChannels;
+    // Keep the other pane in sync so future drags there read fresh data
+    rerenderOtherPaneLists(activeContainer);
+}
+
+function rerenderOtherPaneLists(activeContainer) {
+    const other = activeContainer === groupsContainer ? groupsContainerB : groupsContainer;
+    if (!other.children.length) return;
+    const search = searchInput.value.trim().toLowerCase();
+    other.querySelectorAll('.group-card').forEach(card => {
+        const groupName = card.dataset.group;
+        const list = card.querySelector('.channel-list');
+        const channels = state.channels
+            .filter(ch => ch.group === groupName)
+            .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+        // Update channel count badge
+        const countEl = card.querySelector('.group-count');
+        if (countEl) countEl.textContent = channels.length;
+        // Re-render channel items only (preserves expanded/collapsed state of card)
+        list.innerHTML = '';
+        for (const ch of channels) {
+            list.appendChild(renderChannel(ch, search));
+        }
+    });
 }
 
 // ─── Add group ───────────────────────────────────────────────────────────────
@@ -838,6 +890,25 @@ async function loadCronConfig() {
         highlightActivePreset(expr);
     } catch { }
 }
+
+// ─── Layout toggle ──────────────────────────────────────────────────────────
+const layoutBtn = document.getElementById('layout-btn');
+const TWO_COL_KEY = 'm3uify_two_col';
+
+function applyLayout(twoCol) {
+    dualPane.classList.toggle('two-col', twoCol);
+    layoutBtn.textContent = twoCol ? '▣ 2 Columns' : '⬜ 1 Column';
+    layoutBtn.title = twoCol ? 'Switch to 1 column' : 'Switch to 2 columns';
+}
+
+// Restore saved preference (default: 1 column)
+applyLayout(localStorage.getItem(TWO_COL_KEY) === '1');
+
+layoutBtn.addEventListener('click', () => {
+    const twoCol = !dualPane.classList.contains('two-col');
+    localStorage.setItem(TWO_COL_KEY, twoCol ? '1' : '0');
+    applyLayout(twoCol);
+});
 
 // ─── Init ─────────────────────────────────────────────────────────────────────
 loadPlaylist().catch(err => showToast('Load failed: ' + err.message, 'error'));

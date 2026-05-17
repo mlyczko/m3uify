@@ -279,7 +279,34 @@ button {
   display: none;
 }
 
+#dual-pane {
+  display: contents;
+}
+
+#dual-pane.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.pane-b {
+  display: none;
+}
+
+#dual-pane.two-col .pane-b {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 #groups-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#dual-pane.two-col #groups-container {
   display: flex;
   flex-direction: column;
   gap: 16px;
