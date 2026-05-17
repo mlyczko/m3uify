@@ -676,6 +676,48 @@ syncNowBtn.addEventListener('click', async () => {
     }
 });
 // ─── Reset everything ───────────────────────────────────────────────────────
+// ─── Export / Import ────────────────────────────────────────────────────────
+document.getElementById('import-btn').addEventListener('click', () => {
+    document.getElementById('import-input').click();
+});
+
+document.getElementById('export-btn').addEventListener('click', () => {
+    const a = document.createElement('a');
+    a.href = '/api/backup/export';
+    a.download = '';
+    a.click();
+});
+
+// ─── Import ───────────────────────────────────────────────────────────────────
+document.getElementById('import-input').addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    e.target.value = '';
+    let bundle;
+    try {
+        bundle = JSON.parse(await file.text());
+    } catch {
+        showToast('Invalid JSON file', 'error');
+        return;
+    }
+    if (!bundle.playlist || !Array.isArray(bundle.playlist.channels)) {
+        showToast('Not a valid M3Uify backup file', 'error');
+        return;
+    }
+    const ok = confirm(
+        `Import backup from ${bundle.exportedAt ? new Date(bundle.exportedAt).toLocaleString() : 'unknown date'}?\n\n` +
+        `This will replace all current settings, channels, and groups.\n\nClick OK to proceed.`
+    );
+    if (!ok) return;
+    try {
+        const data = await api('POST', '/backup/import', bundle);
+        applyState(data);
+        showToast('Settings imported successfully!', 'success');
+    } catch (err) {
+        showToast('Import failed: ' + err.message, 'error');
+    }
+});
+
 document.getElementById('reset-btn').addEventListener('click', async () => {
     if (!state.sourceUrl) {
         showToast('No source URL configured — nothing to reset to', 'error');

@@ -268,6 +268,40 @@ app.post('/api/reset', async (req, res) => {
     }
 });
 
+// ─── Export / Import ─────────────────────────────────────────────────────────
+
+app.get('/api/backup/export', (req, res) => {
+    const playlist = loadPlaylist();
+    const config = loadConfig();
+    const bundle = {
+        version: 1,
+        exportedAt: new Date().toISOString(),
+        playlist,
+        config: { cronExpression: config.cronExpression || DEFAULT_CRON },
+    };
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Content-Disposition', `attachment; filename="m3uify-backup-${Date.now()}.json"`);
+    res.json(bundle);
+});
+
+app.post('/api/backup/import', (req, res) => {
+    const bundle = req.body;
+    if (!bundle || !bundle.playlist || !Array.isArray(bundle.playlist.channels)) {
+        return res.status(400).json({ error: 'Invalid backup file' });
+    }
+    savePlaylist(bundle.playlist);
+    if (bundle.config) {
+        const config = loadConfig();
+        if (bundle.config.cronExpression) {
+            config.cronExpression = bundle.config.cronExpression;
+            saveConfig(config);
+            startCron(config.cronExpression);
+        }
+    }
+    const config = loadConfig();
+    res.json({ ...bundle.playlist, token: config.token });
+});
+
 // Get token info
 app.get('/api/token', (req, res) => {
     const token = getOrCreateToken();
