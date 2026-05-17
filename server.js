@@ -204,7 +204,8 @@ app.post('/api/save', (req, res) => {
         const playlist = loadPlaylist();
         // Reassign order based on position
         const reordered = channels.map((ch, idx) => ({ ...ch, order: idx }));
-        const updated = { ...playlist, channels: reordered, groups,
+        const updated = {
+            ...playlist, channels: reordered, groups,
             disabledGroups: Array.isArray(disabledGroups) ? disabledGroups : (playlist.disabledGroups || []),
         };
         savePlaylist(updated);

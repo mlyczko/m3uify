@@ -300,7 +300,9 @@ button {
   font-size: 16px;
   cursor: grab;
 }
-.drag-handle:active { cursor: grabbing; }
+.drag-handle:active {
+  cursor: grabbing;
+}
 .group-title {
   font-weight: 600;
   flex: 1;
@@ -318,7 +320,9 @@ button {
   font-size: 20px;
   padding: 0 4px;
   opacity: 1;
-  transition: color 0.15s, transform 0.1s;
+  transition:
+    color 0.15s,
+    transform 0.1s;
   cursor: pointer;
   line-height: 1;
   flex-shrink: 0;
@@ -326,8 +330,12 @@ button {
 .group-toggle-btn:hover {
   transform: scale(1.2);
 }
-.group-toggle-btn.on  { color: var(--success); }
-.group-toggle-btn.off { color: var(--danger); }
+.group-toggle-btn.on {
+  color: var(--success);
+}
+.group-toggle-btn.off {
+  color: var(--danger);
+}
 
 .group-disabled > .group-header .group-title,
 .group-disabled > .group-header .group-count {
