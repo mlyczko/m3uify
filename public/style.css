@@ -312,6 +312,31 @@ button {
   padding: 2px 8px;
   border-radius: 20px;
 }
+.group-toggle-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  padding: 0 4px;
+  opacity: 1;
+  transition: color 0.15s, transform 0.1s;
+  cursor: pointer;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.group-toggle-btn:hover {
+  transform: scale(1.2);
+}
+.group-toggle-btn.on  { color: var(--success); }
+.group-toggle-btn.off { color: var(--danger); }
+
+.group-disabled > .group-header .group-title,
+.group-disabled > .group-header .group-count {
+  opacity: 0.45;
+}
+.group-disabled > .channel-list {
+  opacity: 0.35;
+}
+
 .group-rename-btn {
   background: none;
   border: none;

@@ -129,15 +129,18 @@ app.get('/:token', (req, res) => {
         return res.status(404).send('Not found');
     }
     const playlist = loadPlaylist();
-    const { channels, groups } = playlist;
+    const { channels, groups, disabledGroups = [] } = playlist;
+    const disabledSet = new Set(disabledGroups);
 
-    // Sort channels: by group order, then by channel order
+    // Sort channels: by group order, then by channel order; exclude disabled groups
     const groupIndex = new Map((groups || []).map((g, i) => [g, i]));
-    const sorted = [...(channels || [])].sort((a, b) => {
-        const gi = (groupIndex.get(a.group) ?? 9999) - (groupIndex.get(b.group) ?? 9999);
-        if (gi !== 0) return gi;
-        return (a.order ?? 0) - (b.order ?? 0);
-    });
+    const sorted = [...(channels || [])]
+        .filter(ch => !disabledSet.has(ch.group))
+        .sort((a, b) => {
+            const gi = (groupIndex.get(a.group) ?? 9999) - (groupIndex.get(b.group) ?? 9999);
+            if (gi !== 0) return gi;
+            return (a.order ?? 0) - (b.order ?? 0);
+        });
 
     const m3u = serializeM3U(sorted);
     res.setHeader('Content-Type', 'audio/x-mpegurl');
@@ -194,14 +197,16 @@ app.post('/api/import', async (req, res) => {
 // Save reordered channels + groups
 app.post('/api/save', (req, res) => {
     try {
-        const { channels, groups } = req.body;
+        const { channels, groups, disabledGroups } = req.body;
         if (!Array.isArray(channels) || !Array.isArray(groups)) {
             return res.status(400).json({ error: 'channels and groups arrays required' });
         }
         const playlist = loadPlaylist();
         // Reassign order based on position
         const reordered = channels.map((ch, idx) => ({ ...ch, order: idx }));
-        const updated = { ...playlist, channels: reordered, groups };
+        const updated = { ...playlist, channels: reordered, groups,
+            disabledGroups: Array.isArray(disabledGroups) ? disabledGroups : (playlist.disabledGroups || []),
+        };
         savePlaylist(updated);
         res.json({ ok: true });
     } catch (err) {

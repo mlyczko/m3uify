@@ -2,6 +2,7 @@
 let state = {
     channels: [],
     groups: [],
+    disabledGroups: [],
     token: null,
     sourceUrl: null,
     lastSync: null,
@@ -50,6 +51,7 @@ async function loadPlaylist() {
 function applyState(data) {
     state.channels = data.channels || [];
     state.groups = data.groups || [];
+    state.disabledGroups = data.disabledGroups || [];
     state.token = data.token;
     state.sourceUrl = data.sourceUrl || null;
     state.lastSync = data.lastSync || null;
@@ -117,6 +119,9 @@ function renderGroup(groupName, channels, search) {
     card.className = 'group-card';
     card.dataset.group = groupName;
 
+    const isDisabled = state.disabledGroups.includes(groupName);
+    if (isDisabled) card.classList.add('group-disabled');
+
     const header = document.createElement('div');
     header.className = 'group-header';
     header.draggable = true;
@@ -124,6 +129,7 @@ function renderGroup(groupName, channels, search) {
     <span class="drag-handle">⠿</span>
     <span class="group-title">${escapeHtml(groupName)}</span>
     <span class="group-count">${channels.length}</span>
+    <button class="group-toggle-btn ${isDisabled ? 'off' : 'on'}" title="${isDisabled ? 'Enable group in playlist' : 'Disable group in playlist'}">●</button>
     <button class="group-rename-btn" title="Rename group">✎</button>
   `;
 
@@ -140,10 +146,28 @@ function renderGroup(groupName, channels, search) {
     list.style.display = 'none';
 
     header.addEventListener('click', (e) => {
-        // Don't toggle if clicking rename button or rename input
-        if (e.target.closest('.group-rename-btn, .group-rename-input')) return;
+        // Don't toggle if clicking rename button, toggle button, or rename input
+        if (e.target.closest('.group-rename-btn, .group-rename-input, .group-toggle-btn')) return;
         collapsed = !collapsed;
         list.style.display = collapsed ? 'none' : '';
+    });
+
+    const toggleBtn = header.querySelector('.group-toggle-btn');
+    toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const idx = state.disabledGroups.indexOf(groupName);
+        if (idx === -1) {
+            state.disabledGroups.push(groupName);
+            card.classList.add('group-disabled');
+            toggleBtn.classList.replace('on', 'off');
+            toggleBtn.title = 'Enable group in playlist';
+        } else {
+            state.disabledGroups.splice(idx, 1);
+            card.classList.remove('group-disabled');
+            toggleBtn.classList.replace('off', 'on');
+            toggleBtn.title = 'Disable group in playlist';
+        }
+        markDirty(true);
     });
 
     const renameBtn = header.querySelector('.group-rename-btn');
@@ -188,6 +212,7 @@ function startGroupRename(card, header, oldName) {
         // Update state
         state.groups = state.groups.map(g => g === oldName ? newName : g);
         state.channels = state.channels.map(ch => ch.group === oldName ? { ...ch, group: newName } : ch);
+        state.disabledGroups = state.disabledGroups.map(g => g === oldName ? newName : g);
 
         // Update card dataset
         card.dataset.group = newName;
@@ -198,7 +223,7 @@ function startGroupRename(card, header, oldName) {
 
         // Auto-save immediately
         try {
-            await api('POST', '/save', { channels: state.channels, groups: state.groups });
+            await api('POST', '/save', { channels: state.channels, groups: state.groups, disabledGroups: state.disabledGroups });
             markDirty(false);
             showToast(`Renamed to "${newName}"`, 'success');
         } catch (err) {
@@ -399,7 +424,7 @@ saveBtn.addEventListener('click', async () => {
     syncChannelOrderFromDOM();
     try {
         saveBtn.disabled = true;
-        await api('POST', '/save', { channels: state.channels, groups: state.groups });
+        await api('POST', '/save', { channels: state.channels, groups: state.groups, disabledGroups: state.disabledGroups });
         showToast('Order saved!', 'success');
         markDirty(false);
     } catch (err) {
