@@ -408,7 +408,8 @@ const initialConfig = loadConfig();
 startCron(initialConfig.cronExpression || DEFAULT_CRON);
 
 app.listen(PORT, () => {
-    console.log(`\nIPTV Manager running at http://localhost:${PORT}`);
+    console.log(`\nM3Uify v${APP_VERSION}`);
+    console.log(`IPTV Manager running at http://localhost:${PORT}`);
     console.log(`Web GUI:      http://localhost:${PORT}/`);
     console.log(`Playlist URL: http://localhost:${PORT}/${token}\n`);
 });
