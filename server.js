@@ -290,6 +290,18 @@ app.post('/api/reset', async (req, res) => {
     }
 });
 
+// Clear playlist — wipe all data, keep token
+app.post('/api/clear', (req, res) => {
+    const empty = { channels: [], groups: [], disabledGroups: [], customGroups: [], sourceUrl: null, lastSync: null };
+    savePlaylist(empty);
+    const config = loadConfig();
+    config.cronExpression = DEFAULT_CRON;
+    saveConfig(config);
+    startCron(DEFAULT_CRON);
+    console.log('Playlist cleared.');
+    res.json({ ...empty, token: config.token, cronExpression: DEFAULT_CRON });
+});
+
 // ─── Export / Import ─────────────────────────────────────────────────────────
 
 app.get('/api/backup/export', (req, res) => {

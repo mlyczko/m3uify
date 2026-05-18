@@ -97,6 +97,7 @@ npm run dev
 | `POST` | `/api/save`             | Persist channel/group order, disabled flags         |
 | `POST` | `/api/sync`             | Force re-sync from saved source URL                 |
 | `POST` | `/api/reset`            | Reset to original source; clears all customisations |
+| `POST` | `/api/clear`            | Wipe playlist and source URL; returns empty state   |
 | `GET`  | `/api/download`         | Download modified playlist as `playlist.m3u`        |
 | `GET`  | `/api/backup/export`    | Download full JSON backup of all settings           |
 | `POST` | `/api/backup/import`    | Restore from a JSON backup                          |

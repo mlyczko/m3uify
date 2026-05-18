@@ -706,6 +706,19 @@ document.getElementById('regen-token-btn').addEventListener('click', async () =>
     }
 });
 
+// ─── Clear playlist ──────────────────────────────────────────────────────────
+document.getElementById('clear-playlist-btn').addEventListener('click', async () => {
+    if (!confirm('Remove the current playlist and source URL? This cannot be undone.')) return;
+    try {
+        const data = await api('POST', '/clear', {});
+        applyState(data);
+        sourceUrlInput.value = '';
+        showToast('Playlist cleared', 'success');
+    } catch (err) {
+        showToast('Failed: ' + err.message, 'error');
+    }
+});
+
 // ─── Fetch source ─────────────────────────────────────────────────────────────
 fetchSourceBtn.addEventListener('click', async () => {
     const url = sourceUrlInput.value.trim();
