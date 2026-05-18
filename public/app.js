@@ -666,8 +666,24 @@ searchClear.addEventListener('click', () => {
 // ─── Copy URL ────────────────────────────────────────────────────────────────
 copyUrlBtn.addEventListener('click', () => {
     const url = playlistUrlText.textContent;
-    if (url && url !== 'Loading...') {
+    if (!url || url === 'Loading...') return;
+    if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(url).then(() => showToast('URL copied!', 'success'));
+    } else {
+        const ta = document.createElement('textarea');
+        ta.value = url;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        try {
+            document.execCommand('copy');
+            showToast('URL copied!', 'success');
+        } catch {
+            showToast('Copy failed — please copy manually', 'error');
+        }
+        document.body.removeChild(ta);
     }
 });
 
