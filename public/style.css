@@ -278,6 +278,9 @@ button {
 #empty-state.hidden {
   display: none;
 }
+.hidden {
+  display: none !important;
+}
 
 #dual-pane {
   display: contents;

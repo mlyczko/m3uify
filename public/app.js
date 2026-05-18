@@ -15,6 +15,8 @@ const groupsContainer = document.getElementById('groups-container');
 const groupsContainerB = document.getElementById('groups-container-b');
 const dualPane = document.getElementById('dual-pane');
 const emptyState = document.getElementById('empty-state');
+const paneAToolbar = document.getElementById('pane-a-toolbar');
+const paneBToolbar = document.getElementById('pane-b-toolbar');
 const saveBtn = document.getElementById('save-btn');
 const searchInput = document.getElementById('search-input');
 const channelCount = document.getElementById('channel-count');
@@ -88,11 +90,15 @@ function renderAll() {
 
     if (!state.channels.length && !state.groups.length) {
         emptyState.classList.remove('hidden');
+        paneAToolbar.classList.add('hidden');
+        paneBToolbar.classList.add('hidden');
         channelCount.textContent = '';
         return;
     }
 
     emptyState.classList.add('hidden');
+    paneAToolbar.classList.remove('hidden');
+    paneBToolbar.classList.remove('hidden');
 
     // Group channels by group name, maintaining group order
     const channelsByGroup = new Map();
