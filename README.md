@@ -10,6 +10,9 @@ Web-based IPTV playlist manager — fetch, organise, and serve a custom-ordered 
 **Expanded group — channels with logos, per-channel move (↪) and toggle (●) buttons, drag handles**
 ![Channels](docs/channels.png)
 
+**2-column layout — split view for comparing or reorganising groups side by side**
+![2 Columns](docs/2-columns.png)
+
 **Live search — filter across all groups in real time; matched count shown in toolbar**
 ![Search](docs/search.png)
 
