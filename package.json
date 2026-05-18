@@ -1,19 +1,21 @@
 {
   "name": "m3uify",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "M3Uify - IPTV Playlist Manager",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "prepare": "husky"
   },
   "dependencies": {
     "express": "^4.18.2",
+    "node-cron": "^3.0.3",
     "node-fetch": "^2.7.0",
-    "uuid": "^9.0.0",
-    "node-cron": "^3.0.3"
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "husky": "^9.1.7",
     "nodemon": "^3.0.2"
   }
 }
