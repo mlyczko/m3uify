@@ -6,6 +6,8 @@ const { v4: uuidv4 } = require('uuid');
 const { parseM3U, serializeM3U } = require('./m3uParser');
 const { loadPlaylist, savePlaylist, loadConfig, saveConfig } = require('./storage');
 
+const { version: APP_VERSION } = require('./package.json');
+
 const app = express();
 const PORT = process.env.PORT || 6767;
 
@@ -174,7 +176,7 @@ app.get('/api/download', (req, res) => {
 app.get('/api/playlist', (req, res) => {
     const playlist = loadPlaylist();
     const config = loadConfig();
-    res.json({ ...playlist, token: config.token });
+    res.json({ ...playlist, token: config.token, version: APP_VERSION });
 });
 
 // Import M3U text manually

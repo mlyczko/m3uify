@@ -63,6 +63,10 @@ function applyState(data) {
     state.lastSync = data.lastSync || null;
     state.dirty = false;
 
+    if (data.version) {
+        document.getElementById('app-version').textContent = 'v' + data.version;
+    }
+
     if (state.token) {
         const url = `${location.origin}/${state.token}`;
         playlistUrlText.textContent = url;
@@ -699,7 +703,7 @@ document.getElementById('regen-token-btn').addEventListener('click', async () =>
     try {
         const data = await api('POST', '/token/regenerate', {});
         state.token = data.token;
-        playlistUrlText.textContent = data.url;
+        playlistUrlText.textContent = `${location.origin}/${data.token}`;
         showToast('New token generated!', 'success');
     } catch (err) {
         showToast('Failed: ' + err.message, 'error');
