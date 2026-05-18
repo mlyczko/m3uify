@@ -116,7 +116,7 @@ docker run -d \
   -p 6767:6767 \
   -v /path/to/iptv-data:/app/data \
   --restart unless-stopped \
-  yourusername/m3uify:latest
+  mlyczko/m3uify:latest
 ```
 
 ### Build locally
@@ -142,7 +142,7 @@ The secret token is stored in `/app/data/config.json`. Mount that directory to a
 
 ### Releases
 
-Every push to `main` automatically builds and pushes a versioned image to Docker Hub via GitHub Actions (e.g. `yourusername/m3uify:1.0.1` and `yourusername/m3uify:latest`). The image version tracks `package.json`, which is auto-incremented on each commit.
+Every push to `main` automatically builds and pushes a versioned image to Docker Hub via GitHub Actions (e.g. `mlyczko/m3uify:1.0.1` and `mlyczko/m3uify:latest`). The image version tracks `package.json`, which is auto-incremented on each commit.
 
 ## Configuration
 
