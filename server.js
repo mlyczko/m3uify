@@ -228,11 +228,26 @@ function clearLoginAttempts(ip) { loginAttempts.delete(ip); }
 function authMiddleware(req, res, next) {
     if (!getAuthState().enabled) return next();
     if (req.path === '/login' || req.path.startsWith('/auth/')) return next();
+    if (req.path === '/livereload') return next(); // dev SSE — always public
     if (UUID_RE.test(req.path)) return next(); // IPTV players — no cookie support
     const cookies = parseCookies(req);
     if (isValidCookie(cookies[AUTH_COOKIE])) return next();
     if (req.path.startsWith('/api/')) return res.status(401).json({ error: 'Unauthorised' });
     res.redirect('/login');
+}
+
+// ─── Dev live-reload (SSE) ──────────────────────────────────────────────────
+if (process.env.NODE_ENV !== 'production') {
+    app.get('/livereload', (req, res) => {
+        res.setHeader('Content-Type', 'text/event-stream');
+        res.setHeader('Cache-Control', 'no-cache');
+        res.setHeader('Connection', 'keep-alive');
+        res.flushHeaders();
+        res.write('data: connected\n\n');
+        // Keep alive ping every 20s
+        const ping = setInterval(() => res.write(':ping\n\n'), 20000);
+        req.on('close', () => clearInterval(ping));
+    });
 }
 
 app.get('/login', (req, res) => {

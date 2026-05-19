@@ -18,8 +18,14 @@
                 <div class="logo-icon">📺</div>
                 <span class="logo-text">M3Uify</span>
                 <span id="app-version"></span>
-                <button id="logout-btn" class="icon-btn" title="Sign out"
-                    style="display:none;margin-left:auto">⎋</button>
+                <button id="logout-btn" class="icon-btn" title="Sign out" style="display:none;margin-left:auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                        <polyline points="16 17 21 12 16 7" />
+                        <line x1="21" y1="12" x2="9" y2="12" />
+                    </svg>
+                </button>
             </div>
 
             <section class="sidebar-section">
@@ -150,6 +156,25 @@
     <div id="toast"></div>
 
     <script src="app.js"></script>
+    <!-- Dev live-reload: reconnects after server restart and reloads the page -->
+    <script>(function () {
+                    var es, wasOpen = false;
+                    function connect() {
+                        es = new EventSource('/livereload');
+                        es.onopen = function () { wasOpen = true; };
+                        es.onerror = function () {
+                            es.close();
+                            if (!wasOpen) return; // server not in dev mode
+                            wasOpen = false;
+                            (function poll() {
+                                fetch('/livereload', { method: 'HEAD' })
+                                    .then(function () { location.reload(); })
+                                    .catch(function () { setTimeout(poll, 600); });
+                            })();
+                        };
+                    }
+                    connect();
+                })();</script>
 </body>
 
 </html>
