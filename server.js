@@ -243,7 +243,7 @@ app.post('/api/source', async (req, res) => {
     try {
         const { sourceUrl } = req.body;
         if (!sourceUrl) return res.status(400).json({ error: 'sourceUrl required' });
-        const updated = await fetchAndSync(sourceUrl);
+        const updated = await fetchAndSync(sourceUrl, true); // force=true: user action, skip rate limit
         const config = loadConfig();
         res.json({ ...updated, token: config.token });
     } catch (err) {
@@ -405,10 +405,11 @@ app.post('/api/cron', (req, res) => {
 
 const token = getOrCreateToken();
 const initialConfig = loadConfig();
+
+console.log(`\nM3Uify v${APP_VERSION}`);
 startCron(initialConfig.cronExpression || DEFAULT_CRON);
 
 app.listen(PORT, () => {
-    console.log(`\nM3Uify v${APP_VERSION}`);
     console.log(`IPTV Manager running at http://localhost:${PORT}`);
     console.log(`Web GUI:      http://localhost:${PORT}/`);
     console.log(`Playlist URL: http://localhost:${PORT}/${token}\n`);

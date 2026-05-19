@@ -4,16 +4,16 @@ Web-based IPTV playlist manager — fetch, organise, and serve a custom-ordered 
 
 ## Screenshots
 
-**Full UI — sidebar with playlist URL, source & sync controls; toolbar with all actions; groups list**
+**Overview — collapsible sidebar (playlist URL · source · auto-sync), two-row toolbar, groups list**
 ![Overview](docs/overview.png)
 
-**Expanded group — channels with logos, per-channel move (↪) and toggle (●) buttons, drag handles**
+**Channels — expanded group with numbered channels, logos, move (↪), toggle (●) and drag handle per row**
 ![Channels](docs/channels.png)
 
-**2-column layout — split view for comparing or reorganising groups side by side**
+**Two-column layout — split-pane for reorganising groups side by side; each pane has its own expand / collapse toolbar**
 ![2 Columns](docs/2-columns.png)
 
-**Live search — filter across all groups in real time; matched count shown in toolbar**
+**Live search — real-time channel filter; toolbar shows total channels · groups · matching count**
 ![Search](docs/search.png)
 
 ## Features
@@ -22,8 +22,9 @@ Web-based IPTV playlist manager — fetch, organise, and serve a custom-ordered 
 
 - Fetch an M3U playlist from a source URL and serve a clean, reordered copy to your IPTV player
 - Channels grouped automatically by `group-title`
-- Channel logos displayed with fallback placeholder
+- Channel logos displayed inline with index number and fallback placeholder
 - Live search / filter across all channels with real-time match count
+- **✕ Clear Playlist** — wipes the loaded playlist and source URL without touching the token
 
 **Ordering & organisation**
 
@@ -35,7 +36,14 @@ Web-based IPTV playlist manager — fetch, organise, and serve a custom-ordered 
 - Create custom groups with **＋ New Group**; delete custom groups (🗑 button) — channels are restored to their original group
 - Enable/disable individual channels (● toggle per channel)
 - Enable/disable entire groups (● toggle per group header) — disabled groups are excluded from the served playlist
+- **Expand All / Collapse All** buttons per pane
 - Changes tracked with an unsaved-indicator; persist with **Save Changes**
+
+**UI**
+
+- Dark and light theme — toggle in the toolbar; preference persisted to `localStorage`
+- Responsive layout — sidebar collapses into a slide-in drawer on smaller screens (☰ toggle)
+- Two-column split-pane view for side-by-side group management (⊞ layout button, preference persisted)
 
 **Sync**
 
@@ -78,14 +86,14 @@ npm run dev
 
 ## First-time setup
 
-1. Paste your source M3U URL into the **Source M3U** field in the sidebar
-2. Click **Fetch & Set Source** — channels load grouped
-3. Organise channels and groups to your preference:
-   - Drag to reorder within or across groups
+1. Paste your M3U source URL into the **Source M3U** field in the sidebar
+2. Click **Fetch & Set Source** — channels load, grouped by `group-title`
+3. Organise to your preference:
+   - Drag groups or channels to reorder; drop a channel onto a group header to move it across groups
    - Toggle groups/channels on or off with ●
-   - Rename groups with ✎; create new groups with ＋ New Group
+   - Rename groups with ✎; create new ones with ＋ New Group
 4. Click **Save Changes**
-5. Copy the playlist URL from the sidebar into your IPTV player
+5. Copy the **Playlist URL** from the sidebar into your IPTV player
 
 ## API
 
