@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>M3Uify</title>
     <link rel="stylesheet" href="style.css" />
+    <!-- apply saved theme before first paint to prevent flash -->
+    <script>(function () { var t = localStorage.getItem('m3uify_theme'); if (t === 'light') document.documentElement.setAttribute('data-theme', 'light'); })()</script>
 </head>
 
 <body>
@@ -63,6 +65,7 @@
                         <button id="search-clear" title="Clear">&#x2715;</button>
                     </div>
                     <span id="channel-count"></span>
+                    <button id="theme-toggle" class="icon-btn" title="Toggle light / dark mode">🌙</button>
                     <button id="save-btn" class="btn-primary" disabled>Save Changes</button>
                 </div>
                 <div id="toolbar-secondary">

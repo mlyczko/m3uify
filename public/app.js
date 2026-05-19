@@ -969,6 +969,31 @@ layoutBtn.addEventListener('click', () => {
 loadPlaylist().catch(err => showToast('Load failed: ' + err.message, 'error'));
 loadCronConfig();
 
+// ─── Theme toggle ────────────────────────────────────────────────────────────
+const themeToggleBtn = document.getElementById('theme-toggle');
+const THEME_KEY = 'm3uify_theme';
+
+function applyTheme(theme) {
+    if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeToggleBtn.textContent = '☀︎';
+        themeToggleBtn.title = 'Switch to dark mode';
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeToggleBtn.textContent = '🌙';
+        themeToggleBtn.title = 'Switch to light mode';
+    }
+}
+
+// initialise from storage (dark is default)
+applyTheme(localStorage.getItem(THEME_KEY) || 'dark');
+
+themeToggleBtn.addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    localStorage.setItem(THEME_KEY, next);
+    applyTheme(next);
+});
+
 // ─── Sidebar toggle (mobile) ─────────────────────────────────────────────────
 const sidebarToggle = document.getElementById('sidebar-toggle');
 const sidebarEl = document.getElementById('sidebar');
