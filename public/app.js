@@ -1057,8 +1057,8 @@ document.getElementById('security-save-btn')?.addEventListener('click', async ()
     const newPw = document.getElementById('security-new-pw').value;
     const confirmPw = document.getElementById('security-confirm-pw').value;
 
-    if (!newPw) { showToast('New password cannot be empty'); return; }
-    if (newPw !== confirmPw) { showToast('Passwords do not match'); return; }
+    if (!newPw) { showToast('New password cannot be empty', 'error'); return; }
+    if (newPw !== confirmPw) { showToast('Passwords do not match', 'error'); return; }
 
     try {
         const res = await fetch('/api/auth/password', {
@@ -1067,8 +1067,8 @@ document.getElementById('security-save-btn')?.addEventListener('click', async ()
             body: JSON.stringify({ currentPassword: currentPw, newPassword: newPw })
         });
         const data = await res.json();
-        if (!res.ok) { showToast(data.error || 'Error setting password'); return; }
-        showToast('Password saved');
+        if (!res.ok) { showToast(data.error || 'Error setting password', 'error'); return; }
+        showToast('Password saved', 'success');
         document.getElementById('security-current-pw').value = '';
         document.getElementById('security-new-pw').value = '';
         document.getElementById('security-confirm-pw').value = '';
@@ -1076,7 +1076,7 @@ document.getElementById('security-save-btn')?.addEventListener('click', async ()
         if (data.authEnabled) window.location.href = '/login';
         else await loadPlaylist();
     } catch (e) {
-        showToast('Error: ' + e.message);
+        showToast('Error: ' + e.message, 'error');
     }
 });
 
@@ -1090,13 +1090,13 @@ document.getElementById('security-remove-btn')?.addEventListener('click', async 
             body: JSON.stringify({ currentPassword: currentPw, newPassword: '' })
         });
         const data = await res.json();
-        if (!res.ok) { showToast(data.error || 'Error removing password'); return; }
-        showToast('Password protection removed');
+        if (!res.ok) { showToast(data.error || 'Error removing password', 'error'); return; }
+        showToast('Password protection removed', 'success');
         document.getElementById('security-current-pw').value = '';
         document.getElementById('security-new-pw').value = '';
         document.getElementById('security-confirm-pw').value = '';
         await loadPlaylist();
     } catch (e) {
-        showToast('Error: ' + e.message);
+        showToast('Error: ' + e.message, 'error');
     }
 });

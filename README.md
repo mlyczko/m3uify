@@ -4,7 +4,7 @@ Web-based IPTV playlist manager — fetch, organise, and serve a custom-ordered 
 
 ## Screenshots
 
-**Overview — collapsible sidebar (playlist URL · source · auto-sync), two-row toolbar, groups list**
+**Overview — sidebar (playlist URL · source · auto-sync · security), two-row toolbar, collapsed group list**
 ![Overview](docs/overview.png)
 
 **Channels — expanded group with numbered channels, logos, move (↪), toggle (●) and drag handle per row**
@@ -15,6 +15,12 @@ Web-based IPTV playlist manager — fetch, organise, and serve a custom-ordered 
 
 **Live search — real-time channel filter; toolbar shows total channels · groups · matching count**
 ![Search](docs/search.png)
+
+**Security — set / change / remove dashboard password directly from the sidebar (no restart required)**
+![Security](docs/security.png)
+
+**Login — optional password-protected sign-in page with "Remember me for 30 days"; theme follows your dark/light preference**
+![Login](docs/login.png)
 
 ## Features
 
@@ -60,6 +66,16 @@ Web-based IPTV playlist manager — fetch, organise, and serve a custom-ordered 
 - Token stored in `./data/config.json`; regenerate at any time from the UI (old URL stops working immediately)
 - **⬇ Download M3U** — download the current modified playlist as a `.m3u` file
 
+**Security (optional)**
+
+- Password-protect the dashboard — set, change, or remove a password from the **Security** section in the sidebar without restarting
+- Passwords stored as PBKDF2-SHA256 hashes in `data/config.json` (your Docker volume) — no plaintext secrets on disk
+- Alternatively, set the `ADMIN_PASSWORD` environment variable; when set, the UI defers to it and hides the password form
+- Session cookies signed with HMAC-SHA256; invalidated automatically when the password changes
+- Brute-force protection: 5 failed attempts → 15-minute lockout per IP
+- "Remember me for 30 days" checkbox on the login page
+- IPTV player token URLs (e.g. `/:uuid`) are always public — no cookie required
+
 **Backup & restore**
 
 - **⬇ Export** — download a full JSON backup of all settings (channels, groups, disabled state, custom groups, source URL, cron schedule)
@@ -78,7 +94,7 @@ npm start
 
 Open **http://localhost:6767** in your browser.
 
-For development with auto-restart:
+For development with auto-restart and live browser reload:
 
 ```bash
 npm run dev
@@ -86,20 +102,22 @@ npm run dev
 
 ## First-time setup
 
-1. Paste your M3U source URL into the **Source M3U** field in the sidebar
-2. Click **Fetch & Set Source** — channels load, grouped by `group-title`
-3. Organise to your preference:
+1. Open **http://localhost:6767**
+2. Paste your M3U source URL into the **Source M3U** field in the sidebar
+3. Click **Fetch & Set Source** — channels load, grouped by `group-title`
+4. Organise to your preference:
    - Drag groups or channels to reorder; drop a channel onto a group header to move it across groups
    - Toggle groups/channels on or off with ●
    - Rename groups with ✎; create new ones with ＋ New Group
-4. Click **Save Changes**
-5. Copy the **Playlist URL** from the sidebar into your IPTV player
+5. Click **Save Changes**
+6. Copy the **Playlist URL** from the sidebar into your IPTV player
+7. _(Optional)_ Scroll to the **Security** section in the sidebar and set a password to protect the dashboard
 
 ## API
 
 | Method | Path                    | Description                                         |
 | ------ | ----------------------- | --------------------------------------------------- |
-| `GET`  | `/api/playlist`         | Current playlist state + token                      |
+| `GET`  | `/api/playlist`         | Current playlist state + token + auth status        |
 | `POST` | `/api/source`           | Set source URL and sync                             |
 | `POST` | `/api/import`           | Import M3U text or URL (merges into existing)       |
 | `POST` | `/api/save`             | Persist channel/group order, disabled flags         |
@@ -113,6 +131,8 @@ npm run dev
 | `POST` | `/api/cron`             | Set auto-sync schedule (`{ expression }`)           |
 | `GET`  | `/api/token`            | Get current token and playlist URL                  |
 | `POST` | `/api/token/regenerate` | Generate a new secret token                         |
+| `POST` | `/api/auth/password`    | Set / change / remove dashboard password            |
+| `GET`  | `/auth/logout`          | Clear session cookie and redirect to login          |
 | `GET`  | `/:token`               | Serve the filtered playlist as `audio/x-mpegurl`    |
 
 ## Docker
@@ -155,8 +175,34 @@ Every push to `main` automatically builds and pushes a versioned image to Docker
 
 ## Configuration
 
-| Setting            | How to set                             | Default                   |
-| ------------------ | -------------------------------------- | ------------------------- |
-| Port               | `PORT` env var                         | `6767`                    |
-| Data directory     | hardcoded `./data/`                    | auto-created              |
-| Auto-sync schedule | UI → Sync section, or `POST /api/cron` | `0 4 * * *` (daily 04:00) |
+| Setting            | How to set                                            | Default                   |
+| ------------------ | ----------------------------------------------------- | ------------------------- |
+| Port               | `PORT` env var                                        | `6767`                    |
+| Data directory     | hardcoded `./data/`                                   | auto-created              |
+| Auto-sync schedule | UI → Sync section, or `POST /api/cron`                | `0 4 * * *` (daily 04:00) |
+| Dashboard password | UI → Security section **or** `ADMIN_PASSWORD` env var | _(none — open access)_    |
+
+### Password setup for Docker Hub users
+
+No password is set by default. Two options:
+
+**Option A — from the UI** (no restart required):
+
+Open the dashboard → scroll to **Security** in the sidebar → enter a new password → click **Set Password**. The hash is stored in `data/config.json` (your mounted volume) and survives restarts.
+
+**Option B — environment variable**:
+
+```yaml
+services:
+  m3uify:
+    image: mlyczko/m3uify:latest
+    environment:
+      - ADMIN_PASSWORD=yourpassword
+    volumes:
+      - ./data:/app/data
+    ports:
+      - "6767:6767"
+    restart: unless-stopped
+```
+
+When `ADMIN_PASSWORD` is set, the Security form in the sidebar is hidden and the env var takes precedence over any stored hash.
