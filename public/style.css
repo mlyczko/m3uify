@@ -331,13 +331,15 @@ button {
   gap: 6px;
 }
 
-#groups-container {
+#groups-container,
+#groups-container-b {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-#dual-pane.two-col #groups-container {
+#dual-pane.two-col #groups-container,
+#dual-pane.two-col #groups-container-b {
   display: flex;
   flex-direction: column;
   gap: 16px;
