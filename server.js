@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const crypto = require('crypto');
 const fetch = require('node-fetch');
 const cron = require('node-cron');
 const { v4: uuidv4 } = require('uuid');
@@ -10,9 +11,9 @@ const { version: APP_VERSION } = require('./package.json');
 
 const app = express();
 const PORT = process.env.PORT || 6767;
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '';
 
 app.use(express.json({ limit: '50mb' }));
-app.use(express.static(path.join(__dirname, 'public')));
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -124,6 +125,151 @@ async function fetchAndSync(sourceUrl, force = false) {
     return updated;
 }
 
+// ─── Auth ───────────────────────────────────────────────────────────────────
+
+const AUTH_COOKIE = 'm3uify_auth';
+const UUID_RE = /^\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+// Returns { enabled, managedByEnv, hash? }
+function getAuthState() {
+    if (ADMIN_PASSWORD) return { enabled: true, managedByEnv: true };
+    const config = loadConfig();
+    return { enabled: !!config.passwordHash, managedByEnv: false, hash: config.passwordHash || null };
+}
+
+function hashPassword(password) {
+    const salt = crypto.randomBytes(16).toString('hex');
+    const hash = crypto.pbkdf2Sync(password, salt, 100000, 64, 'sha256').toString('hex');
+    return `pbkdf2:${salt}:${hash}`;
+}
+
+function verifyPassword(provided, stored) {
+    if (!stored || !stored.startsWith('pbkdf2:')) return false;
+    const [, salt, expectedHash] = stored.split(':');
+    const candidateHash = crypto.pbkdf2Sync(provided, salt, 100000, 64, 'sha256').toString('hex');
+    try {
+        return crypto.timingSafeEqual(Buffer.from(candidateHash, 'hex'), Buffer.from(expectedHash, 'hex'));
+    } catch { return false; }
+}
+
+function verifyLogin(provided) {
+    if (!provided) return false;
+    const auth = getAuthState();
+    if (!auth.enabled) return false;
+    if (auth.managedByEnv) {
+        try {
+            return provided.length === ADMIN_PASSWORD.length &&
+                crypto.timingSafeEqual(Buffer.from(provided), Buffer.from(ADMIN_PASSWORD));
+        } catch { return false; }
+    }
+    return verifyPassword(provided, auth.hash);
+}
+
+function parseCookies(req) {
+    const out = {};
+    const h = req.headers.cookie;
+    if (!h) return out;
+    h.split(';').forEach(part => {
+        const [k, ...v] = part.split('=');
+        out[k.trim()] = decodeURIComponent(v.join('=').trim());
+    });
+    return out;
+}
+
+function getOrCreateSessionSecret() {
+    const config = loadConfig();
+    if (!config.sessionSecret) {
+        config.sessionSecret = crypto.randomBytes(32).toString('hex');
+        saveConfig(config);
+    }
+    return config.sessionSecret;
+}
+
+// Token is HMAC of the current credential — changes when password changes, invalidating old cookies
+function makeAuthToken() {
+    const secret = getOrCreateSessionSecret();
+    const auth = getAuthState();
+    const key = auth.managedByEnv ? ADMIN_PASSWORD : (auth.hash || '');
+    return crypto.createHmac('sha256', secret).update(key).digest('hex');
+}
+
+function isValidCookie(value) {
+    if (!value || value.length !== 64) return false;
+    try {
+        const expected = makeAuthToken();
+        return crypto.timingSafeEqual(Buffer.from(value, 'hex'), Buffer.from(expected, 'hex'));
+    } catch { return false; }
+}
+
+const loginAttempts = new Map();
+const MAX_LOGIN_ATTEMPTS = 5;
+const LOCKOUT_MS = 15 * 60 * 1000;
+
+function checkLoginRateLimit(ip) {
+    const now = Date.now();
+    const e = loginAttempts.get(ip) || { count: 0, lockedUntil: 0 };
+    if (e.lockedUntil > now) return { allowed: false, waitMs: e.lockedUntil - now };
+    return { allowed: true };
+}
+
+function recordFailedLogin(ip) {
+    const e = loginAttempts.get(ip) || { count: 0, lockedUntil: 0 };
+    e.count++;
+    if (e.count >= MAX_LOGIN_ATTEMPTS) {
+        e.lockedUntil = Date.now() + LOCKOUT_MS;
+        e.count = 0;
+        console.warn(`Login locked for IP ${ip} (15 min)`);
+    }
+    loginAttempts.set(ip, e);
+}
+
+function clearLoginAttempts(ip) { loginAttempts.delete(ip); }
+
+function authMiddleware(req, res, next) {
+    if (!getAuthState().enabled) return next();
+    if (req.path === '/login' || req.path.startsWith('/auth/')) return next();
+    if (UUID_RE.test(req.path)) return next(); // IPTV players — no cookie support
+    const cookies = parseCookies(req);
+    if (isValidCookie(cookies[AUTH_COOKIE])) return next();
+    if (req.path.startsWith('/api/')) return res.status(401).json({ error: 'Unauthorised' });
+    res.redirect('/login');
+}
+
+app.get('/login', (req, res) => {
+    if (!getAuthState().enabled) return res.redirect('/');
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+
+app.post('/auth/login', (req, res) => {
+    const ip = req.ip;
+    const rl = checkLoginRateLimit(ip);
+    if (!rl.allowed) {
+        const mins = Math.ceil(rl.waitMs / 60000);
+        return res.status(429).json({ error: `Too many failed attempts. Try again in ${mins} minute(s).` });
+    }
+    if (!getAuthState().enabled) return res.json({ ok: true });
+    const { password, remember } = req.body || {};
+    if (!password) return res.status(400).json({ error: 'Password required' });
+    if (!verifyLogin(password)) {
+        recordFailedLogin(ip);
+        return res.status(401).json({ error: 'Incorrect password' });
+    }
+    clearLoginAttempts(ip);
+    const tokenVal = makeAuthToken();
+    const maxAge = remember ? 30 * 24 * 60 * 60 : undefined;
+    const cookie = `${AUTH_COOKIE}=${tokenVal}; HttpOnly; SameSite=Strict; Path=/${maxAge ? `; Max-Age=${maxAge}` : ''}`;
+    res.setHeader('Set-Cookie', cookie);
+    res.json({ ok: true });
+});
+
+app.get('/auth/logout', (req, res) => {
+    res.setHeader('Set-Cookie', `${AUTH_COOKIE}=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0`);
+    res.redirect('/login');
+});
+
+app.use(authMiddleware);
+app.use(express.static(path.join(__dirname, 'public')));
+
 // ─── Routes ─────────────────────────────────────────────────────────────────
 
 // Serve the public playlist in M3U format
@@ -176,7 +322,7 @@ app.get('/api/download', (req, res) => {
 app.get('/api/playlist', (req, res) => {
     const playlist = loadPlaylist();
     const config = loadConfig();
-    res.json({ ...playlist, token: config.token, version: APP_VERSION });
+    res.json({ ...playlist, token: config.token, version: APP_VERSION, authEnabled: getAuthState().enabled, managedByEnv: getAuthState().managedByEnv });
 });
 
 // Import M3U text manually
@@ -350,6 +496,40 @@ app.post('/api/token/regenerate', (req, res) => {
     config.token = uuidv4();
     saveConfig(config);
     res.json({ token: config.token, url: `http://localhost:${PORT}/${config.token}` });
+});
+
+// Set / change / remove dashboard password
+app.post('/api/auth/password', (req, res) => {
+    const auth = getAuthState();
+    if (auth.managedByEnv) {
+        return res.status(400).json({ error: 'Password is managed by the ADMIN_PASSWORD environment variable and cannot be changed here.' });
+    }
+    const { currentPassword, newPassword } = req.body || {};
+    // If a password is already set, require the current one
+    if (auth.enabled) {
+        if (!verifyPassword(currentPassword, auth.hash)) {
+            return res.status(401).json({ error: 'Current password is incorrect' });
+        }
+    }
+    const config = loadConfig();
+    if (newPassword) {
+        config.passwordHash = hashPassword(newPassword);
+        saveConfig(config);
+        // Invalidate all existing sessions by rotating the session secret
+        config.sessionSecret = crypto.randomBytes(32).toString('hex');
+        saveConfig(config);
+        console.log('Dashboard password updated');
+        res.json({ ok: true, authEnabled: true });
+    } else {
+        // Empty newPassword = remove protection
+        delete config.passwordHash;
+        config.sessionSecret = crypto.randomBytes(32).toString('hex');
+        saveConfig(config);
+        // Clear the caller's cookie
+        res.setHeader('Set-Cookie', `${AUTH_COOKIE}=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0`);
+        console.log('Dashboard password removed');
+        res.json({ ok: true, authEnabled: false });
+    }
 });
 
 // ─── Configurable sync cron ─────────────────────────────────────────────────

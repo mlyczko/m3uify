@@ -18,6 +18,8 @@
                 <div class="logo-icon">📺</div>
                 <span class="logo-text">M3Uify</span>
                 <span id="app-version"></span>
+                <button id="logout-btn" class="icon-btn" title="Sign out"
+                    style="display:none;margin-left:auto">⎋</button>
             </div>
 
             <section class="sidebar-section">
@@ -54,6 +56,35 @@
                     </div>
                     <div id="cron-preview"></div>
                     <button id="cron-save-btn" class="btn-primary">Save Schedule</button>
+                </div>
+            </section>
+
+            <section class="sidebar-section" id="security-section" style="display:none">
+                <h3>Security</h3>
+                <p id="security-env-note" class="sidebar-note" style="display:none">
+                    Password managed by the <code>ADMIN_PASSWORD</code> environment variable.
+                </p>
+                <div id="security-form">
+                    <div class="pw-wrap" id="security-current-pw-wrap" style="display:none">
+                        <input type="password" id="security-current-pw" placeholder="Current password"
+                            autocomplete="current-password" />
+                        <button type="button" class="pw-eye" data-target="security-current-pw"
+                            title="Show / hide">👁</button>
+                    </div>
+                    <div class="pw-wrap">
+                        <input type="password" id="security-new-pw" placeholder="New password"
+                            autocomplete="new-password" />
+                        <button type="button" class="pw-eye" data-target="security-new-pw"
+                            title="Show / hide">👁</button>
+                    </div>
+                    <div class="pw-wrap">
+                        <input type="password" id="security-confirm-pw" placeholder="Confirm new password"
+                            autocomplete="new-password" />
+                        <button type="button" class="pw-eye" data-target="security-confirm-pw"
+                            title="Show / hide">👁</button>
+                    </div>
+                    <button id="security-save-btn" class="btn-primary">Set Password</button>
+                    <button id="security-remove-btn" class="btn-danger" style="display:none">Remove Password</button>
                 </div>
             </section>
         </aside>

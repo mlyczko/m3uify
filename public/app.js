@@ -42,6 +42,7 @@ async function api(method, path, body) {
     const opts = { method, headers: { 'Content-Type': 'application/json' } };
     if (body) opts.body = JSON.stringify(body);
     const res = await fetch('/api' + path, opts);
+    if (res.status === 401) { window.location.href = '/login'; throw new Error('Session expired'); }
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || res.statusText);
     return data;
@@ -65,6 +66,30 @@ function applyState(data) {
 
     if (data.version) {
         document.getElementById('app-version').textContent = 'v' + data.version;
+    }
+
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) logoutBtn.style.display = data.authEnabled ? '' : 'none';
+
+    // Security section visibility
+    const secSection = document.getElementById('security-section');
+    const secEnvNote = document.getElementById('security-env-note');
+    const secForm = document.getElementById('security-form');
+    const secCurrentWrap = document.getElementById('security-current-pw-wrap');
+    const secRemove = document.getElementById('security-remove-btn');
+    const secSave = document.getElementById('security-save-btn');
+    if (secSection) {
+        secSection.style.display = '';
+        if (data.managedByEnv) {
+            secEnvNote.style.display = '';
+            secForm.style.display = 'none';
+        } else {
+            secEnvNote.style.display = 'none';
+            secForm.style.display = '';
+            secCurrentWrap.style.display = data.authEnabled ? '' : 'none';
+            secRemove.style.display = data.authEnabled ? '' : 'none';
+            secSave.textContent = data.authEnabled ? 'Change Password' : 'Set Password';
+        }
     }
 
     if (state.token) {
@@ -1010,3 +1035,68 @@ sidebarToggle.addEventListener('click', () => {
 });
 sidebarBackdrop.addEventListener('click', closeSidebar);
 
+// ─── Logout ───────────────────────────────────────────────────────────────────
+document.getElementById('logout-btn')?.addEventListener('click', () => {
+    window.location.href = '/auth/logout';
+});
+
+// ─── Password visibility toggles ─────────────────────────────────────────────
+document.querySelectorAll('.pw-eye').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const input = document.getElementById(btn.dataset.target);
+        if (!input) return;
+        const show = input.type === 'password';
+        input.type = show ? 'text' : 'password';
+        btn.textContent = show ? '🙈' : '👁';
+    });
+});
+
+// ─── Security / Password management ──────────────────────────────────────────
+document.getElementById('security-save-btn')?.addEventListener('click', async () => {
+    const currentPw = document.getElementById('security-current-pw').value;
+    const newPw = document.getElementById('security-new-pw').value;
+    const confirmPw = document.getElementById('security-confirm-pw').value;
+
+    if (!newPw) { showToast('New password cannot be empty'); return; }
+    if (newPw !== confirmPw) { showToast('Passwords do not match'); return; }
+
+    try {
+        const res = await fetch('/api/auth/password', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ currentPassword: currentPw, newPassword: newPw })
+        });
+        const data = await res.json();
+        if (!res.ok) { showToast(data.error || 'Error setting password'); return; }
+        showToast('Password saved');
+        document.getElementById('security-current-pw').value = '';
+        document.getElementById('security-new-pw').value = '';
+        document.getElementById('security-confirm-pw').value = '';
+        // Re-login needed because session is now invalid
+        if (data.authEnabled) window.location.href = '/login';
+        else await loadPlaylist();
+    } catch (e) {
+        showToast('Error: ' + e.message);
+    }
+});
+
+document.getElementById('security-remove-btn')?.addEventListener('click', async () => {
+    if (!confirm('Remove password protection? Anyone with the URL can access the dashboard.')) return;
+    const currentPw = document.getElementById('security-current-pw').value;
+    try {
+        const res = await fetch('/api/auth/password', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ currentPassword: currentPw, newPassword: '' })
+        });
+        const data = await res.json();
+        if (!res.ok) { showToast(data.error || 'Error removing password'); return; }
+        showToast('Password protection removed');
+        document.getElementById('security-current-pw').value = '';
+        document.getElementById('security-new-pw').value = '';
+        document.getElementById('security-confirm-pw').value = '';
+        await loadPlaylist();
+    } catch (e) {
+        showToast('Error: ' + e.message);
+    }
+});

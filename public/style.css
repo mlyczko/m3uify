@@ -197,6 +197,50 @@ a,
   font-size: 11px;
   line-height: 1.5;
 }
+.sidebar-note {
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+.sidebar-note code {
+  background: var(--border);
+  padding: 1px 4px;
+  font-family: monospace;
+  font-size: 10px;
+}
+#security-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.pw-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.pw-wrap input[type="password"],
+.pw-wrap input[type="text"] {
+  padding-right: 36px;
+}
+.pw-eye {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 34px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.pw-eye:hover {
+  color: var(--text);
+}
 
 .divider {
   position: relative;
@@ -260,6 +304,7 @@ a,
    INPUTS
 ══════════════════════════════════════════ */
 input[type="text"],
+input[type="password"],
 textarea {
   background: var(--surface2);
   border: 1px solid var(--border);
@@ -269,8 +314,10 @@ textarea {
   font-size: 13px;
   width: 100%;
   outline: none;
+  box-sizing: border-box;
 }
 input[type="text"]:focus,
+input[type="password"]:focus,
 textarea:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-subtle);
@@ -292,12 +339,13 @@ button {
   border-radius: var(--radius-sm);
   font-size: 13px;
   font-weight: 500;
-  padding: 7px 14px;
+  padding: 0 14px;
+  height: 34px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
-  line-height: 1.3;
+  line-height: 1;
   letter-spacing: 0.01em;
 }
 
