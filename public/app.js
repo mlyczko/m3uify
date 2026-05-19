@@ -969,3 +969,19 @@ layoutBtn.addEventListener('click', () => {
 loadPlaylist().catch(err => showToast('Load failed: ' + err.message, 'error'));
 loadCronConfig();
 
+// ─── Sidebar toggle (mobile) ─────────────────────────────────────────────────
+const sidebarToggle = document.getElementById('sidebar-toggle');
+const sidebarEl = document.getElementById('sidebar');
+const sidebarBackdrop = document.getElementById('sidebar-backdrop');
+
+function closeSidebar() {
+    sidebarEl.classList.remove('open');
+    sidebarBackdrop.classList.remove('open');
+}
+
+sidebarToggle.addEventListener('click', () => {
+    const isOpen = sidebarEl.classList.toggle('open');
+    sidebarBackdrop.classList.toggle('open', isOpen);
+});
+sidebarBackdrop.addEventListener('click', closeSidebar);
+
