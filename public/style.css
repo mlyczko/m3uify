@@ -500,6 +500,15 @@ button {
   color: var(--danger);
 }
 
+.channel-index {
+  min-width: 28px;
+  text-align: right;
+  font-size: 11px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  user-select: none;
+}
+
 .channel-logo {
   width: 32px;
   height: 32px;

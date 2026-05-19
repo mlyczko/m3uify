@@ -156,10 +156,10 @@ function renderGroup(groupName, channels, search) {
     list.className = 'channel-list';
     list.dataset.group = groupName;
 
-    for (const ch of channels) {
-        const item = renderChannel(ch, search);
+    channels.forEach((ch, idx) => {
+        const item = renderChannel(ch, search, idx + 1);
         list.appendChild(item);
-    }
+    });
 
     list.style.display = 'none';
 
@@ -290,7 +290,7 @@ function startGroupRename(card, header, oldName) {
     input.addEventListener('blur', commit);
 }
 
-function renderChannel(ch, search) {
+function renderChannel(ch, search, index) {
     const li = document.createElement('li');
     li.className = 'channel-item';
     li.draggable = true;
@@ -306,6 +306,7 @@ function renderChannel(ch, search) {
         : `<div class="channel-logo-placeholder">📺</div>`;
 
     li.innerHTML = `
+    ${index != null ? `<span class="channel-index">${index}</span>` : ''}
     ${logoEl}
     <span class="channel-name">${escapeHtml(ch.name)}</span>
     <button class="channel-move-btn" title="Move to group">↪</button>
@@ -589,7 +590,7 @@ function rerenderAllLists() {
             const countEl = card.querySelector('.group-count');
             if (countEl) countEl.textContent = channels.length;
             list.innerHTML = '';
-            for (const ch of channels) list.appendChild(renderChannel(ch, search));
+            channels.forEach((ch, idx) => list.appendChild(renderChannel(ch, search, idx + 1)));
         });
     });
     const q = searchInput.value.trim().toLowerCase();
