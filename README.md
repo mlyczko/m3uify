@@ -4,22 +4,25 @@ Web-based IPTV playlist manager — fetch, organise, and serve a custom-ordered 
 
 ## Screenshots
 
-**Overview — sidebar (playlist URL · source · auto-sync · security), two-row toolbar, collapsed group list**
+**Overview — sidebar with playlist URL (copy button), source URL input (placeholder `http://...`), auto-sync schedule, and security section; two-row toolbar; collapsed group list**
 ![Overview](docs/overview.png)
 
-**Channels — expanded group with numbered channels, logos, move (↪), toggle (●) and drag handle per row**
+**Channels — expanded group with numbered channels, per-row checkbox for bulk selection, logos, move (↪), toggle (●), and drag handle**
 ![Channels](docs/channels.png)
 
-**Two-column layout — split-pane for reorganising groups side by side; each pane has its own expand / collapse toolbar**
+**Bulk selection — checkboxes checked on multiple channels reveal the bulk-action toolbar: selected count, Enable, Disable, Move to group… dropdown, and ✕ Deselect all; shift-click selects a range**
+![Bulk select](docs/bulk-select.png)
+
+**Two-column layout — split-pane for reorganising groups side by side; each pane has its own Expand all / Collapse all toolbar**
 ![2 Columns](docs/2-columns.png)
 
-**Live search — real-time channel filter; toolbar shows total channels · groups · matching count**
+**Live search — search input (placeholder `Search channels…`) filters in real time; toolbar shows total channels · groups · matching count**
 ![Search](docs/search.png)
 
-**Security — set / change / remove dashboard password directly from the sidebar (no restart required)**
+**Security — set / change / remove dashboard password directly from the sidebar (no restart required); password inputs have show/hide (👁) toggles**
 ![Security](docs/security.png)
 
-**Login — optional password-protected sign-in page with "Remember me for 30 days"; theme follows your dark/light preference**
+**Login — optional password-protected sign-in page with "Remember me for 30 days" checkbox; theme follows your dark/light OS preference**
 ![Login](docs/login.png)
 
 ## Features
@@ -42,6 +45,7 @@ Web-based IPTV playlist manager — fetch, organise, and serve a custom-ordered 
 - Create custom groups with **＋ New Group**; delete custom groups (🗑 button) — channels are restored to their original group
 - Enable/disable individual channels (● toggle per channel)
 - Enable/disable entire groups (● toggle per group header) — disabled groups are excluded from the served playlist
+- **Multi-select bulk actions** — click the checkbox on any channel to select it; shift-click to select a range; a bulk-action toolbar appears showing the selected count with options to **Enable**, **Disable**, **Move to group**, or **Deselect all** in one action
 - **Expand All / Collapse All** buttons per pane
 - Changes tracked with an unsaved-indicator; persist with **Save Changes**
 
@@ -109,6 +113,7 @@ npm run dev
    - Drag groups or channels to reorder; drop a channel onto a group header to move it across groups
    - Toggle groups/channels on or off with ●
    - Rename groups with ✎; create new ones with ＋ New Group
+   - Click a channel checkbox to select it; shift-click to select a range; use the bulk toolbar to enable, disable, or move multiple channels at once
 5. Click **Save Changes**
 6. Copy the **Playlist URL** from the sidebar into your IPTV player
 7. _(Optional)_ Scroll to the **Security** section in the sidebar and set a password to protect the dashboard
@@ -175,12 +180,13 @@ Every push to `main` automatically builds and pushes a versioned image to Docker
 
 ## Configuration
 
-| Setting            | How to set                                            | Default                   |
-| ------------------ | ----------------------------------------------------- | ------------------------- |
-| Port               | `PORT` env var                                        | `6767`                    |
-| Data directory     | hardcoded `./data/`                                   | auto-created              |
-| Auto-sync schedule | UI → Sync section, or `POST /api/cron`                | `0 4 * * *` (daily 04:00) |
-| Dashboard password | UI → Security section **or** `ADMIN_PASSWORD` env var | _(none — open access)_    |
+| Setting            | How to set                                            | Default                    |
+| ------------------ | ----------------------------------------------------- | -------------------------- |
+| Port               | `PORT` env var                                        | `6767`                     |
+| Data directory     | hardcoded `./data/`                                   | auto-created               |
+| Timezone           | `TZ` env var (e.g. `Europe/Warsaw`)                   | system / container default |
+| Auto-sync schedule | UI → Sync section, or `POST /api/cron`                | `0 4 * * *` (daily 04:00)  |
+| Dashboard password | UI → Security section **or** `ADMIN_PASSWORD` env var | _(none — open access)_     |
 
 ### Password setup for Docker Hub users
 
@@ -198,6 +204,7 @@ services:
     image: mlyczko/m3uify:latest
     environment:
       - ADMIN_PASSWORD=yourpassword
+      - TZ=Europe/Warsaw # optional — sets timezone for cron schedules
     volumes:
       - ./data:/app/data
     ports:
@@ -206,3 +213,5 @@ services:
 ```
 
 When `ADMIN_PASSWORD` is set, the Security form in the sidebar is hidden and the env var takes precedence over any stored hash.
+
+> **Timezone note** — the auto-sync cron schedule runs in the timezone of the container. On NAS devices (e.g. QNAP) the container is UTC by default. Set the `TZ` environment variable (e.g. `TZ=Europe/Warsaw`) so that "Daily 4AM" fires at 4 AM your local time.
