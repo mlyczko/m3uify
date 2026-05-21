@@ -578,6 +578,8 @@ function startCron(expression) {
                 console.error('Cron sync failed:', err.message);
             }
         }
+    }, {
+        timezone: process.env.TZ || Intl.DateTimeFormat().resolvedOptions().timeZone
     });
     console.log(`Cron scheduled: ${expression}`);
 }
