@@ -114,6 +114,8 @@ function updateLastSync() {
 
 // ─── Render ──────────────────────────────────────────────────────────────────
 function renderAll() {
+    selectedIds.clear();
+    lastSelectedId = null;
     groupsContainer.innerHTML = '';
     groupsContainerB.innerHTML = '';
 
@@ -333,6 +335,7 @@ function renderChannel(ch, search, index) {
         : `<div class="channel-logo-placeholder">📺</div>`;
 
     li.innerHTML = `
+    <input type="checkbox" class="channel-checkbox" />
     ${index != null ? `<span class="channel-index">${index}</span>` : ''}
     ${logoEl}
     <span class="channel-name">${escapeHtml(ch.name)}</span>
@@ -340,6 +343,30 @@ function renderChannel(ch, search, index) {
     <button class="channel-toggle-btn ${ch.disabled ? 'off' : 'on'}" title="${ch.disabled ? 'Enable channel' : 'Disable channel'}">●</button>
     <span class="channel-drag-handle">⠿</span>
   `;
+
+    const checkbox = li.querySelector('.channel-checkbox');
+    checkbox.checked = selectedIds.has(ch.id);
+    if (selectedIds.has(ch.id)) li.classList.add('ch-selected');
+    checkbox.addEventListener('mousedown', e => e.preventDefault()); // prevent drag
+    checkbox.addEventListener('click', e => {
+        e.stopPropagation();
+        const id = ch.id;
+        if (e.shiftKey && lastSelectedId) {
+            const allItems = [...groupsContainer.querySelectorAll('.channel-item:not(.hidden-by-search)')];
+            const ids = allItems.map(el => el.dataset.id);
+            const a = ids.indexOf(lastSelectedId);
+            const b = ids.indexOf(id);
+            if (a !== -1 && b !== -1) {
+                const [from, to] = a < b ? [a, b] : [b, a];
+                for (let i = from; i <= to; i++) selectedIds.add(ids[i]);
+            }
+            lastSelectedId = id;
+        } else {
+            if (selectedIds.has(id)) { selectedIds.delete(id); lastSelectedId = null; }
+            else { selectedIds.add(id); lastSelectedId = id; }
+        }
+        syncSelectionUI();
+    });
 
     li.querySelector('.channel-toggle-btn').addEventListener('click', (e) => {
         e.stopPropagation();
@@ -442,6 +469,8 @@ async function deleteGroup(groupName, card) {
 
 // ─── Drag & Drop — Groups ────────────────────────────────────────────────────
 let channelDragSrc = null; // global so cross-group drag works
+const selectedIds = new Set(); // channel IDs selected for bulk actions
+let lastSelectedId = null;     // anchor for shift-click range selection
 // Fallback: if dragend fires on a detached element it won't bubble — clear here too
 document.addEventListener('dragend', () => {
     channelDragSrc = null;
@@ -679,11 +708,99 @@ function rerenderAllLists() {
         const visible = state.channels.filter(ch => ch.name.toLowerCase().includes(q)).length;
         channelCount.textContent += ` · ${visible} matching`;
     }
+    syncSelectionUI();
 }
 
 function rerenderOtherPaneLists(activeContainer) {
     rerenderAllLists();
 }
+
+// ─── Bulk selection ───────────────────────────────────────────────────────────
+function syncSelectionUI() {
+    [groupsContainer, groupsContainerB].forEach(container => {
+        container.querySelectorAll('.channel-item').forEach(li => {
+            const sel = selectedIds.has(li.dataset.id);
+            li.classList.toggle('ch-selected', sel);
+            const cb = li.querySelector('.channel-checkbox');
+            if (cb) cb.checked = sel;
+        });
+    });
+    updateBulkToolbar();
+}
+
+function updateBulkToolbar() {
+    const toolbar = document.getElementById('bulk-toolbar');
+    const count = selectedIds.size;
+    if (count === 0) { toolbar.classList.add('hidden'); return; }
+    toolbar.classList.remove('hidden');
+    document.getElementById('bulk-count').textContent =
+        `${count} channel${count === 1 ? '' : 's'} selected`;
+    const sel = document.getElementById('bulk-move-select');
+    sel.innerHTML = '<option value="">Move to group…</option>';
+    for (const g of state.groups) {
+        const opt = document.createElement('option');
+        opt.value = g;
+        opt.textContent = g;
+        sel.appendChild(opt);
+    }
+}
+
+document.getElementById('bulk-enable-btn').addEventListener('click', () => {
+    if (!selectedIds.size) return;
+    selectedIds.forEach(id => {
+        const idx = state.channels.findIndex(c => c.id === id);
+        if (idx !== -1) state.channels[idx] = { ...state.channels[idx], disabled: false };
+    });
+    const count = selectedIds.size;
+    selectedIds.clear(); lastSelectedId = null;
+    rerenderAllLists();
+    markDirty(true);
+    showToast(`Enabled ${count} channel${count === 1 ? '' : 's'}`, 'success');
+});
+
+document.getElementById('bulk-disable-btn').addEventListener('click', () => {
+    if (!selectedIds.size) return;
+    selectedIds.forEach(id => {
+        const idx = state.channels.findIndex(c => c.id === id);
+        if (idx !== -1) state.channels[idx] = { ...state.channels[idx], disabled: true };
+    });
+    const count = selectedIds.size;
+    selectedIds.clear(); lastSelectedId = null;
+    rerenderAllLists();
+    markDirty(true);
+    showToast(`Disabled ${count} channel${count === 1 ? '' : 's'}`, 'success');
+});
+
+document.getElementById('bulk-move-select').addEventListener('change', e => {
+    const targetGroup = e.target.value;
+    e.target.value = '';
+    if (!targetGroup || !selectedIds.size) return;
+    const count = selectedIds.size;
+    // Batch: update state directly, single re-render
+    [...selectedIds].forEach(id => {
+        const idx = state.channels.findIndex(c => c.id === id);
+        if (idx === -1) return;
+        const [moved] = state.channels.splice(idx, 1);
+        moved.group = targetGroup;
+        state.channels.push(moved);
+    });
+    // Recalculate order within each group
+    const groupCounters = new Map();
+    state.channels.forEach(ch => {
+        ch.order = groupCounters.get(ch.group) || 0;
+        groupCounters.set(ch.group, ch.order + 1);
+    });
+    if (!state.groups.includes(targetGroup)) state.groups.push(targetGroup);
+    selectedIds.clear(); lastSelectedId = null;
+    rerenderAllLists();
+    markDirty(true);
+    showToast(`Moved ${count} channel${count === 1 ? '' : 's'} to “${targetGroup}”`, 'success');
+});
+
+document.getElementById('bulk-deselect-btn').addEventListener('click', () => {
+    selectedIds.clear(); lastSelectedId = null;
+    syncSelectionUI();
+});
 
 // ─── Add group ───────────────────────────────────────────────────────────────
 document.getElementById('add-group-btn').addEventListener('click', async () => {
