@@ -476,100 +476,76 @@ document.addEventListener('dragend', () => {
     channelDragSrc = null;
 });
 
+// Active group drag state — set on dragstart, cleared on dragend/drop
+let _groupDragActive = null; // { container, srcCard }
+
+// Find the nearest group card (excluding the dragged card) to a given clientY.
+// Used for both indicator display and drop target resolution.
+function findNearestGroupCard(clientY, container, srcCard) {
+    const cards = [...container.querySelectorAll('.group-card')].filter(c => c !== srcCard);
+    if (!cards.length) return null;
+    let best = null, bestDist = Infinity;
+    for (const c of cards) {
+        const r = c.getBoundingClientRect();
+        if (clientY >= r.top && clientY <= r.bottom) return c;
+        const dist = clientY < r.top ? r.top - clientY : clientY - r.bottom;
+        if (dist < bestDist) { bestDist = dist; best = c; }
+    }
+    return best;
+}
+
+function clearGroupIndicators(container) {
+    container.querySelectorAll('.group-drop-above, .group-drop-below').forEach(c => {
+        c.classList.remove('group-drop-above', 'group-drop-below');
+    });
+}
+
+// Document-level handlers: active whenever a group drag is in progress.
+// Using document ensures the drop works even when the cursor briefly leaves the
+// container during a fast drag — the container-level drop would miss that.
+document.addEventListener('dragover', e => {
+    if (!_groupDragActive) return;
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    const { container, srcCard } = _groupDragActive;
+    clearGroupIndicators(container);
+    const overCard = findNearestGroupCard(e.clientY, container, srcCard);
+    if (overCard) {
+        const rect = overCard.getBoundingClientRect();
+        overCard.classList.add(e.clientY < rect.top + rect.height / 2
+            ? 'group-drop-above' : 'group-drop-below');
+    }
+});
+
+document.addEventListener('drop', e => {
+    if (!_groupDragActive) return;
+    e.preventDefault();
+    const { container, srcCard } = _groupDragActive;
+    _groupDragActive = null;
+    clearGroupIndicators(container);
+    const overCard = findNearestGroupCard(e.clientY, container, srcCard);
+    if (!overCard) return;
+    const rect = overCard.getBoundingClientRect();
+    if (e.clientY < rect.top + rect.height / 2) overCard.before(srcCard);
+    else overCard.after(srcCard);
+    const newOrder = [...container.querySelectorAll('.group-card')].map(c => c.dataset.group);
+    state.groups = newOrder;
+    const otherContainer = container === groupsContainer ? groupsContainerB : groupsContainer;
+    newOrder.forEach(groupName => {
+        const mirror = [...otherContainer.querySelectorAll('.group-card')].find(c => c.dataset.group === groupName);
+        if (mirror) otherContainer.appendChild(mirror);
+    });
+    markDirty(true);
+});
+
 function initGroupDrag() {
-    // Run drag init on both panes; each pane is self-contained for group reordering
+    // Only bind per-header dragstart/dragend — drop is handled at document level.
     [groupsContainer, groupsContainerB].forEach(container => {
-        // Avoid double-binding container-level listeners across renders
-        if (!container._groupDragBound) {
-            container._groupDragBound = true;
-
-            const clearIndicators = () => {
-                container.querySelectorAll('.group-drop-above, .group-drop-below').forEach(c => {
-                    c.classList.remove('group-drop-above', 'group-drop-below');
-                });
-            };
-
-            // Container-level dragover: indicate drop position with a thin line
-            // ABOVE or BELOW the target card (matching the channel-reorder UX).
-            // Find the nearest card to the cursor Y position (regardless of whether
-            // cursor is directly over it). This lets the user drop anywhere in the
-            // column — gaps, scrollbar area, etc. — without having to pixel-hunt.
-            const findNearestCard = clientY => {
-                const cards = [...container.querySelectorAll('.group-card')]
-                    .filter(c => c !== container._groupDragSrc);
-                if (!cards.length) return null;
-                // If cursor is above all cards, target first card (drop above).
-                // If below all cards, target last card (drop below).
-                // Otherwise pick the card whose rect contains clientY, or the closest.
-                let best = null, bestDist = Infinity;
-                for (const c of cards) {
-                    const r = c.getBoundingClientRect();
-                    if (clientY >= r.top && clientY <= r.bottom) return c;
-                    const dist = clientY < r.top ? r.top - clientY : clientY - r.bottom;
-                    if (dist < bestDist) { bestDist = dist; best = c; }
-                }
-                return best;
-            };
-
-            container.addEventListener('dragover', e => {
-                if (!container._groupDragSrc) return;
-                e.preventDefault();
-                e.dataTransfer.dropEffect = 'move';
-                clearIndicators();
-                const overCard = findNearestCard(e.clientY);
-                if (!overCard) return;
-                const rect = overCard.getBoundingClientRect();
-                const mid = rect.top + rect.height / 2;
-                if (e.clientY < mid) {
-                    overCard.classList.add('group-drop-above');
-                } else {
-                    overCard.classList.add('group-drop-below');
-                }
-            });
-
-            container.addEventListener('dragleave', e => {
-                // Chrome fires dragleave with e.target===container even while the cursor
-                // is still inside (when crossing direct-child boundaries). Verify the
-                // cursor actually left the container via elementFromPoint before clearing.
-                const el = document.elementFromPoint(e.clientX, e.clientY);
-                if (!el || !container.contains(el)) clearIndicators();
-            });
-
-            container.addEventListener('drop', e => {
-                const dragSrc = container._groupDragSrc;
-                if (!dragSrc) return;
-                e.preventDefault();
-                const overCard = findNearestCard(e.clientY);
-                clearIndicators();
-                if (!overCard) return;
-
-                const rect = overCard.getBoundingClientRect();
-                const mid = rect.top + rect.height / 2;
-                const dropAbove = e.clientY < mid;
-                if (dropAbove) {
-                    overCard.before(dragSrc);
-                } else {
-                    overCard.after(dragSrc);
-                }
-
-                const newOrder = [...container.querySelectorAll('.group-card')].map(c => c.dataset.group);
-                state.groups = newOrder;
-                const otherContainer = container === groupsContainer ? groupsContainerB : groupsContainer;
-                newOrder.forEach(groupName => {
-                    const mirror = [...otherContainer.querySelectorAll('.group-card')].find(c => c.dataset.group === groupName);
-                    if (mirror) otherContainer.appendChild(mirror);
-                });
-                markDirty(true);
-            });
-        }
-
-        // Bind dragstart/dragend per-header (re-bound after each render — listeners on
-        // fresh elements are fine; old elements are discarded with their listeners)
         container.querySelectorAll('.group-card').forEach(card => {
             const header = card.querySelector('.group-header');
 
             header.addEventListener('dragstart', e => {
-                container._groupDragSrc = card;
+                _groupDragActive = { container, srcCard: card };
                 card.classList.add('dragging');
                 e.dataTransfer.effectAllowed = 'move';
                 e.dataTransfer.setData('text/plain', card.dataset.group);
@@ -577,10 +553,10 @@ function initGroupDrag() {
 
             header.addEventListener('dragend', () => {
                 card.classList.remove('dragging');
-                container.querySelectorAll('.group-drop-above, .group-drop-below').forEach(c => {
-                    c.classList.remove('group-drop-above', 'group-drop-below');
-                });
-                container._groupDragSrc = null;
+                if (_groupDragActive) {
+                    clearGroupIndicators(_groupDragActive.container);
+                    _groupDragActive = null;
+                }
             });
         });
     });

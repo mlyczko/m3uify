@@ -404,6 +404,8 @@ button {
 .btn-sm {
   font-size: 11px;
   padding: 4px 10px;
+  height: 26px;
+  box-sizing: border-box;
 }
 
 /* ══════════════════════════════════════════
@@ -774,7 +776,9 @@ button {
   background: var(--surface2);
   cursor: pointer;
   flex-shrink: 0;
+  align-self: center;
   position: relative;
+  display: block;
 }
 .channel-checkbox:hover {
   border-color: var(--accent);
@@ -786,10 +790,10 @@ button {
 .channel-checkbox:checked::after {
   content: "";
   position: absolute;
-  left: 3px;
-  top: 0px;
-  width: 5px;
-  height: 9px;
+  left: 4px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
   border: 2px solid var(--accent-on);
   border-top: none;
   border-left: none;
@@ -820,8 +824,10 @@ button {
   background: var(--surface2);
   border: 1px solid var(--border-soft);
   color: var(--text);
-  font-size: 12px;
+  font-size: 11px;
   padding: 4px 8px;
+  height: 26px;
+  box-sizing: border-box;
   cursor: pointer;
 }
 #bulk-deselect-btn {
