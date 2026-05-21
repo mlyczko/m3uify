@@ -245,7 +245,9 @@ function renderGroup(groupName, channels, search) {
         e.preventDefault();
         e.stopPropagation();
         header.classList.remove('group-header-drop-over');
-        moveChannelInState(channelDragSrc.dataset.id, groupName, null, 'append');
+        const srcId = channelDragSrc.dataset.id;
+        channelDragSrc = null; // clear before DOM mutation so dragend doesn't need to
+        moveChannelInState(srcId, groupName, null, 'append');
         markDirty(true);
     });
 
@@ -440,18 +442,105 @@ async function deleteGroup(groupName, card) {
 
 // ─── Drag & Drop — Groups ────────────────────────────────────────────────────
 let channelDragSrc = null; // global so cross-group drag works
+// Fallback: if dragend fires on a detached element it won't bubble — clear here too
+document.addEventListener('dragend', () => {
+    channelDragSrc = null;
+});
 
 function initGroupDrag() {
     // Run drag init on both panes; each pane is self-contained for group reordering
     [groupsContainer, groupsContainerB].forEach(container => {
-        const cards = container.querySelectorAll('.group-card');
-        let dragSrc = null;
+        // Avoid double-binding container-level listeners across renders
+        if (!container._groupDragBound) {
+            container._groupDragBound = true;
 
-        cards.forEach(card => {
+            const clearIndicators = () => {
+                container.querySelectorAll('.group-drop-above, .group-drop-below').forEach(c => {
+                    c.classList.remove('group-drop-above', 'group-drop-below');
+                });
+            };
+
+            // Container-level dragover: indicate drop position with a thin line
+            // ABOVE or BELOW the target card (matching the channel-reorder UX).
+            // Find the nearest card to the cursor Y position (regardless of whether
+            // cursor is directly over it). This lets the user drop anywhere in the
+            // column — gaps, scrollbar area, etc. — without having to pixel-hunt.
+            const findNearestCard = clientY => {
+                const cards = [...container.querySelectorAll('.group-card')]
+                    .filter(c => c !== container._groupDragSrc);
+                if (!cards.length) return null;
+                // If cursor is above all cards, target first card (drop above).
+                // If below all cards, target last card (drop below).
+                // Otherwise pick the card whose rect contains clientY, or the closest.
+                let best = null, bestDist = Infinity;
+                for (const c of cards) {
+                    const r = c.getBoundingClientRect();
+                    if (clientY >= r.top && clientY <= r.bottom) return c;
+                    const dist = clientY < r.top ? r.top - clientY : clientY - r.bottom;
+                    if (dist < bestDist) { bestDist = dist; best = c; }
+                }
+                return best;
+            };
+
+            container.addEventListener('dragover', e => {
+                if (!container._groupDragSrc) return;
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
+                clearIndicators();
+                const overCard = findNearestCard(e.clientY);
+                if (!overCard) return;
+                const rect = overCard.getBoundingClientRect();
+                const mid = rect.top + rect.height / 2;
+                if (e.clientY < mid) {
+                    overCard.classList.add('group-drop-above');
+                } else {
+                    overCard.classList.add('group-drop-below');
+                }
+            });
+
+            container.addEventListener('dragleave', e => {
+                // Chrome fires dragleave with e.target===container even while the cursor
+                // is still inside (when crossing direct-child boundaries). Verify the
+                // cursor actually left the container via elementFromPoint before clearing.
+                const el = document.elementFromPoint(e.clientX, e.clientY);
+                if (!el || !container.contains(el)) clearIndicators();
+            });
+
+            container.addEventListener('drop', e => {
+                const dragSrc = container._groupDragSrc;
+                if (!dragSrc) return;
+                e.preventDefault();
+                const overCard = findNearestCard(e.clientY);
+                clearIndicators();
+                if (!overCard) return;
+
+                const rect = overCard.getBoundingClientRect();
+                const mid = rect.top + rect.height / 2;
+                const dropAbove = e.clientY < mid;
+                if (dropAbove) {
+                    overCard.before(dragSrc);
+                } else {
+                    overCard.after(dragSrc);
+                }
+
+                const newOrder = [...container.querySelectorAll('.group-card')].map(c => c.dataset.group);
+                state.groups = newOrder;
+                const otherContainer = container === groupsContainer ? groupsContainerB : groupsContainer;
+                newOrder.forEach(groupName => {
+                    const mirror = [...otherContainer.querySelectorAll('.group-card')].find(c => c.dataset.group === groupName);
+                    if (mirror) otherContainer.appendChild(mirror);
+                });
+                markDirty(true);
+            });
+        }
+
+        // Bind dragstart/dragend per-header (re-bound after each render — listeners on
+        // fresh elements are fine; old elements are discarded with their listeners)
+        container.querySelectorAll('.group-card').forEach(card => {
             const header = card.querySelector('.group-header');
 
             header.addEventListener('dragstart', e => {
-                dragSrc = card;
+                container._groupDragSrc = card;
                 card.classList.add('dragging');
                 e.dataTransfer.effectAllowed = 'move';
                 e.dataTransfer.setData('text/plain', card.dataset.group);
@@ -459,47 +548,10 @@ function initGroupDrag() {
 
             header.addEventListener('dragend', () => {
                 card.classList.remove('dragging');
-                cards.forEach(c => c.classList.remove('group-drag-over'));
-                dragSrc = null;
-            });
-
-            card.addEventListener('dragover', e => {
-                if (!dragSrc || dragSrc === card) return;
-                e.preventDefault();
-                e.dataTransfer.dropEffect = 'move';
-                cards.forEach(c => c.classList.remove('group-drag-over'));
-                card.classList.add('group-drag-over');
-            });
-
-            card.addEventListener('dragleave', () => {
-                card.classList.remove('group-drag-over');
-            });
-
-            card.addEventListener('drop', e => {
-                e.preventDefault();
-                if (!dragSrc || dragSrc === card) return;
-                card.classList.remove('group-drag-over');
-
-                const allCards = [...container.querySelectorAll('.group-card')];
-                const srcIdx = allCards.indexOf(dragSrc);
-                const dstIdx = allCards.indexOf(card);
-
-                if (srcIdx < dstIdx) {
-                    card.after(dragSrc);
-                } else {
-                    card.before(dragSrc);
-                }
-
-                // Update state.groups order from this pane
-                const newOrder = [...container.querySelectorAll('.group-card')].map(c => c.dataset.group);
-                state.groups = newOrder;
-                // Mirror the new order in the other pane
-                const otherContainer = container === groupsContainer ? groupsContainerB : groupsContainer;
-                newOrder.forEach(groupName => {
-                    const mirror = [...otherContainer.querySelectorAll('.group-card')].find(c => c.dataset.group === groupName);
-                    if (mirror) otherContainer.appendChild(mirror);
+                container.querySelectorAll('.group-drop-above, .group-drop-below').forEach(c => {
+                    c.classList.remove('group-drop-above', 'group-drop-below');
                 });
-                markDirty(true);
+                container._groupDragSrc = null;
             });
         });
     });
@@ -561,14 +613,17 @@ function initChannelDrag(list) {
 
         const target = e.target.closest('.channel-item');
         const targetGroup = list.dataset.group;
-        if (target && target !== channelDragSrc) {
-            target.classList.remove('drag-over-top', 'drag-over-bottom');
+        const srcId = channelDragSrc.dataset.id;
+        const anchorId = (target && target !== channelDragSrc) ? target.dataset.id : null;
+        if (target) target.classList.remove('drag-over-top', 'drag-over-bottom');
+        channelDragSrc = null; // clear before DOM mutation so dragend fires on detached element harmlessly
+        if (anchorId) {
             const rect = target.getBoundingClientRect();
             const mid = rect.top + rect.height / 2;
             const position = e.clientY < mid ? 'before' : 'after';
-            moveChannelInState(channelDragSrc.dataset.id, targetGroup, target.dataset.id, position);
+            moveChannelInState(srcId, targetGroup, anchorId, position);
         } else {
-            moveChannelInState(channelDragSrc.dataset.id, targetGroup, null, 'append');
+            moveChannelInState(srcId, targetGroup, null, 'append');
         }
         markDirty(true);
     });

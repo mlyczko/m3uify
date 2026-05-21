@@ -283,7 +283,13 @@ app.get('/auth/logout', (req, res) => {
 });
 
 app.use(authMiddleware);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), {
+    setHeaders: (res, filePath) => {
+        if (/\.(html|js|css)$/.test(filePath)) {
+            res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+        }
+    }
+}));
 
 // ─── Routes ─────────────────────────────────────────────────────────────────
 

@@ -873,6 +873,14 @@ button {
 .group-drag-over {
   outline: 2px dashed var(--accent);
 }
+/* Drop-position indicators for group reorder — show a thick line above or
+   below the target card to show where the dragged group will land. */
+.group-drop-above {
+  box-shadow: 0 -3px 0 0 var(--accent);
+}
+.group-drop-below {
+  box-shadow: 0 3px 0 0 var(--accent);
+}
 
 /* ══════════════════════════════════════════
    TOAST

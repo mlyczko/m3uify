@@ -155,7 +155,7 @@
     <!-- Toast -->
     <div id="toast"></div>
 
-    <script src="app.js"></script>
+    <script>document.write('<script src="app.js?v=' + Date.now() + '"><\/script>')</script>
     <!-- Dev live-reload: reconnects after server restart and reloads the page -->
     <script>(function () {
                     var es, wasOpen = false;
