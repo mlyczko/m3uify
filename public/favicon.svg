@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Lime background — matches .logo-icon background -->
+  <rect width="32" height="32" rx="3" fill="#c8f000"/>
+  <!-- 📺 emoji, centred — matches .logo-icon font-size: 15px -->
+  <text x="16" y="22" font-size="18" text-anchor="middle" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,sans-serif">📺</text>
+</svg>
