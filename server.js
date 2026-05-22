@@ -449,10 +449,11 @@ app.post('/api/reset', async (req, res) => {
         savePlaylist(reset);
         const config = loadConfig();
         config.cronExpression = DEFAULT_CRON;
+        config.cronTimezone = config.cronTimezone || DEFAULT_TIMEZONE;
         saveConfig(config);
-        startCron(DEFAULT_CRON);
+        startCron(DEFAULT_CRON, config.cronTimezone);
         console.log(`Reset complete. ${channels.length} channels, ${groups.length} groups.`);
-        res.json({ ...reset, token: config.token, cronExpression: DEFAULT_CRON });
+        res.json({ ...reset, token: config.token, cronExpression: DEFAULT_CRON, cronTimezone: config.cronTimezone });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: err.message });
@@ -465,10 +466,11 @@ app.post('/api/clear', (req, res) => {
     savePlaylist(empty);
     const config = loadConfig();
     config.cronExpression = DEFAULT_CRON;
+    config.cronTimezone = config.cronTimezone || DEFAULT_TIMEZONE;
     saveConfig(config);
-    startCron(DEFAULT_CRON);
+    startCron(DEFAULT_CRON, config.cronTimezone);
     console.log('Playlist cleared.');
-    res.json({ ...empty, token: config.token, cronExpression: DEFAULT_CRON });
+    res.json({ ...empty, token: config.token, cronExpression: DEFAULT_CRON, cronTimezone: config.cronTimezone });
 });
 
 // ─── Export / Import ─────────────────────────────────────────────────────────
@@ -480,7 +482,7 @@ app.get('/api/backup/export', (req, res) => {
         version: 1,
         exportedAt: new Date().toISOString(),
         playlist,
-        config: { cronExpression: config.cronExpression || DEFAULT_CRON },
+        config: { cronExpression: config.cronExpression || DEFAULT_CRON, cronTimezone: config.cronTimezone || DEFAULT_TIMEZONE },
     };
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Content-Disposition', `attachment; filename="m3uify-backup-${Date.now()}.json"`);
@@ -497,8 +499,9 @@ app.post('/api/backup/import', (req, res) => {
         const config = loadConfig();
         if (bundle.config.cronExpression) {
             config.cronExpression = bundle.config.cronExpression;
+            if (bundle.config.cronTimezone) config.cronTimezone = bundle.config.cronTimezone;
             saveConfig(config);
-            startCron(config.cronExpression);
+            startCron(config.cronExpression, config.cronTimezone);
         }
     }
     const config = loadConfig();
@@ -556,9 +559,10 @@ app.post('/api/auth/password', (req, res) => {
 // ─── Configurable sync cron ─────────────────────────────────────────────────
 
 const DEFAULT_CRON = '0 4 * * *';
+const DEFAULT_TIMEZONE = 'Europe/Warsaw';
 let activeCronTask = null;
 
-function startCron(expression) {
+function startCron(expression, timezone) {
     if (activeCronTask) {
         activeCronTask.stop();
         activeCronTask = null;
@@ -568,8 +572,9 @@ function startCron(expression) {
         console.error('Invalid cron expression:', expression);
         return;
     }
+    const tz = timezone || loadConfig().cronTimezone || DEFAULT_TIMEZONE;
     activeCronTask = cron.schedule(expression, async () => {
-        console.log(`Cron triggered [${expression}]`);
+        console.log(`Cron triggered [${expression}] (${tz})`);
         const playlist = loadPlaylist();
         if (playlist.sourceUrl) {
             try {
@@ -578,30 +583,32 @@ function startCron(expression) {
                 console.error('Cron sync failed:', err.message);
             }
         }
-    }, {
-        timezone: process.env.TZ || Intl.DateTimeFormat().resolvedOptions().timeZone
-    });
-    console.log(`Cron scheduled: ${expression}`);
+    }, { timezone: tz });
+    console.log(`Cron scheduled: ${expression} (${tz})`);
 }
 
 // GET current cron config
 app.get('/api/cron', (req, res) => {
     const config = loadConfig();
-    res.json({ expression: config.cronExpression || DEFAULT_CRON });
+    res.json({
+        expression: config.cronExpression || DEFAULT_CRON,
+        timezone: config.cronTimezone || DEFAULT_TIMEZONE,
+    });
 });
 
 // POST new cron config
 app.post('/api/cron', (req, res) => {
-    const { expression } = req.body;
+    const { expression, timezone } = req.body;
     if (!expression) return res.status(400).json({ error: 'expression required' });
     if (expression !== 'manual' && !cron.validate(expression)) {
         return res.status(400).json({ error: 'Invalid cron expression' });
     }
     const config = loadConfig();
     config.cronExpression = expression;
+    config.cronTimezone = timezone || DEFAULT_TIMEZONE;
     saveConfig(config);
-    startCron(expression);
-    res.json({ ok: true, expression });
+    startCron(expression, config.cronTimezone);
+    res.json({ ok: true, expression, timezone: config.cronTimezone });
 });
 
 // ─── Start ──────────────────────────────────────────────────────────────────
@@ -610,7 +617,7 @@ const token = getOrCreateToken();
 const initialConfig = loadConfig();
 
 console.log(`\nM3Uify v${APP_VERSION}`);
-startCron(initialConfig.cronExpression || DEFAULT_CRON);
+startCron(initialConfig.cronExpression || DEFAULT_CRON, initialConfig.cronTimezone || DEFAULT_TIMEZONE);
 
 app.listen(PORT, () => {
     console.log(`IPTV Manager running at http://localhost:${PORT}`);

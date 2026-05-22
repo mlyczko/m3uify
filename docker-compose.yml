@@ -9,4 +9,3 @@ services:
       - ./data:/app/data
     environment:
       - PORT=6767
-      - TZ=Europe/Warsaw

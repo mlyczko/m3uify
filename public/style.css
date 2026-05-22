@@ -1071,6 +1071,21 @@ button {
 #cron-preview.invalid {
   color: var(--danger);
 }
+#cron-timezone {
+  font-size: 13px;
+  padding: 8px 12px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+}
+#cron-timezone:focus {
+  border-color: var(--accent);
+}
 
 /* ══════════════════════════════════════════
    SCROLLBAR

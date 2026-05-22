@@ -979,6 +979,7 @@ document.getElementById('import-input').addEventListener('change', async (e) => 
             updateCronPreview(data.cronExpression);
             highlightActivePreset(data.cronExpression);
         }
+        if (data.cronTimezone && cronTimezoneSelect) cronTimezoneSelect.value = data.cronTimezone;
         showToast('Settings imported successfully!', 'success');
     } catch (err) {
         showToast('Import failed: ' + err.message, 'error');
@@ -1013,6 +1014,7 @@ document.getElementById('reset-btn').addEventListener('click', async () => {
             updateCronPreview(data.cronExpression);
             highlightActivePreset(data.cronExpression);
         }
+        if (data.cronTimezone && cronTimezoneSelect) cronTimezoneSelect.value = data.cronTimezone;
         showToast('Reset to original playlist!', 'success');
     } catch (err) {
         showToast('Reset failed: ' + err.message, 'error');
@@ -1026,6 +1028,7 @@ const cronInput = document.getElementById('cron-input');
 const cronPreview = document.getElementById('cron-preview');
 const cronSaveBtn = document.getElementById('cron-save-btn');
 const cronPresetBtns = document.querySelectorAll('.cron-preset');
+const cronTimezoneSelect = document.getElementById('cron-timezone');
 
 const CRON_DESCRIPTIONS = {
     '0 4 * * *': 'Every day at 04:00',
@@ -1073,9 +1076,10 @@ cronPresetBtns.forEach(btn => {
 cronSaveBtn.addEventListener('click', async () => {
     const expr = cronInput.value.trim();
     if (!expr) return;
+    const timezone = cronTimezoneSelect.value || 'Europe/Warsaw';
     cronSaveBtn.disabled = true;
     try {
-        await api('POST', '/cron', { expression: expr });
+        await api('POST', '/cron', { expression: expr, timezone });
         showToast('Schedule saved!', 'success');
     } catch (err) {
         showToast('Failed: ' + err.message, 'error');
@@ -1091,6 +1095,17 @@ async function loadCronConfig() {
         cronInput.value = expr;
         updateCronPreview(expr);
         highlightActivePreset(expr);
+        if (data.timezone && cronTimezoneSelect) {
+            cronTimezoneSelect.value = data.timezone;
+            // If stored timezone isn't in the list, add it dynamically
+            if (!cronTimezoneSelect.value) {
+                const opt = document.createElement('option');
+                opt.value = data.timezone;
+                opt.textContent = data.timezone;
+                cronTimezoneSelect.appendChild(opt);
+                cronTimezoneSelect.value = data.timezone;
+            }
+        }
     } catch { }
 }
 
