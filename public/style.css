@@ -629,6 +629,9 @@ button {
 .group-card:hover {
   border-color: var(--border-soft);
 }
+.group-card.has-search-match {
+  border-left: 3px solid var(--accent);
+}
 
 .group-header {
   display: flex;
@@ -832,8 +835,13 @@ button {
 }
 #bulk-deselect-btn {
   margin-left: auto;
-  font-size: 12px;
-  color: var(--text-muted);
+  color: var(--danger);
+  border-color: var(--danger);
+  opacity: 0.8;
+}
+#bulk-deselect-btn:hover {
+  background: var(--danger-subtle);
+  opacity: 1;
 }
 
 .channel-toggle-btn {

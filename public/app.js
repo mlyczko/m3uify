@@ -140,22 +140,25 @@ function renderAll() {
     }
 
     const search = searchInput.value.trim().toLowerCase();
+    const activeSearch = search.length >= 3 ? search : '';
     let totalVisible = 0;
 
     for (const [groupName, channels] of channelsByGroup) {
-        const card = renderGroup(groupName, channels, search);
+        const card = renderGroup(groupName, channels, activeSearch);
         groupsContainer.appendChild(card);
-        // Render a mirror card in pane B
-        const cardB = renderGroup(groupName, channels, search);
+        const cardB = renderGroup(groupName, channels, activeSearch);
         groupsContainerB.appendChild(cardB);
-        const visible = channels.filter(ch => !search || ch.name.toLowerCase().includes(search));
+        const visible = channels.filter(ch => !activeSearch || ch.name.toLowerCase().includes(activeSearch));
         totalVisible += visible.length;
     }
 
     channelCount.textContent = `${state.channels.length} channels · ${state.groups.length} groups`;
-    if (search) channelCount.textContent += ` · ${totalVisible} matching`;
+    if (activeSearch) channelCount.textContent += ` · ${totalVisible} matching`;
 
     initGroupDrag();
+
+    // Re-apply group expansion + left-border highlight if an active search exists
+    if (activeSearch) applySearchHighlight(activeSearch);
 }
 
 function renderGroup(groupName, channels, search) {
@@ -821,23 +824,61 @@ saveBtn.addEventListener('click', async () => {
 
 // ─── Search ──────────────────────────────────────────────────────────────────
 const searchClear = document.getElementById('search-clear');
+
+function applySearchHighlight(q) {
+    // Expand groups with matches and mark them; collapse groups expanded by a prior search that now have no match
+    document.querySelectorAll('.group-card').forEach(card => {
+        const list = card.querySelector('.channel-list');
+        if (!list) return;
+        const hasMatch = list.querySelectorAll('.channel-item:not(.hidden-by-search)').length > 0;
+        card.classList.toggle('has-search-match', hasMatch);
+        if (hasMatch && list.style.display === 'none') {
+            list.style.display = '';
+            list.dataset.searchExpanded = 'true';
+        } else if (!hasMatch && list.dataset.searchExpanded) {
+            list.style.display = 'none';
+            delete list.dataset.searchExpanded;
+        }
+    });
+}
+
+function clearSearchHighlight() {
+    document.querySelectorAll('.group-card').forEach(card => {
+        card.classList.remove('has-search-match');
+        const list = card.querySelector('.channel-list');
+        if (list && list.dataset.searchExpanded) {
+            list.style.display = 'none';
+            delete list.dataset.searchExpanded;
+        }
+    });
+    document.querySelectorAll('.channel-item').forEach(item => item.classList.remove('hidden-by-search'));
+}
+
 searchInput.addEventListener('input', () => {
-    searchClear.style.display = searchInput.value ? 'block' : 'none';
-    const q = searchInput.value.trim().toLowerCase();
+    const raw = searchInput.value;
+    const q = raw.trim().toLowerCase();
+    searchClear.style.display = raw ? 'block' : 'none';
+
+    if (q.length === 0) {
+        clearSearchHighlight();
+        channelCount.textContent = `${state.channels.length} channels · ${state.groups.length} groups`;
+        return;
+    }
+
+    if (q.length < 3) {
+        clearSearchHighlight();
+        channelCount.textContent = `Type at least 3 characters to search…`;
+        return;
+    }
+
+    // q.length >= 3 — filter and highlight
     document.querySelectorAll('.channel-item').forEach(item => {
         const name = item.querySelector('.channel-name').textContent.toLowerCase();
-        item.classList.toggle('hidden-by-search', !!q && !name.includes(q));
+        item.classList.toggle('hidden-by-search', !name.includes(q));
     });
-
-
-    // Update count
-    const total = state.channels.length;
-    if (q) {
-        const visible = document.querySelectorAll('.channel-item:not(.hidden-by-search)').length;
-        channelCount.textContent = `${total} channels · ${state.groups.length} groups · ${visible} matching`;
-    } else {
-        channelCount.textContent = `${total} channels · ${state.groups.length} groups`;
-    }
+    applySearchHighlight(q);
+    const visible = document.querySelectorAll('.channel-item:not(.hidden-by-search)').length;
+    channelCount.textContent = `${state.channels.length} channels · ${state.groups.length} groups · ${visible} matching`;
 });
 
 searchClear.addEventListener('click', () => {
