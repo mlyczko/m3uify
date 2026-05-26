@@ -4,7 +4,7 @@ Web-based IPTV playlist manager — fetch, organise, and serve a custom-ordered 
 
 ## Screenshots
 
-**Overview — sidebar with playlist URL (copy button), source URL input (placeholder `http://...`), auto-sync schedule, and security section; two-row toolbar; collapsed group list**
+**Overview — sidebar with playlist URL (copy button), source URL input (placeholder `http://...`), EPG Sources section, auto-sync schedule, and security section; two-row toolbar; collapsed group list**
 ![Overview](docs/overview.png)
 
 **Channels — expanded group with numbered channels, per-row checkbox for bulk selection, logos, move (↪), toggle (●), and drag handle**
@@ -18,6 +18,9 @@ Web-based IPTV playlist manager — fetch, organise, and serve a custom-ordered 
 
 **Live search — search input (placeholder `Search channels…`) filters in real time; toolbar shows total channels · groups · matching count**
 ![Search](docs/search.png)
+
+**EPG Sources — add one or more EPG XML URLs; each entry shows a remove (✕) button; the input field shows the placeholder `http://epg.example.com/guide.xml`; URLs are written into the served M3U header as `url-tvg`**
+![EPG](docs/epg.png)
 
 **Security — set / change / remove dashboard password directly from the sidebar (no restart required); password inputs have show/hide (👁) toggles**
 ![Security](docs/security.png)
@@ -67,6 +70,7 @@ Web-based IPTV playlist manager — fetch, organise, and serve a custom-ordered 
 
 - Serves your reordered, filtered playlist at a secret token URL: `http://localhost:6767/<token>`
 - Disabled groups and disabled channels are excluded from the served M3U automatically
+- **EPG Sources** — add one or more EPG XML URLs from the sidebar; they are written into the `#EXTM3U` header as `url-tvg` so your IPTV player picks them up automatically; each URL can be removed individually
 - Token stored in `./data/config.json`; regenerate at any time from the UI (old URL stops working immediately)
 - **⬇ Download M3U** — download the current modified playlist as a `.m3u` file
 
@@ -116,29 +120,33 @@ npm run dev
    - Click a channel checkbox to select it; shift-click to select a range; use the bulk toolbar to enable, disable, or move multiple channels at once
 5. Click **Save Changes**
 6. Copy the **Playlist URL** from the sidebar into your IPTV player
-7. _(Optional)_ Scroll to the **Security** section in the sidebar and set a password to protect the dashboard
+7. _(Optional)_ Open the **EPG Sources** section in the sidebar, paste your EPG XML URL (placeholder: `http://epg.example.com/guide.xml`), and click **Add** — the URL is written into the `#EXTM3U` header so your player loads the guide automatically
+8. _(Optional)_ Scroll to the **Security** section in the sidebar and set a password to protect the dashboard
 
 ## API
 
-| Method | Path                    | Description                                         |
-| ------ | ----------------------- | --------------------------------------------------- |
-| `GET`  | `/api/playlist`         | Current playlist state + token + auth status        |
-| `POST` | `/api/source`           | Set source URL and sync                             |
-| `POST` | `/api/import`           | Import M3U text or URL (merges into existing)       |
-| `POST` | `/api/save`             | Persist channel/group order, disabled flags         |
-| `POST` | `/api/sync`             | Force re-sync from saved source URL                 |
-| `POST` | `/api/reset`            | Reset to original source; clears all customisations |
-| `POST` | `/api/clear`            | Wipe playlist and source URL; returns empty state   |
-| `GET`  | `/api/download`         | Download modified playlist as `playlist.m3u`        |
-| `GET`  | `/api/backup/export`    | Download full JSON backup of all settings           |
-| `POST` | `/api/backup/import`    | Restore from a JSON backup                          |
-| `GET`  | `/api/cron`             | Get current auto-sync schedule                      |
-| `POST` | `/api/cron`             | Set auto-sync schedule (`{ expression }`)           |
-| `GET`  | `/api/token`            | Get current token and playlist URL                  |
-| `POST` | `/api/token/regenerate` | Generate a new secret token                         |
-| `POST` | `/api/auth/password`    | Set / change / remove dashboard password            |
-| `GET`  | `/auth/logout`          | Clear session cookie and redirect to login          |
-| `GET`  | `/:token`               | Serve the filtered playlist as `audio/x-mpegurl`    |
+| Method   | Path                    | Description                                         |
+| -------- | ----------------------- | --------------------------------------------------- |
+| `GET`    | `/api/playlist`         | Current playlist state + token + auth status        |
+| `POST`   | `/api/source`           | Set source URL and sync                             |
+| `POST`   | `/api/import`           | Import M3U text or URL (merges into existing)       |
+| `POST`   | `/api/save`             | Persist channel/group order, disabled flags         |
+| `POST`   | `/api/sync`             | Force re-sync from saved source URL                 |
+| `POST`   | `/api/reset`            | Reset to original source; clears all customisations |
+| `POST`   | `/api/clear`            | Wipe playlist and source URL; returns empty state   |
+| `GET`    | `/api/download`         | Download modified playlist as `playlist.m3u`        |
+| `GET`    | `/api/epg`              | Get list of EPG source URLs                         |
+| `POST`   | `/api/epg`              | Add an EPG source URL (`{ url }`)                   |
+| `DELETE` | `/api/epg`              | Remove an EPG source URL (`{ url }`)                |
+| `GET`    | `/api/backup/export`    | Download full JSON backup of all settings           |
+| `POST`   | `/api/backup/import`    | Restore from a JSON backup                          |
+| `GET`    | `/api/cron`             | Get current auto-sync schedule                      |
+| `POST`   | `/api/cron`             | Set auto-sync schedule (`{ expression }`)           |
+| `GET`    | `/api/token`            | Get current token and playlist URL                  |
+| `POST`   | `/api/token/regenerate` | Generate a new secret token                         |
+| `POST`   | `/api/auth/password`    | Set / change / remove dashboard password            |
+| `GET`    | `/auth/logout`          | Clear session cookie and redirect to login          |
+| `GET`    | `/:token`               | Serve the filtered playlist as `audio/x-mpegurl`    |
 
 ## Docker
 
