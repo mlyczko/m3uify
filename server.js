@@ -313,7 +313,7 @@ app.get('/:token', (req, res) => {
             return (a.order ?? 0) - (b.order ?? 0);
         });
 
-    const m3u = serializeM3U(sorted);
+    const m3u = serializeM3U(sorted, playlist.epgUrls || []);
     res.setHeader('Content-Type', 'audio/x-mpegurl');
     res.send(m3u);
 });
@@ -331,7 +331,7 @@ app.get('/api/download', (req, res) => {
             if (gi !== 0) return gi;
             return (a.order ?? 0) - (b.order ?? 0);
         });
-    const m3u = serializeM3U(sorted);
+    const m3u = serializeM3U(sorted, playlist.epgUrls || []);
     res.setHeader('Content-Type', 'audio/x-mpegurl');
     res.setHeader('Content-Disposition', 'attachment; filename="playlist.m3u"');
     res.send(m3u);
@@ -343,7 +343,7 @@ app.get('/api/download', (req, res) => {
 app.get('/api/playlist', (req, res) => {
     const playlist = loadPlaylist();
     const config = loadConfig();
-    res.json({ ...playlist, token: config.token, version: APP_VERSION, authEnabled: getAuthState().enabled, managedByEnv: getAuthState().managedByEnv });
+    res.json({ ...playlist, epgUrls: playlist.epgUrls || [], token: config.token, version: APP_VERSION, authEnabled: getAuthState().enabled, managedByEnv: getAuthState().managedByEnv });
 });
 
 // Import M3U text manually
@@ -397,6 +397,7 @@ app.post('/api/save', (req, res) => {
             ...playlist, channels: reordered, groups,
             disabledGroups: Array.isArray(disabledGroups) ? disabledGroups : (playlist.disabledGroups || []),
             customGroups: Array.isArray(customGroups) ? customGroups : (playlist.customGroups || []),
+            epgUrls: Array.isArray(playlist.epgUrls) ? playlist.epgUrls : [],
         };
         savePlaylist(updated);
         res.json({ ok: true });
@@ -445,7 +446,7 @@ app.post('/api/reset', async (req, res) => {
         const fresh = parseM3U(text);
         const channels = fresh.map((ch, idx) => ({ ...ch, id: uuidv4(), order: idx, disabled: false, originalGroup: ch.group }));
         const groups = [...new Set(channels.map(ch => ch.group))];
-        const reset = { channels, groups, disabledGroups: [], customGroups: [], sourceUrl, lastSync: new Date().toISOString() };
+        const reset = { channels, groups, disabledGroups: [], customGroups: [], epgUrls: [], sourceUrl, lastSync: new Date().toISOString() };
         savePlaylist(reset);
         const config = loadConfig();
         config.cronExpression = DEFAULT_CRON;
@@ -460,9 +461,40 @@ app.post('/api/reset', async (req, res) => {
     }
 });
 
+// Get EPG URLs
+app.get('/api/epg', (req, res) => {
+    const playlist = loadPlaylist();
+    res.json({ epgUrls: playlist.epgUrls || [] });
+});
+
+// Add an EPG URL
+app.post('/api/epg', (req, res) => {
+    const { url } = req.body || {};
+    if (!url || typeof url !== 'string') return res.status(400).json({ error: 'url required' });
+    let parsed;
+    try { parsed = new URL(url); } catch { return res.status(400).json({ error: 'Invalid URL' }); }
+    if (!['http:', 'https:'].includes(parsed.protocol)) return res.status(400).json({ error: 'Only http/https URLs are allowed' });
+    const playlist = loadPlaylist();
+    const epgUrls = playlist.epgUrls || [];
+    if (epgUrls.includes(url)) return res.status(409).json({ error: 'URL already exists' });
+    epgUrls.push(url);
+    savePlaylist({ ...playlist, epgUrls });
+    res.json({ epgUrls });
+});
+
+// Remove an EPG URL
+app.delete('/api/epg', (req, res) => {
+    const { url } = req.body || {};
+    if (!url) return res.status(400).json({ error: 'url required' });
+    const playlist = loadPlaylist();
+    const epgUrls = (playlist.epgUrls || []).filter(u => u !== url);
+    savePlaylist({ ...playlist, epgUrls });
+    res.json({ epgUrls });
+});
+
 // Clear playlist — wipe all data, keep token
 app.post('/api/clear', (req, res) => {
-    const empty = { channels: [], groups: [], disabledGroups: [], customGroups: [], sourceUrl: null, lastSync: null };
+    const empty = { channels: [], groups: [], disabledGroups: [], customGroups: [], epgUrls: [], sourceUrl: null, lastSync: null };
     savePlaylist(empty);
     const config = loadConfig();
     config.cronExpression = DEFAULT_CRON;

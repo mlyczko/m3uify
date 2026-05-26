@@ -47,6 +47,16 @@
             </section>
 
             <section class="sidebar-section">
+                <h3>EPG Sources</h3>
+                <div id="epg-url-list"></div>
+                <div class="epg-add-row">
+                    <input type="text" id="epg-url-input" placeholder="http://epg.example.com/guide.xml" />
+                    <button id="epg-add-btn" class="btn-primary">Add</button>
+                </div>
+                <small>EPG URLs are added to the playlist M3U header (url-tvg)</small>
+            </section>
+
+            <section class="sidebar-section">
                 <h3>Sync</h3>
                 <div id="last-sync-info">Last sync: —</div>
                 <button id="sync-now-btn" class="btn-secondary">Sync Now</button>

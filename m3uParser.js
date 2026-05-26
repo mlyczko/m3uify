@@ -93,10 +93,12 @@ function parseExtInf(line) {
 /**
  * Serialize channels array back to M3U format
  * @param {Array} channels
+ * @param {string[]} [epgUrls] - Optional list of EPG source URLs to embed in the header
  * @returns {string}
  */
-function serializeM3U(channels) {
-    let out = '#EXTM3U\n';
+function serializeM3U(channels, epgUrls = []) {
+    const tvgUrl = epgUrls && epgUrls.length ? ` url-tvg="${epgUrls.join(',')}"` : '';
+    let out = `#EXTM3U${tvgUrl}\n`;
     for (const ch of channels) {
         const extra = ch.extraAttrs ? ` ${ch.extraAttrs}` : '';
         out += `#EXTINF:-1 tvg-id="${ch.tvgId}" tvg-name="${ch.tvgName}" tvg-logo="${ch.logo}" group-title="${ch.group}"${extra},${ch.name}\n`;

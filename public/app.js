@@ -4,6 +4,7 @@ let state = {
     groups: [],
     disabledGroups: [],
     customGroups: [],
+    epgUrls: [],
     token: null,
     sourceUrl: null,
     lastSync: null,
@@ -59,6 +60,7 @@ function applyState(data) {
     state.groups = data.groups || [];
     state.disabledGroups = data.disabledGroups || [];
     state.customGroups = data.customGroups || [];
+    state.epgUrls = data.epgUrls || [];
     state.token = data.token;
     state.sourceUrl = data.sourceUrl || null;
     state.lastSync = data.lastSync || null;
@@ -98,6 +100,7 @@ function applyState(data) {
     }
 
     if (state.sourceUrl) sourceUrlInput.value = state.sourceUrl;
+    renderEpgList();
     updateLastSync();
     markDirty(false);
     renderAll();
@@ -111,6 +114,52 @@ function updateLastSync() {
         lastSyncInfo.textContent = 'Last sync: —';
     }
 }
+
+// ─── EPG Sources ─────────────────────────────────────────────────────────────
+function renderEpgList() {
+    const list = document.getElementById('epg-url-list');
+    if (!list) return;
+    list.innerHTML = '';
+    if (!state.epgUrls.length) {
+        list.innerHTML = '<div class="epg-empty">No EPG sources added yet.</div>';
+        return;
+    }
+    for (const url of state.epgUrls) {
+        const row = document.createElement('div');
+        row.className = 'epg-url-row';
+        row.innerHTML = `<span class="epg-url-text" title="${escapeHtml(url)}">${escapeHtml(url)}</span><button class="epg-remove-btn btn-danger btn-sm" title="Remove EPG">✕</button>`;
+        row.querySelector('.epg-remove-btn').addEventListener('click', async () => {
+            try {
+                const data = await api('DELETE', '/epg', { url });
+                state.epgUrls = data.epgUrls;
+                renderEpgList();
+                showToast('EPG removed', 'success');
+            } catch (err) {
+                showToast('Failed: ' + err.message, 'error');
+            }
+        });
+        list.appendChild(row);
+    }
+}
+
+document.getElementById('epg-add-btn').addEventListener('click', async () => {
+    const input = document.getElementById('epg-url-input');
+    const url = input.value.trim();
+    if (!url) { showToast('Enter an EPG URL', 'error'); return; }
+    try {
+        const data = await api('POST', '/epg', { url });
+        state.epgUrls = data.epgUrls;
+        input.value = '';
+        renderEpgList();
+        showToast('EPG source added', 'success');
+    } catch (err) {
+        showToast('Failed: ' + err.message, 'error');
+    }
+});
+
+document.getElementById('epg-url-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') document.getElementById('epg-add-btn').click();
+});
 
 // ─── Render ──────────────────────────────────────────────────────────────────
 function renderAll() {
