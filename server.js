@@ -64,7 +64,8 @@ function mergeChannels(existing, fresh) {
         const freshCh = findFresh(ch) || ch;
         return {
             id: ch.id || uuidv4(),
-            name: freshCh.name,
+            name: ch.customName || freshCh.name,
+            customName: ch.customName || null,
             group: ch.group,  // preserve user-renamed group
             originalGroup: ch.originalGroup || freshCh.group,  // always the source group
             logo: freshCh.logo,
@@ -115,6 +116,7 @@ async function fetchAndSync(sourceUrl, force = false) {
     const groups = buildGroupOrder(merged, playlist.groups || []);
 
     const updated = {
+        ...playlist,
         channels: merged,
         groups,
         sourceUrl,
@@ -369,6 +371,7 @@ app.post('/api/import', async (req, res) => {
         const groups = buildGroupOrder(merged, playlist.groups || []);
 
         const updated = {
+            ...playlist,
             channels: merged,
             groups,
             sourceUrl: resolvedUrl || playlist.sourceUrl || null,
@@ -377,7 +380,7 @@ app.post('/api/import', async (req, res) => {
         savePlaylist(updated);
 
         const config = loadConfig();
-        res.json({ ...updated, token: config.token });
+        res.json({ ...updated, epgUrls: updated.epgUrls || [], token: config.token, version: APP_VERSION, authEnabled: getAuthState().enabled, managedByEnv: getAuthState().managedByEnv });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: err.message });
@@ -413,7 +416,7 @@ app.post('/api/source', async (req, res) => {
         if (!sourceUrl) return res.status(400).json({ error: 'sourceUrl required' });
         const updated = await fetchAndSync(sourceUrl, true); // force=true: user action, skip rate limit
         const config = loadConfig();
-        res.json({ ...updated, token: config.token });
+        res.json({ ...updated, epgUrls: updated.epgUrls || [], token: config.token, version: APP_VERSION, authEnabled: getAuthState().enabled, managedByEnv: getAuthState().managedByEnv });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: err.message });
@@ -427,7 +430,7 @@ app.post('/api/sync', async (req, res) => {
         if (!playlist.sourceUrl) return res.status(400).json({ error: 'No source URL configured' });
         const updated = await fetchAndSync(playlist.sourceUrl, true); // force=true for manual
         const config = loadConfig();
-        res.json({ ...updated, token: config.token });
+        res.json({ ...updated, epgUrls: updated.epgUrls || [], token: config.token, version: APP_VERSION, authEnabled: getAuthState().enabled, managedByEnv: getAuthState().managedByEnv });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: err.message });
@@ -454,7 +457,7 @@ app.post('/api/reset', async (req, res) => {
         saveConfig(config);
         startCron(DEFAULT_CRON, config.cronTimezone);
         console.log(`Reset complete. ${channels.length} channels, ${groups.length} groups.`);
-        res.json({ ...reset, token: config.token, cronExpression: DEFAULT_CRON, cronTimezone: config.cronTimezone });
+        res.json({ ...reset, token: config.token, cronExpression: DEFAULT_CRON, cronTimezone: config.cronTimezone, version: APP_VERSION, authEnabled: getAuthState().enabled, managedByEnv: getAuthState().managedByEnv });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: err.message });
@@ -502,7 +505,7 @@ app.post('/api/clear', (req, res) => {
     saveConfig(config);
     startCron(DEFAULT_CRON, config.cronTimezone);
     console.log('Playlist cleared.');
-    res.json({ ...empty, token: config.token, cronExpression: DEFAULT_CRON, cronTimezone: config.cronTimezone });
+    res.json({ ...empty, token: config.token, cronExpression: DEFAULT_CRON, cronTimezone: config.cronTimezone, version: APP_VERSION, authEnabled: getAuthState().enabled, managedByEnv: getAuthState().managedByEnv });
 });
 
 // ─── Export / Import ─────────────────────────────────────────────────────────
@@ -537,7 +540,7 @@ app.post('/api/backup/import', (req, res) => {
         }
     }
     const config = loadConfig();
-    res.json({ ...bundle.playlist, token: config.token, cronExpression: config.cronExpression || DEFAULT_CRON });
+    res.json({ ...bundle.playlist, epgUrls: bundle.playlist.epgUrls || [], token: config.token, cronExpression: config.cronExpression || DEFAULT_CRON, cronTimezone: config.cronTimezone || DEFAULT_TIMEZONE, version: APP_VERSION, authEnabled: getAuthState().enabled, managedByEnv: getAuthState().managedByEnv });
 });
 
 // Get token info

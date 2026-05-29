@@ -371,6 +371,61 @@ function startGroupRename(card, header, oldName) {
     input.addEventListener('blur', commit);
 }
 
+function startChannelRename(li, ch) {
+    const nameEl = li.querySelector('.channel-name');
+    const renameBtn = li.querySelector('.channel-rename-btn');
+
+    if (li.querySelector('.channel-rename-input')) return;
+
+    // Disable drag while editing
+    li.draggable = false;
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'channel-rename-input';
+    input.value = ch.name;
+    nameEl.replaceWith(input);
+    input.focus();
+    input.select();
+
+    async function commit() {
+        const newName = input.value.trim();
+        li.draggable = true;
+        if (!newName || newName === ch.name) {
+            input.replaceWith(nameEl);
+            return;
+        }
+
+        const idx = state.channels.findIndex(c => c.id === ch.id);
+        if (idx !== -1) {
+            state.channels[idx] = { ...state.channels[idx], name: newName, customName: newName };
+            ch = state.channels[idx];
+        }
+        nameEl.textContent = newName;
+        input.replaceWith(nameEl);
+
+        try {
+            await api('POST', '/save', { channels: state.channels, groups: state.groups, disabledGroups: state.disabledGroups, customGroups: state.customGroups });
+            markDirty(false);
+            showToast(`Renamed to "${newName}"`, 'success');
+        } catch (err) {
+            markDirty(true);
+            showToast('Rename saved in UI but failed to persist: ' + err.message, 'error');
+        }
+    }
+
+    function cancel() {
+        li.draggable = true;
+        input.replaceWith(nameEl);
+    }
+
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') { e.preventDefault(); commit(); }
+        if (e.key === 'Escape') { e.preventDefault(); cancel(); }
+    });
+    input.addEventListener('blur', commit);
+}
+
 function renderChannel(ch, search, index) {
     const li = document.createElement('li');
     li.className = 'channel-item';
@@ -391,6 +446,7 @@ function renderChannel(ch, search, index) {
     ${index != null ? `<span class="channel-index">${index}</span>` : ''}
     ${logoEl}
     <span class="channel-name">${escapeHtml(ch.name)}</span>
+    <button class="channel-rename-btn" title="Rename channel">✎</button>
     <button class="channel-move-btn" title="Move to group">↪</button>
     <button class="channel-toggle-btn ${ch.disabled ? 'off' : 'on'}" title="${ch.disabled ? 'Enable channel' : 'Disable channel'}">●</button>
     <span class="channel-drag-handle">⠿</span>
@@ -432,6 +488,12 @@ function renderChannel(ch, search, index) {
         btn.classList.toggle('off', !!ch.disabled);
         btn.title = ch.disabled ? 'Enable channel' : 'Disable channel';
         markDirty(true);
+    });
+
+    const renameChBtn = li.querySelector('.channel-rename-btn');
+    renameChBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        startChannelRename(li, ch);
     });
 
     const moveBtn = li.querySelector('.channel-move-btn');

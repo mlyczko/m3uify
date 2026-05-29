@@ -982,6 +982,38 @@ button {
   flex-shrink: 0;
 }
 
+.channel-rename-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 13px;
+  padding: 0 3px;
+  cursor: pointer;
+  flex-shrink: 0;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity var(--tr), color var(--tr);
+}
+.channel-item:hover .channel-rename-btn {
+  opacity: 1;
+}
+.channel-rename-btn:hover {
+  color: var(--accent);
+}
+
+.channel-rename-input {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 13px;
+  padding: 2px 8px;
+  outline: none;
+  box-shadow: 0 0 0 3px var(--accent-subtle);
+  min-width: 0;
+}
+
 /* ══════════════════════════════════════════
    DRAG & DROP
 ══════════════════════════════════════════ */
