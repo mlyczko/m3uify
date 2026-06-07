@@ -59,9 +59,30 @@ function mergeChannels(existing, fresh) {
     });
     const added = fresh.filter(ch => !matchedFreshUrls.has(ch.url));
 
+    // Compute max order per group among kept channels so new channels can be appended after them
+    const maxOrderByGroup = new Map();
+    for (const ch of kept) {
+        const cur = maxOrderByGroup.get(ch.group) ?? -1;
+        if ((ch.order ?? 0) > cur) maxOrderByGroup.set(ch.group, ch.order ?? 0);
+    }
+    const newCountByGroup = new Map();
+    const keptSet = new Set(kept);
+
     // Assign stable ids, update stream URL and attributes from fresh
     const merged = [...kept, ...added].map((ch, idx) => {
         const freshCh = findFresh(ch) || ch;
+        let order;
+        if (keptSet.has(ch)) {
+            // Existing channel — preserve stored order
+            order = ch.order ?? idx;
+        } else {
+            // New channel — place at the end of its group so it doesn't displace existing channels
+            const g = ch.group || freshCh.group;
+            const maxOrd = maxOrderByGroup.get(g) ?? -1;
+            const newCount = newCountByGroup.get(g) ?? 0;
+            order = maxOrd + 1 + newCount;
+            newCountByGroup.set(g, newCount + 1);
+        }
         return {
             id: ch.id || uuidv4(),
             name: ch.customName || freshCh.name,
@@ -73,7 +94,7 @@ function mergeChannels(existing, fresh) {
             tvgName: freshCh.tvgName,
             extraAttrs: freshCh.extraAttrs || '',
             url: freshCh.url,  // always use fresh URL (token may have changed)
-            order: ch.order ?? idx,
+            order,
             disabled: ch.disabled || false,  // preserve user's disabled flag
         };
     });
