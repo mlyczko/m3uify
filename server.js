@@ -99,7 +99,26 @@ function mergeChannels(existing, fresh) {
         };
     });
 
-    return merged;
+    // Deduplicate by URL — keep first occurrence, but prefer entries with user customisations
+    const seenUrls = new Map(); // url -> index in deduped array
+    const deduped = [];
+    for (const ch of merged) {
+        if (!seenUrls.has(ch.url)) {
+            seenUrls.set(ch.url, deduped.length);
+            deduped.push(ch);
+        } else {
+            // If this duplicate carries user customisations and the kept one doesn't, swap it in
+            const existingIdx = seenUrls.get(ch.url);
+            const kept = deduped[existingIdx];
+            const thisHasCustom = ch.customName || ch.disabled || ch.group !== ch.originalGroup;
+            const keptHasCustom = kept.customName || kept.disabled || kept.group !== kept.originalGroup;
+            if (thisHasCustom && !keptHasCustom) {
+                deduped[existingIdx] = ch;
+            }
+        }
+    }
+
+    return deduped;
 }
 
 function buildGroupOrder(channels, existingGroups) {
@@ -671,6 +690,34 @@ app.post('/api/cron', (req, res) => {
 
 const token = getOrCreateToken();
 const initialConfig = loadConfig();
+
+// One-time deduplication of any duplicates already stored in playlist.json
+(function deduplicateStoredPlaylist() {
+    const playlist = loadPlaylist();
+    if (!playlist.channels || playlist.channels.length === 0) return;
+    const before = playlist.channels.length;
+    const seenUrls = new Map();
+    const deduped = [];
+    for (const ch of playlist.channels) {
+        if (!seenUrls.has(ch.url)) {
+            seenUrls.set(ch.url, deduped.length);
+            deduped.push(ch);
+        } else {
+            const existingIdx = seenUrls.get(ch.url);
+            const kept = deduped[existingIdx];
+            const thisHasCustom = ch.customName || ch.disabled || ch.group !== ch.originalGroup;
+            const keptHasCustom = kept.customName || kept.disabled || kept.group !== kept.originalGroup;
+            if (thisHasCustom && !keptHasCustom) {
+                deduped[existingIdx] = ch;
+            }
+        }
+    }
+    if (deduped.length < before) {
+        playlist.channels = deduped;
+        savePlaylist(playlist);
+        console.log(`Removed ${before - deduped.length} duplicate channel(s) from stored playlist.`);
+    }
+})();
 
 console.log(`\nM3Uify v${APP_VERSION}`);
 startCron(initialConfig.cronExpression || DEFAULT_CRON, initialConfig.cronTimezone || DEFAULT_TIMEZONE);
