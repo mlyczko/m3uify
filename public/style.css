@@ -544,6 +544,34 @@ button {
   padding: 3px 10px;
 }
 
+/* Live TV / VOD switch */
+.segmented-toggle {
+  display: flex;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+  gap: 2px;
+}
+.segmented-btn {
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: calc(var(--radius-sm) - 2px);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.segmented-btn:hover {
+  color: var(--text);
+}
+.segmented-btn.active {
+  background: var(--accent);
+  color: var(--accent-on);
+}
+
 /* Icon buttons */
 .icon-btn {
   background: var(--surface2);
@@ -611,6 +639,23 @@ button {
 }
 .hidden {
   display: none !important;
+}
+
+/* ══════════════════════════════════════════
+   GROUP SECTIONS (Live TV / VOD)
+══════════════════════════════════════════ */
+.section-divider {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 10px 4px 4px;
+  margin-top: 4px;
+  border-bottom: 1px solid var(--border);
+}
+.section-divider:first-child {
+  margin-top: 0;
 }
 
 /* ══════════════════════════════════════════
@@ -790,6 +835,10 @@ button {
   padding: 8px 14px;
   border-bottom: 1px solid var(--border);
   cursor: grab;
+  /* Skip layout/paint for off-screen rows so revealing huge lists (tens of
+     thousands of channels) doesn't require laying out every row at once. */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 45px;
 }
 .channel-item:last-child {
   border-bottom: none;

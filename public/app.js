@@ -162,6 +162,77 @@ document.getElementById('epg-url-input').addEventListener('keydown', (e) => {
 });
 
 // ─── Render ──────────────────────────────────────────────────────────────────
+// Xtream Codes panels (what TiviMate and other IPTV players key off of) put the
+// content type in the stream URL path — /movie/ and /series/ are on-demand,
+// everything else is live. This is far more reliable than the group's display
+// name, since VOD catalogues are often bundled under live-looking group titles
+// (e.g. "PL | NETFLIX", "PL | HBO / MAX" are actually /series/ VOD content).
+function isVodUrl(url) {
+    return /\/(movie|series)\//i.test(url || '');
+}
+
+// Combines two signals: the provider's own "VOD ..." group naming (some VOD
+// catalogues — e.g. audiobooks, music compilations — are served over plain
+// live-style URLs with no /movie//series/ path) OR the URL-based Xtream
+// signal (catches VOD catalogues bundled under live-looking names like
+// "PL | NETFLIX"). Either one being true marks the group as VOD.
+function isVodGroup(groupName, channels) {
+    if (/^vod\b/i.test((groupName || '').trim())) return true;
+    if (!channels || !channels.length) return false;
+    const vodCount = channels.reduce((n, ch) => n + (isVodUrl(ch.url) ? 1 : 0), 0);
+    return vodCount > channels.length / 2;
+}
+
+// Appends group cards into `container`, split into a "Live TV" section and a
+// "VOD" section, each wrapped in its own div so the TV/VOD switch can show
+// just one at a time without rebuilding anything.
+function renderGroupSections(container, entries, activeSearch) {
+    const tv = entries.filter(([g, channels]) => !isVodGroup(g, channels));
+    const vod = entries.filter(([g, channels]) => isVodGroup(g, channels));
+    const appendSection = (key, label, list) => {
+        if (!list.length) return;
+        const section = document.createElement('div');
+        section.className = 'group-section';
+        section.dataset.section = key;
+        const divider = document.createElement('div');
+        divider.className = 'section-divider';
+        divider.textContent = `${label} · ${list.length} group${list.length === 1 ? '' : 's'}`;
+        section.appendChild(divider);
+        for (const [groupName, channels] of list) {
+            section.appendChild(renderGroup(groupName, channels, activeSearch));
+        }
+        container.appendChild(section);
+    };
+    appendSection('tv', '📺 Live TV', tv);
+    appendSection('vod', '🎬 VOD', vod);
+    applyContentView(container);
+}
+
+// ─── TV / VOD switch ─────────────────────────────────────────────────────────
+const CONTENT_VIEW_KEY = 'm3uify_content_view';
+let contentView = localStorage.getItem(CONTENT_VIEW_KEY) === 'vod' ? 'vod' : 'tv';
+
+function applyContentView(container) {
+    container.querySelectorAll('.group-section').forEach(section => {
+        section.classList.toggle('hidden', section.dataset.section !== contentView);
+    });
+}
+
+function setContentView(view) {
+    contentView = view === 'vod' ? 'vod' : 'tv';
+    localStorage.setItem(CONTENT_VIEW_KEY, contentView);
+    document.querySelectorAll('#content-view-toggle .segmented-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.view === contentView);
+    });
+    applyContentView(groupsContainer);
+    applyContentView(groupsContainerB);
+}
+
+document.querySelectorAll('#content-view-toggle .segmented-btn').forEach(btn => {
+    btn.addEventListener('click', () => setContentView(btn.dataset.view));
+});
+setContentView(contentView);
+
 function renderAll() {
     selectedIds.clear();
     lastSelectedId = null;
@@ -190,13 +261,15 @@ function renderAll() {
 
     const search = searchInput.value.trim().toLowerCase();
     const activeSearch = search.length >= 3 ? search : '';
+    const twoCol = dualPane.classList.contains('two-col');
+    const entries = [...channelsByGroup.entries()];
     let totalVisible = 0;
 
-    for (const [groupName, channels] of channelsByGroup) {
-        const card = renderGroup(groupName, channels, activeSearch);
-        groupsContainer.appendChild(card);
-        const cardB = renderGroup(groupName, channels, activeSearch);
-        groupsContainerB.appendChild(cardB);
+    renderGroupSections(groupsContainer, entries, activeSearch);
+    // Pane B (mirror) is only needed in 2-column mode — skip building it
+    // to halve DOM work for huge playlists in the common 1-column case.
+    if (twoCol) renderGroupSections(groupsContainerB, entries, activeSearch);
+    for (const [, channels] of entries) {
         const visible = channels.filter(ch => !activeSearch || ch.name.toLowerCase().includes(activeSearch));
         totalVisible += visible.length;
     }
@@ -234,19 +307,26 @@ function renderGroup(groupName, channels, search) {
     const list = document.createElement('ul');
     list.className = 'channel-list';
     list.dataset.group = groupName;
-
-    channels.forEach((ch, idx) => {
-        const item = renderChannel(ch, search, idx + 1);
-        list.appendChild(item);
-    });
-
     list.style.display = 'none';
+    // Store the group's channels and defer building rows until the group is
+    // actually expanded — building every row for every group upfront is what
+    // freezes the tab on huge playlists (tens of thousands of channels).
+    list._channelsData = channels;
+    if (search) {
+        // A search is active — populate immediately so matches can be found/highlighted.
+        populateList(list, channels, search);
+    }
 
     header.addEventListener('click', (e) => {
         // Don't toggle if clicking rename button, toggle button, delete button, or rename input
         if (e.target.closest('.group-rename-btn, .group-rename-input, .group-toggle-btn, .group-delete-btn')) return;
-        const collapsed = list.style.display === 'none';
-        list.style.display = collapsed ? '' : 'none';
+        if (list.style.display !== 'none') { list.style.display = 'none'; return; }
+        if (list.dataset.rendered) { list.style.display = ''; return; }
+        // Stay hidden until every row is built, then reveal in one shot.
+        const q = searchInput.value.trim().toLowerCase();
+        populateList(list, list._channelsData || [], q.length >= 3 ? q : '', () => {
+            list.style.display = '';
+        });
     });
 
     const toggleBtn = header.querySelector('.group-toggle-btn');
@@ -542,6 +622,27 @@ function renderChannel(ch, search, index) {
     return li;
 }
 
+// Builds channel rows for a group's <ul> in small time-boxed chunks (via
+// requestAnimationFrame) so building thousands of rows never blocks the main
+// thread long enough to trigger the browser's "page unresponsive" warning.
+// Callers must keep the list hidden (display:none) until onDone fires —
+// revealing it mid-population would force a layout on every growing frame.
+function populateList(list, channels, search, onDone) {
+    list.innerHTML = '';
+    list.dataset.rendered = 'true';
+    let idx = 0;
+    function step() {
+        const start = performance.now();
+        while (idx < channels.length && performance.now() - start < 12) {
+            list.appendChild(renderChannel(channels[idx], search, idx + 1));
+            idx++;
+        }
+        if (idx < channels.length) requestAnimationFrame(step);
+        else if (onDone) onDone();
+    }
+    step();
+}
+
 function escapeHtml(str) {
     return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
@@ -594,9 +695,11 @@ document.addEventListener('dragend', () => {
 let _groupDragActive = null; // { container, srcCard }
 
 // Find the nearest group card (excluding the dragged card) to a given clientY.
-// Used for both indicator display and drop target resolution.
+// Used for both indicator display and drop target resolution. Cards in the
+// currently hidden TV/VOD section are excluded (they have a zero-size rect
+// and would otherwise wrongly "win" the nearest-neighbour check).
 function findNearestGroupCard(clientY, container, srcCard) {
-    const cards = [...container.querySelectorAll('.group-card')].filter(c => c !== srcCard);
+    const cards = [...container.querySelectorAll('.group-card')].filter(c => c !== srcCard && c.offsetParent !== null);
     if (!cards.length) return null;
     let best = null, bestDist = Infinity;
     for (const c of cards) {
@@ -654,26 +757,45 @@ document.addEventListener('drop', e => {
 
 function initGroupDrag() {
     // Only bind per-header dragstart/dragend — drop is handled at document level.
-    [groupsContainer, groupsContainerB].forEach(container => {
-        container.querySelectorAll('.group-card').forEach(card => {
-            const header = card.querySelector('.group-header');
+    [groupsContainer, groupsContainerB].forEach(initGroupDragFor);
+}
 
-            header.addEventListener('dragstart', e => {
-                _groupDragActive = { container, srcCard: card };
-                card.classList.add('dragging');
-                e.dataTransfer.effectAllowed = 'move';
-                e.dataTransfer.setData('text/plain', card.dataset.group);
-            });
+function initGroupDragFor(container) {
+    container.querySelectorAll('.group-card').forEach(card => {
+        const header = card.querySelector('.group-header');
 
-            header.addEventListener('dragend', () => {
-                card.classList.remove('dragging');
-                if (_groupDragActive) {
-                    clearGroupIndicators(_groupDragActive.container);
-                    _groupDragActive = null;
-                }
-            });
+        header.addEventListener('dragstart', e => {
+            _groupDragActive = { container, srcCard: card };
+            card.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', card.dataset.group);
+        });
+
+        header.addEventListener('dragend', () => {
+            card.classList.remove('dragging');
+            if (_groupDragActive) {
+                clearGroupIndicators(_groupDragActive.container);
+                _groupDragActive = null;
+            }
         });
     });
+}
+
+// Lazily (re)builds pane B the first time 2-column mode is turned on, so
+// single-column users never pay the cost of a duplicate render.
+function buildPaneB() {
+    const search = searchInput.value.trim().toLowerCase();
+    const activeSearch = search.length >= 3 ? search : '';
+    const channelsByGroup = new Map();
+    for (const g of state.groups) channelsByGroup.set(g, []);
+    for (const ch of state.channels) {
+        if (!channelsByGroup.has(ch.group)) channelsByGroup.set(ch.group, []);
+        channelsByGroup.get(ch.group).push(ch);
+    }
+    groupsContainerB.innerHTML = '';
+    renderGroupSections(groupsContainerB, [...channelsByGroup.entries()], activeSearch);
+    initGroupDragFor(groupsContainerB);
+    if (activeSearch) applySearchHighlight(activeSearch);
 }
 
 // ─── Drag & Drop — Channels ───────────────────────────────────────────────────
@@ -779,7 +901,10 @@ function moveChannelInState(srcId, targetGroup, anchorId, position) {
 
 function rerenderAllLists() {
     const search = searchInput.value.trim().toLowerCase();
-    [groupsContainer, groupsContainerB].forEach(container => {
+    const activeSearch = search.length >= 3 ? search : '';
+    const twoCol = dualPane.classList.contains('two-col');
+    const containers = twoCol ? [groupsContainer, groupsContainerB] : [groupsContainer];
+    containers.forEach(container => {
         container.querySelectorAll('.group-card').forEach(card => {
             const groupName = card.dataset.group;
             const list = card.querySelector('.channel-list');
@@ -788,8 +913,17 @@ function rerenderAllLists() {
                 .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
             const countEl = card.querySelector('.group-count');
             if (countEl) countEl.textContent = channels.length;
-            list.innerHTML = '';
-            channels.forEach((ch, idx) => list.appendChild(renderChannel(ch, search, idx + 1)));
+            list._channelsData = channels;
+            // Skip rebuilding lists the user hasn't opened — they populate lazily on expand.
+            if (list.dataset.rendered) {
+                // Hide while rebuilding so a big already-open list doesn't pay a growing
+                // layout cost on every appended row, then restore its prior visibility.
+                const wasVisible = list.style.display !== 'none';
+                if (wasVisible) list.style.display = 'none';
+                populateList(list, channels, activeSearch, () => {
+                    if (wasVisible) list.style.display = '';
+                });
+            }
         });
     });
     const q = searchInput.value.trim().toLowerCase();
@@ -937,16 +1071,24 @@ saveBtn.addEventListener('click', async () => {
 const searchClear = document.getElementById('search-clear');
 
 function applySearchHighlight(q) {
-    // Expand groups with matches and mark them; collapse groups expanded by a prior search that now have no match
+    // Expand groups with matches and mark them; collapse groups expanded by a prior search that now have no match.
+    // Matches are checked against the underlying data (not the DOM) so unopened/unrendered groups are still found.
     document.querySelectorAll('.group-card').forEach(card => {
         const list = card.querySelector('.channel-list');
         if (!list) return;
-        const hasMatch = list.querySelectorAll('.channel-item:not(.hidden-by-search)').length > 0;
+        const data = list._channelsData || [];
+        const hasMatch = data.some(ch => ch.name.toLowerCase().includes(q));
         card.classList.toggle('has-search-match', hasMatch);
-        if (hasMatch && list.style.display === 'none') {
-            list.style.display = '';
-            list.dataset.searchExpanded = 'true';
-        } else if (!hasMatch && list.dataset.searchExpanded) {
+        if (hasMatch) {
+            const reveal = () => {
+                if (list.style.display === 'none') {
+                    list.style.display = '';
+                    list.dataset.searchExpanded = 'true';
+                }
+            };
+            if (!list.dataset.rendered) populateList(list, data, q, reveal);
+            else reveal();
+        } else if (list.dataset.searchExpanded) {
             list.style.display = 'none';
             delete list.dataset.searchExpanded;
         }
@@ -1262,11 +1404,19 @@ async function loadCronConfig() {
 }
 
 // ─── Expand / Collapse all ──────────────────────────────────────────────────
-document.getElementById('expand-all-btn').addEventListener('click', () => {
-    groupsContainer.querySelectorAll('.channel-list').forEach(list => {
-        list.style.display = '';
+function expandAll(container) {
+    const search = searchInput.value.trim().toLowerCase();
+    const activeSearch = search.length >= 3 ? search : '';
+    container.querySelectorAll('.channel-list').forEach(list => {
+        if (!list.dataset.rendered) {
+            populateList(list, list._channelsData || [], activeSearch, () => { list.style.display = ''; });
+        } else {
+            list.style.display = '';
+        }
     });
-});
+}
+
+document.getElementById('expand-all-btn').addEventListener('click', () => expandAll(groupsContainer));
 
 document.getElementById('collapse-all-btn').addEventListener('click', () => {
     groupsContainer.querySelectorAll('.channel-list').forEach(list => {
@@ -1274,11 +1424,7 @@ document.getElementById('collapse-all-btn').addEventListener('click', () => {
     });
 });
 
-document.getElementById('expand-all-btn-b').addEventListener('click', () => {
-    groupsContainerB.querySelectorAll('.channel-list').forEach(list => {
-        list.style.display = '';
-    });
-});
+document.getElementById('expand-all-btn-b').addEventListener('click', () => expandAll(groupsContainerB));
 
 document.getElementById('collapse-all-btn-b').addEventListener('click', () => {
     groupsContainerB.querySelectorAll('.channel-list').forEach(list => {
@@ -1303,6 +1449,10 @@ layoutBtn.addEventListener('click', () => {
     const twoCol = !dualPane.classList.contains('two-col');
     localStorage.setItem(TWO_COL_KEY, twoCol ? '1' : '0');
     applyLayout(twoCol);
+    // Pane B is built lazily the first time 2-column mode is used.
+    if (twoCol && !groupsContainerB.children.length && state.groups.length) {
+        buildPaneB();
+    }
 });
 
 // ─── Init ─────────────────────────────────────────────────────────────────────
