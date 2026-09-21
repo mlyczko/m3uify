@@ -735,6 +735,14 @@ button {
   background: var(--surface3);
 }
 
+/* VOD groups aren't expandable — no point suggesting they're clickable */
+.group-card.group-vod .group-header {
+  cursor: default;
+}
+.group-card.group-vod .group-header:hover {
+  background: var(--surface2);
+}
+
 /* Lime accent stripe on active-hovered header */
 .group-header:hover .group-title {
   color: var(--text);

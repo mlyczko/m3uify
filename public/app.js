@@ -199,22 +199,28 @@ function renderGroupSections(container, entries, activeSearch) {
         divider.textContent = `${label} · ${list.length} group${list.length === 1 ? '' : 's'}`;
         section.appendChild(divider);
         for (const [groupName, channels] of list) {
-            section.appendChild(renderGroup(groupName, channels, activeSearch));
+            section.appendChild(renderGroup(groupName, channels, activeSearch, key === 'vod'));
         }
         container.appendChild(section);
     };
     appendSection('tv', '📺 Live TV', tv);
     appendSection('vod', '🎬 VOD', vod);
     applyContentView(container);
+    contentViewToggle.classList.toggle('hidden', !(tv.length && vod.length));
 }
 
 // ─── TV / VOD switch ─────────────────────────────────────────────────────────
 const CONTENT_VIEW_KEY = 'm3uify_content_view';
 let contentView = localStorage.getItem(CONTENT_VIEW_KEY) === 'vod' ? 'vod' : 'tv';
+const contentViewToggle = document.getElementById('content-view-toggle');
 
 function applyContentView(container) {
+    const hasTv = !!container.querySelector('.group-section[data-section="tv"]');
+    const hasVod = !!container.querySelector('.group-section[data-section="vod"]');
     container.querySelectorAll('.group-section').forEach(section => {
-        section.classList.toggle('hidden', section.dataset.section !== contentView);
+        // If only one section type exists there's nothing to switch between —
+        // always show it regardless of the last-selected preference.
+        section.classList.toggle('hidden', hasTv && hasVod && section.dataset.section !== contentView);
     });
 }
 
@@ -244,6 +250,7 @@ function renderAll() {
         paneAToolbar.classList.add('hidden');
         paneBToolbar.classList.add('hidden');
         channelCount.textContent = '';
+        contentViewToggle.classList.add('hidden');
         return;
     }
 
@@ -283,7 +290,7 @@ function renderAll() {
     if (activeSearch) applySearchHighlight(activeSearch);
 }
 
-function renderGroup(groupName, channels, search) {
+function renderGroup(groupName, channels, search, isVod) {
     const card = document.createElement('div');
     card.className = 'group-card';
     card.dataset.group = groupName;
@@ -304,6 +311,14 @@ function renderGroup(groupName, channels, search) {
     ${isCustom ? `<button class="group-delete-btn" title="Delete group">🗑</button>` : ''}
   `;
 
+    // VOD groups can hold tens of thousands of movies/series episodes —
+    // browsing/reordering them individually has no real use, so we never
+    // fetch or render their channel rows, and the group can't be expanded.
+    if (isVod) {
+        card.classList.add('group-vod');
+        header.title = 'VOD groups aren\'t expandable — only group-level actions (enable/disable, rename) apply';
+    }
+
     const list = document.createElement('ul');
     list.className = 'channel-list';
     list.dataset.group = groupName;
@@ -312,22 +327,24 @@ function renderGroup(groupName, channels, search) {
     // actually expanded — building every row for every group upfront is what
     // freezes the tab on huge playlists (tens of thousands of channels).
     list._channelsData = channels;
-    if (search) {
+    if (!isVod && search) {
         // A search is active — populate immediately so matches can be found/highlighted.
         populateList(list, channels, search);
     }
 
-    header.addEventListener('click', (e) => {
-        // Don't toggle if clicking rename button, toggle button, delete button, or rename input
-        if (e.target.closest('.group-rename-btn, .group-rename-input, .group-toggle-btn, .group-delete-btn')) return;
-        if (list.style.display !== 'none') { list.style.display = 'none'; return; }
-        if (list.dataset.rendered) { list.style.display = ''; return; }
-        // Stay hidden until every row is built, then reveal in one shot.
-        const q = searchInput.value.trim().toLowerCase();
-        populateList(list, list._channelsData || [], q.length >= 3 ? q : '', () => {
-            list.style.display = '';
+    if (!isVod) {
+        header.addEventListener('click', (e) => {
+            // Don't toggle if clicking rename button, toggle button, delete button, or rename input
+            if (e.target.closest('.group-rename-btn, .group-rename-input, .group-toggle-btn, .group-delete-btn')) return;
+            if (list.style.display !== 'none') { list.style.display = 'none'; return; }
+            if (list.dataset.rendered) { list.style.display = ''; return; }
+            // Stay hidden until every row is built, then reveal in one shot.
+            const q = searchInput.value.trim().toLowerCase();
+            populateList(list, list._channelsData || [], q.length >= 3 ? q : '', () => {
+                list.style.display = '';
+            });
         });
-    });
+    }
 
     const toggleBtn = header.querySelector('.group-toggle-btn');
     toggleBtn.addEventListener('click', (e) => {
@@ -1074,6 +1091,7 @@ function applySearchHighlight(q) {
     // Expand groups with matches and mark them; collapse groups expanded by a prior search that now have no match.
     // Matches are checked against the underlying data (not the DOM) so unopened/unrendered groups are still found.
     document.querySelectorAll('.group-card').forEach(card => {
+        if (card.classList.contains('group-vod')) return; // VOD groups are never expanded/searched
         const list = card.querySelector('.channel-list');
         if (!list) return;
         const data = list._channelsData || [];
@@ -1407,7 +1425,7 @@ async function loadCronConfig() {
 function expandAll(container) {
     const search = searchInput.value.trim().toLowerCase();
     const activeSearch = search.length >= 3 ? search : '';
-    container.querySelectorAll('.channel-list').forEach(list => {
+    container.querySelectorAll('.group-card:not(.group-vod) .channel-list').forEach(list => {
         if (!list.dataset.rendered) {
             populateList(list, list._channelsData || [], activeSearch, () => { list.style.display = ''; });
         } else {
