@@ -13,7 +13,9 @@ const app = express();
 const PORT = process.env.PORT || 6767;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '';
 
-app.use(express.json({ limit: '50mb' }));
+// Large IPTV sources can have 200k+ channels, pushing a saved/backup payload
+// well past 50mb (e.g. ~103mb for 201k channels) — give it headroom.
+app.use(express.json({ limit: '300mb' }));
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
