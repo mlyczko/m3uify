@@ -4,8 +4,11 @@ Web-based IPTV playlist manager — fetch, organise, and serve a custom-ordered 
 
 ## Screenshots
 
-**Overview — sidebar with playlist URL (copy button), source URL input (placeholder `http://...`), EPG Sources section, auto-sync schedule, and security section; two-row toolbar; collapsed group list**
+**Overview — sidebar with playlist URL (copy button), source URL input (placeholder `http://...`), EPG Sources section, auto-sync schedule, and security section; responsive two-row toolbar with the 📺 TV / 🎬 VOD content-type toggle; collapsed group list**
 ![Overview](docs/overview.png)
+
+**TV / VOD channel counts — the toolbar's count badge splits into separate 📺 TV and 🎬 VOD channel/group totals whenever the playlist actually contains VOD groups; all toolbar controls (search, counts, toggle, theme, save) share the same height**
+![TV / VOD counts](docs/tv-vod-counts.png)
 
 **Channels — expanded group with numbered channels, per-row checkbox for bulk selection, logos, move (↪), toggle (●), and drag handle**
 ![Channels](docs/channels.png)
