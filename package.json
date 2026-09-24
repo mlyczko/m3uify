@@ -1,6 +1,6 @@
 {
   "name": "m3uify",
-  "version": "1.0.43",
+  "version": "1.0.44",
   "description": "M3Uify - IPTV Playlist Manager",
   "main": "server.js",
   "scripts": {

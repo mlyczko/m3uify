@@ -149,18 +149,22 @@
         <main id="main">
             <div id="toolbar">
                 <div id="toolbar-primary">
-                    <button id="sidebar-toggle" title="Toggle sidebar">☰</button>
-                    <div id="search-wrap">
-                        <input type="text" id="search-input" placeholder="Search channels..." />
-                        <button id="search-clear" title="Clear">&#x2715;</button>
+                    <div id="toolbar-primary-row1">
+                        <button id="sidebar-toggle" title="Toggle sidebar">☰</button>
+                        <div id="search-wrap">
+                            <input type="text" id="search-input" placeholder="Search channels..." />
+                            <button id="search-clear" title="Clear">&#x2715;</button>
+                        </div>
+                        <span id="channel-count"></span>
                     </div>
-                    <span id="channel-count"></span>
-                    <div id="content-view-toggle" class="segmented-toggle" role="group" aria-label="Content type">
-                        <button type="button" class="segmented-btn" data-view="tv">📺 TV</button>
-                        <button type="button" class="segmented-btn" data-view="vod">🎬 VOD</button>
+                    <div id="toolbar-primary-row2">
+                        <div id="content-view-toggle" class="segmented-toggle" role="group" aria-label="Content type">
+                            <button type="button" class="segmented-btn" data-view="tv">📺 TV</button>
+                            <button type="button" class="segmented-btn" data-view="vod">🎬 VOD</button>
+                        </div>
+                        <button id="theme-toggle" class="icon-btn" title="Toggle light / dark mode">🌙</button>
+                        <button id="save-btn" class="btn-primary" disabled>Save Changes</button>
                     </div>
-                    <button id="theme-toggle" class="icon-btn" title="Toggle light / dark mode">🌙</button>
-                    <button id="save-btn" class="btn-primary" disabled>Save Changes</button>
                 </div>
                 <div id="toolbar-secondary">
                     <button id="add-group-btn" class="btn-secondary">＋ New Group</button>

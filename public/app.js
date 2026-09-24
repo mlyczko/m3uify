@@ -209,6 +209,40 @@ function renderGroupSections(container, entries, activeSearch) {
     contentViewToggle.classList.toggle('hidden', !(tv.length && vod.length));
 }
 
+// Builds the toolbar's channel/group count text, split into separate TV and
+// VOD tallies (only when the playlist actually has a VOD group — otherwise
+// falls back to a single combined count).
+function formatChannelCount(activeSearch) {
+    const channelsByGroup = new Map();
+    for (const g of state.groups) channelsByGroup.set(g, []);
+    for (const ch of state.channels) {
+        if (!channelsByGroup.has(ch.group)) channelsByGroup.set(ch.group, []);
+        channelsByGroup.get(ch.group).push(ch);
+    }
+    const entries = [...channelsByGroup.entries()];
+    const vod = entries.filter(([g, channels]) => isVodGroup(g, channels));
+
+    const sumChannels = (list) => list.reduce((n, [, channels]) => n + channels.length, 0);
+    const countMatching = (list) => list.reduce((n, [, channels]) =>
+        n + channels.filter(ch => ch.name.toLowerCase().includes(activeSearch)).length, 0);
+
+    if (!vod.length) {
+        let text = `${state.channels.length} channels · ${state.groups.length} groups`;
+        if (activeSearch) text += ` · ${countMatching(entries)} matching`;
+        return text;
+    }
+
+    const tv = entries.filter(([g, channels]) => !isVodGroup(g, channels));
+    const part = (icon, list) => {
+        let text = `${icon} ${sumChannels(list)} channels · ${list.length} groups`;
+        if (activeSearch) text += ` · ${countMatching(list)} matching`;
+        return text;
+    };
+    // Regular spaces collapse to one in rendered HTML — use non-breaking
+    // spaces so the TV/VOD halves actually get visual separation.
+    return `${part('📺', tv)}\u00A0\u00A0\u00A0\u00A0${part('🎬', vod)}`;
+}
+
 // ─── TV / VOD switch ─────────────────────────────────────────────────────────
 const CONTENT_VIEW_KEY = 'm3uify_content_view';
 let contentView = localStorage.getItem(CONTENT_VIEW_KEY) === 'vod' ? 'vod' : 'tv';
@@ -270,19 +304,13 @@ function renderAll() {
     const activeSearch = search.length >= 3 ? search : '';
     const twoCol = dualPane.classList.contains('two-col');
     const entries = [...channelsByGroup.entries()];
-    let totalVisible = 0;
 
     renderGroupSections(groupsContainer, entries, activeSearch);
     // Pane B (mirror) is only needed in 2-column mode — skip building it
     // to halve DOM work for huge playlists in the common 1-column case.
     if (twoCol) renderGroupSections(groupsContainerB, entries, activeSearch);
-    for (const [, channels] of entries) {
-        const visible = channels.filter(ch => !activeSearch || ch.name.toLowerCase().includes(activeSearch));
-        totalVisible += visible.length;
-    }
 
-    channelCount.textContent = `${state.channels.length} channels · ${state.groups.length} groups`;
-    if (activeSearch) channelCount.textContent += ` · ${totalVisible} matching`;
+    channelCount.textContent = formatChannelCount(activeSearch);
 
     initGroupDrag();
 
@@ -392,13 +420,14 @@ function renderGroup(groupName, channels, search, isVod) {
         header.classList.remove('group-header-drop-over');
     });
     header.addEventListener('drop', e => {
-        if (!channelDragSrc) return;
+        if (!channelDragSrc || !channelDragIds) return;
         e.preventDefault();
         e.stopPropagation();
         header.classList.remove('group-header-drop-over');
-        const srcId = channelDragSrc.dataset.id;
+        const ids = channelDragIds;
         channelDragSrc = null; // clear before DOM mutation so dragend doesn't need to
-        moveChannelInState(srcId, groupName, null, 'append');
+        channelDragIds = null;
+        moveChannelsInState(ids, groupName, null, 'append');
         markDirty(true);
     });
 
@@ -700,12 +729,14 @@ async function deleteGroup(groupName, card) {
 }
 
 // ─── Drag & Drop — Groups ────────────────────────────────────────────────────
-let channelDragSrc = null; // global so cross-group drag works
+let channelDragSrc = null; // the row the drag physically started on
+let channelDragIds = null; // full set of channel ids being moved (multi-select aware)
 const selectedIds = new Set(); // channel IDs selected for bulk actions
 let lastSelectedId = null;     // anchor for shift-click range selection
 // Fallback: if dragend fires on a detached element it won't bubble — clear here too
 document.addEventListener('dragend', () => {
     channelDragSrc = null;
+    channelDragIds = null;
 });
 
 // Active group drag state — set on dragstart, cleared on dragend/drop
@@ -816,20 +847,29 @@ function buildPaneB() {
 }
 
 // ─── Drag & Drop — Channels ───────────────────────────────────────────────────
+// channelDragSrc is the row the drag physically started on; channelDragIds is
+// the full set being moved — when the dragged row is part of the current
+// multi-selection, every selected channel moves together, not just that row.
 function initChannelDrag(list) {
 
     list.addEventListener('dragstart', e => {
         const item = e.target.closest('.channel-item');
         if (!item) return;
         channelDragSrc = item;
-        item.classList.add('dragging');
+        const id = item.dataset.id;
+        if (selectedIds.has(id) && selectedIds.size > 1) {
+            channelDragIds = [...selectedIds];
+            document.querySelectorAll('.channel-item.ch-selected').forEach(el => el.classList.add('dragging'));
+        } else {
+            channelDragIds = [id];
+            item.classList.add('dragging');
+        }
         e.dataTransfer.effectAllowed = 'move';
-        e.dataTransfer.setData('text/plain', item.dataset.id);
+        e.dataTransfer.setData('text/plain', id);
     });
 
     list.addEventListener('dragend', e => {
-        const item = e.target.closest('.channel-item');
-        if (item) item.classList.remove('dragging');
+        document.querySelectorAll('.channel-item.dragging').forEach(el => el.classList.remove('dragging'));
         document.querySelectorAll('.drag-over-top, .drag-over-bottom').forEach(el => {
             el.classList.remove('drag-over-top', 'drag-over-bottom');
         });
@@ -837,13 +877,14 @@ function initChannelDrag(list) {
             el.classList.remove('group-header-drop-over');
         });
         channelDragSrc = null;
+        channelDragIds = null;
     });
 
     list.addEventListener('dragover', e => {
         if (!channelDragSrc) return;
         e.preventDefault();
         const target = e.target.closest('.channel-item');
-        if (!target || target === channelDragSrc) return;
+        if (!target || channelDragIds.includes(target.dataset.id)) return;
 
         document.querySelectorAll('.drag-over-top, .drag-over-bottom').forEach(el => {
             el.classList.remove('drag-over-top', 'drag-over-bottom');
@@ -867,21 +908,22 @@ function initChannelDrag(list) {
 
     list.addEventListener('drop', e => {
         e.preventDefault();
-        if (!channelDragSrc) return;
+        if (!channelDragSrc || !channelDragIds) return;
 
         const target = e.target.closest('.channel-item');
         const targetGroup = list.dataset.group;
-        const srcId = channelDragSrc.dataset.id;
-        const anchorId = (target && target !== channelDragSrc) ? target.dataset.id : null;
-        if (target) target.classList.remove('drag-over-top', 'drag-over-bottom');
+        const ids = channelDragIds;
+        const validTarget = (target && !ids.includes(target.dataset.id)) ? target : null;
+        if (validTarget) validTarget.classList.remove('drag-over-top', 'drag-over-bottom');
         channelDragSrc = null; // clear before DOM mutation so dragend fires on detached element harmlessly
-        if (anchorId) {
-            const rect = target.getBoundingClientRect();
+        channelDragIds = null;
+        if (validTarget) {
+            const rect = validTarget.getBoundingClientRect();
             const mid = rect.top + rect.height / 2;
             const position = e.clientY < mid ? 'before' : 'after';
-            moveChannelInState(srcId, targetGroup, anchorId, position);
+            moveChannelsInState(ids, targetGroup, validTarget.dataset.id, position);
         } else {
-            moveChannelInState(srcId, targetGroup, null, 'append');
+            moveChannelsInState(ids, targetGroup, null, 'append');
         }
         markDirty(true);
     });
@@ -889,23 +931,31 @@ function initChannelDrag(list) {
 
 function syncChannelOrderFromDOM() { }
 
-function moveChannelInState(srcId, targetGroup, anchorId, position) {
-    const srcIdx = state.channels.findIndex(c => c.id === srcId);
-    if (srcIdx === -1) return;
-    const [moved] = state.channels.splice(srcIdx, 1);
-    moved.group = targetGroup;
+// Moves one or more channels (by id) to `targetGroup`, inserted either before/after
+// `anchorId` or appended to the end of the group — preserving the moved channels'
+// relative order to each other (so a multi-selection drag keeps its shape).
+function moveChannelsInState(ids, targetGroup, anchorId, position) {
+    const idSet = new Set(ids);
+    const moving = state.channels.filter(ch => idSet.has(ch.id));
+    if (!moving.length) return;
+    state.channels = state.channels.filter(ch => !idSet.has(ch.id));
+    moving.forEach(ch => { ch.group = targetGroup; });
 
-    if (anchorId) {
+    let insertAt = -1;
+    if (anchorId && !idSet.has(anchorId)) {
         const anchorIdx = state.channels.findIndex(c => c.id === anchorId);
-        if (anchorIdx !== -1) {
-            state.channels.splice(position === 'before' ? anchorIdx : anchorIdx + 1, 0, moved);
-        } else {
-            state.channels.push(moved);
-        }
-    } else {
-        const lastInGroup = state.channels.reduce((last, ch, i) => ch.group === targetGroup ? i : last, -1);
-        state.channels.splice(lastInGroup + 1, 0, moved);
+        if (anchorIdx !== -1) insertAt = position === 'before' ? anchorIdx : anchorIdx + 1;
     }
+    if (insertAt === -1) {
+        const lastInGroup = state.channels.reduce((last, ch, i) => ch.group === targetGroup ? i : last, -1);
+        insertAt = lastInGroup + 1;
+    }
+    state.channels.splice(insertAt, 0, ...moving);
+
+    // Drag-and-drop is complete — leaving the moved rows checked is confusing
+    // once they've landed in their new spot, so clear them from the selection.
+    idSet.forEach(id => selectedIds.delete(id));
+    if (idSet.has(lastSelectedId)) lastSelectedId = null;
 
     const groupCounters = new Map();
     state.channels.forEach(ch => {
@@ -914,6 +964,10 @@ function moveChannelInState(srcId, targetGroup, anchorId, position) {
     });
 
     rerenderAllLists();
+}
+
+function moveChannelInState(id, targetGroup, anchorId, position) {
+    moveChannelsInState([id], targetGroup, anchorId, position);
 }
 
 function rerenderAllLists() {
@@ -943,12 +997,7 @@ function rerenderAllLists() {
             }
         });
     });
-    const q = searchInput.value.trim().toLowerCase();
-    channelCount.textContent = `${state.channels.length} channels · ${state.groups.length} groups`;
-    if (q) {
-        const visible = state.channels.filter(ch => ch.name.toLowerCase().includes(q)).length;
-        channelCount.textContent += ` · ${visible} matching`;
-    }
+    channelCount.textContent = formatChannelCount(activeSearch);
     syncSelectionUI();
 }
 
@@ -1132,7 +1181,7 @@ searchInput.addEventListener('input', () => {
 
     if (q.length === 0) {
         clearSearchHighlight();
-        channelCount.textContent = `${state.channels.length} channels · ${state.groups.length} groups`;
+        channelCount.textContent = formatChannelCount('');
         return;
     }
 
@@ -1148,8 +1197,7 @@ searchInput.addEventListener('input', () => {
         item.classList.toggle('hidden-by-search', !name.includes(q));
     });
     applySearchHighlight(q);
-    const visible = document.querySelectorAll('.channel-item:not(.hidden-by-search)').length;
-    channelCount.textContent = `${state.channels.length} channels · ${state.groups.length} groups · ${visible} matching`;
+    channelCount.textContent = formatChannelCount(q);
 });
 
 searchClear.addEventListener('click', () => {
